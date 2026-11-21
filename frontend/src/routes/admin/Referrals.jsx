@@ -28,8 +28,8 @@ const STATUS_CONFIG = {
   'pending':        { label: 'Pending Review', color: '#BA7517', bg: '#FAEEDA', icon: 'pending_actions' },
   'Admitted':       { label: 'Admitted',        color: '#185FA5', bg: '#E6F1FB', icon: 'local_hospital' },
   'admitted':       { label: 'Admitted',        color: '#185FA5', bg: '#E6F1FB', icon: 'local_hospital' },
-  'Discharged':     { label: 'Discharged',      color: '#27500A', bg: '#EAF3DE', icon: 'home' },
-  'discharged':     { label: 'Discharged',      color: '#27500A', bg: '#EAF3DE', icon: 'home' },
+  'Discharged':     { label: 'Discharged',      color: '#02343F', bg: '#FAF8EA', icon: 'home' },
+  'discharged':     { label: 'Discharged',      color: '#02343F', bg: '#FAF8EA', icon: 'home' },
   'Follow-up Due':  { label: 'Follow-up Due',   color: '#E24B4A', bg: '#FCEBEB', icon: 'calendar_today' },
   'follow_up_due':  { label: 'Follow-up Due',   color: '#E24B4A', bg: '#FCEBEB', icon: 'calendar_today' },
   'Rejected':       { label: 'Rejected',         color: '#E24B4A', bg: '#FCEBEB', icon: 'cancel' },
@@ -52,7 +52,7 @@ const RISK_CONFIG = {
   CRITICAL: { color: '#E24B4A', bg: '#FCEBEB' },
   HIGH:     { color: '#BA7517', bg: '#FAEEDA' },
   MEDIUM:   { color: '#185FA5', bg: '#E6F1FB' },
-  LOW:      { color: '#27500A', bg: '#EAF3DE' },
+  LOW:      { color: '#02343F', bg: '#FAF8EA' },
 };
 
 // ─── Supervisor "Verify & Close" Modal with Required Clinical Evidence ────────
@@ -113,7 +113,7 @@ const VerifyAndCloseModal = ({ referral, onClose, onClosed }) => {
       >
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <span className="material-symbols-outlined" style={{ color: '#085041', fontSize: '24px' }}>verified</span>
+            <span className="material-symbols-outlined" style={{ color: '#02343F', fontSize: '24px' }}>verified</span>
             <h3 style={{ fontSize: '18px', fontWeight: '800', color: '#1A1A18', margin: 0 }}>
               {tx('Verify & Close Care Loop')}
             </h3>
@@ -180,7 +180,7 @@ const VerifyAndCloseModal = ({ referral, onClose, onClosed }) => {
             disabled={saving || evidence.trim().length < 10}
             style={{
               flex: 2, padding: '12px',
-              background: evidence.trim().length >= 10 ? '#085041' : '#94A3B8',
+              background: evidence.trim().length >= 10 ? '#02343F' : '#94A3B8',
               border: 'none', borderRadius: '12px',
               color: '#fff', fontWeight: '700',
               cursor: (saving || evidence.trim().length < 10) ? 'not-allowed' : 'pointer',
@@ -522,9 +522,9 @@ export default function Referrals() {
               style={{
                 padding: '7px 14px',
                 borderRadius: '20px',
-                border: `1px solid ${filter === f ? (sCfg?.color || '#1D9E75') : '#D3D1C7'}`,
-                background: filter === f ? (sCfg?.bg || '#EAF3DE') : '#fff',
-                color: filter === f ? (sCfg?.color || '#085041') : '#555',
+                border: `1px solid ${filter === f ? (sCfg?.color || '#02343F') : '#D3D1C7'}`,
+                background: filter === f ? (sCfg?.bg || '#FAF8EA') : '#fff',
+                color: filter === f ? (sCfg?.color || '#02343F') : '#555',
                 fontSize: '12px', fontWeight: filter === f ? '700' : '500',
                 cursor: 'pointer', whiteSpace: 'nowrap',
                 transition: 'all 0.15s',
@@ -665,13 +665,13 @@ export default function Referrals() {
                         onClick={() => setClosingReferral(r)}
                         style={{
                           flex: 1, padding: '10px',
-                          background: isAwaiting ? '#085041' : '#fff',
-                          color: isAwaiting ? '#fff' : '#085041',
-                          border: '1.5px solid #085041',
+                          background: isAwaiting ? '#02343F' : '#fff',
+                          color: isAwaiting ? '#fff' : '#02343F',
+                          border: '1.5px solid #02343F',
                           borderRadius: '10px',
                           fontSize: '13px', fontWeight: '700', cursor: 'pointer',
                           display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '4px',
-                          boxShadow: isAwaiting ? '0 2px 8px rgba(8,80,65,0.25)' : 'none'
+                          boxShadow: isAwaiting ? '0 2px 8px rgba(2,52,63,0.25)' : 'none'
                         }}
                       >
                         <span className="material-symbols-outlined" style={{fontSize: '16px'}}>verified</span>

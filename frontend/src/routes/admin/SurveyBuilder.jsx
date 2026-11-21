@@ -242,19 +242,19 @@ export default function SurveyBuilder() {
       <div className="flex border-b border-[#D3D1C7] bg-white">
         <button
           onClick={() => setActiveTab('builder')}
-          className={`px-6 py-3 text-sm font-bold transition-colors ${activeTab === 'builder' ? 'border-b-2 border-[#1D9E75] text-[#085041]' : 'text-[#5F5E5A] hover:text-[#1A1A18]'}`}
+          className={`px-6 py-3 text-sm font-bold transition-colors ${activeTab === 'builder' ? 'border-b-2 border-[#02343F] text-[#02343F]' : 'text-[#5F5E5A] hover:text-[#1A1A18]'}`}
         >
           <span className="material-symbols-outlined text-sm mr-1">construction</span>
           Build New Survey
         </button>
         <button
           onClick={() => setActiveTab('manage')}
-          className={`px-6 py-3 text-sm font-bold transition-colors ${activeTab === 'manage' ? 'border-b-2 border-[#1D9E75] text-[#085041]' : 'text-[#5F5E5A] hover:text-[#1A1A18]'}`}
+          className={`px-6 py-3 text-sm font-bold transition-colors ${activeTab === 'manage' ? 'border-b-2 border-[#02343F] text-[#02343F]' : 'text-[#5F5E5A] hover:text-[#1A1A18]'}`}
         >
           <span className="material-symbols-outlined text-sm mr-1">manage_accounts</span>
           Manage Surveys
           {publishedSurveys.length > 0 && (
-            <span className="ml-2 bg-[#1D9E75] text-white text-[10px] px-2 py-0.5 rounded-full">{publishedSurveys.length}</span>
+            <span className="ml-2 bg-[#02343F] text-white text-[10px] px-2 py-0.5 rounded-full">{publishedSurveys.length}</span>
           )}
         </button>
       </div>
@@ -265,7 +265,7 @@ export default function SurveyBuilder() {
           <h2 className="text-lg font-bold text-[#1A1A18] mb-4">Published Custom Surveys</h2>
           {surveysLoading ? (
             <div className="flex justify-center py-12">
-              <span className="material-symbols-outlined animate-spin text-3xl text-[#1D9E75]">refresh</span>
+              <span className="material-symbols-outlined animate-spin text-3xl text-[#02343F]">refresh</span>
             </div>
           ) : publishedSurveys.length === 0 ? (
             <div className="border-2 border-dashed border-[#D3D1C7] rounded-2xl p-12 text-center text-[#5F5E5A]">
@@ -288,7 +288,7 @@ export default function SurveyBuilder() {
                         <p className="text-xs text-[#5F5E5A]">
                           {survey.isPublished ? 'Published' : 'Draft'}
                           {' · '}
-                          <span className={isActive ? 'text-[#1D9E75] font-semibold' : 'text-[#E24B4A] font-semibold'}>
+                          <span className={isActive ? 'text-[#02343F] font-semibold' : 'text-[#E24B4A] font-semibold'}>
                             {isActive ? 'Active' : 'Inactive'}
                           </span>
                         </p>
@@ -299,7 +299,7 @@ export default function SurveyBuilder() {
                       {/* is_active toggle */}
                       <button
                         onClick={() => handleToggleActive(survey)}
-                        className={`relative w-12 h-6 rounded-full transition-colors ${isActive ? 'bg-[#1D9E75]' : 'bg-gray-300'}`}
+                        className={`relative w-12 h-6 rounded-full transition-colors ${isActive ? 'bg-[#02343F]' : 'bg-gray-300'}`}
                       >
                         <div className={`absolute top-1 w-4 h-4 bg-white rounded-full shadow transition-transform ${isActive ? 'translate-x-7' : 'translate-x-1'}`} />
                       </button>
@@ -323,9 +323,9 @@ export default function SurveyBuilder() {
             <button
               key={ft.type}
               onClick={() => addField(ft.type)}
-              className="w-full flex items-center gap-2 p-2 rounded-lg hover:bg-[#EAF3DE] text-[#1A1A18] transition-colors text-sm"
+              className="w-full flex items-center gap-2 p-2 rounded-lg hover:bg-[#FAF8EA] text-[#1A1A18] transition-colors text-sm"
             >
-              <span className="material-symbols-outlined text-lg text-[#1D9E75]">{ft.icon}</span>
+              <span className="material-symbols-outlined text-lg text-[#02343F]">{ft.icon}</span>
               <span>{ft.label}</span>
             </button>
           ))}
@@ -343,10 +343,10 @@ export default function SurveyBuilder() {
                 <button
                   type="button"
                   onClick={() => setShowIconPicker(v => !v)}
-                  className="w-10 h-10 rounded-xl bg-[#EAF3DE] border border-[#1D9E75] flex items-center justify-center hover:bg-[#D4EDDA] transition-colors"
+                  className="w-10 h-10 rounded-xl bg-[#FAF8EA] border border-[#02343F] flex items-center justify-center hover:bg-[#D4EDDA] transition-colors"
                   title="Pick icon"
                 >
-                  <span className="material-symbols-outlined text-lg text-[#1D9E75]">
+                  <span className="material-symbols-outlined text-lg text-[#02343F]">
                     {ICON_OPTIONS.find(o => o.key === surveyIcon)?.symbol || 'assignment'}
                   </span>
                 </button>
@@ -357,12 +357,12 @@ export default function SurveyBuilder() {
                         key={opt.key}
                         type="button"
                         onClick={() => { setSurveyIcon(opt.key); setShowIconPicker(false); }}
-                        className={`flex flex-col items-center gap-1 p-2 rounded-xl hover:bg-[#EAF3DE] transition-colors ${
-                          surveyIcon === opt.key ? 'bg-[#EAF3DE] border border-[#1D9E75]' : ''
+                        className={`flex flex-col items-center gap-1 p-2 rounded-xl hover:bg-[#FAF8EA] transition-colors ${
+                          surveyIcon === opt.key ? 'bg-[#FAF8EA] border border-[#02343F]' : ''
                         }`}
                         title={opt.label}
                       >
-                        <span className="material-symbols-outlined text-lg text-[#085041]">{opt.symbol}</span>
+                        <span className="material-symbols-outlined text-lg text-[#02343F]">{opt.symbol}</span>
                         <span className="text-[9px] text-[#5F5E5A] font-medium leading-none">{opt.label}</span>
                       </button>
                     ))}
@@ -373,10 +373,10 @@ export default function SurveyBuilder() {
                 value={titleEN}
                 onChange={e => setTitleEN(e.target.value)}
                 onBlur={autoTranslateTitle}
-                className="text-2xl font-bold bg-transparent border-b-2 border-dashed border-[#D3D1C7] focus:border-[#1D9E75] focus:outline-none flex-1 min-w-0"
+                className="text-2xl font-bold bg-transparent border-b-2 border-dashed border-[#D3D1C7] focus:border-[#02343F] focus:outline-none flex-1 min-w-0"
                 placeholder="Survey Title (English)…"
               />
-              {translating === 'title' && <span className="material-symbols-outlined animate-spin text-[#1D9E75]">refresh</span>}
+              {translating === 'title' && <span className="material-symbols-outlined animate-spin text-[#02343F]">refresh</span>}
             </div>
             
             <div className="flex items-center gap-2">
@@ -385,7 +385,7 @@ export default function SurveyBuilder() {
                 <button
                   key={l}
                   onClick={() => setLanguage(l)}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-colors ${language === l ? 'bg-[#085041] text-white' : 'bg-gray-100 text-[#5F5E5A] hover:bg-gray-200'}`}
+                  className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-colors ${language === l ? 'bg-[#02343F] text-white' : 'bg-gray-100 text-[#5F5E5A] hover:bg-gray-200'}`}
                 >
                   {l}
                 </button>
@@ -394,7 +394,7 @@ export default function SurveyBuilder() {
               <button
                 onClick={handlePublish}
                 disabled={publishing || fields.length === 0 || !titleEN.trim()}
-                className="ml-4 bg-[#1D9E75] text-white px-5 py-2 rounded-xl font-bold flex items-center gap-2 hover:bg-[#085041] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                className="ml-4 bg-[#02343F] text-white px-5 py-2 rounded-xl font-bold flex items-center gap-2 hover:bg-[#02343F] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {publishing ? (
                   <span className="material-symbols-outlined animate-spin">refresh</span>
@@ -410,18 +410,18 @@ export default function SurveyBuilder() {
           <div className="grid grid-cols-2 gap-4">
             <div className="flex items-center gap-2">
               <label className="text-xs text-[#5F5E5A] font-bold uppercase w-16">Marathi</label>
-              <input value={titleMR} onChange={e => setTitleMR(e.target.value)} className="flex-1 p-2 border border-[#D3D1C7] rounded-lg text-sm focus:outline-none focus:border-[#1D9E75]" placeholder="सर्वेक्षण शीर्षक..." />
+              <input value={titleMR} onChange={e => setTitleMR(e.target.value)} className="flex-1 p-2 border border-[#D3D1C7] rounded-lg text-sm focus:outline-none focus:border-[#02343F]" placeholder="सर्वेक्षण शीर्षक..." />
             </div>
             <div className="flex items-center gap-2">
               <label className="text-xs text-[#5F5E5A] font-bold uppercase w-16">Hindi</label>
-              <input value={titleHI} onChange={e => setTitleHI(e.target.value)} className="flex-1 p-2 border border-[#D3D1C7] rounded-lg text-sm focus:outline-none focus:border-[#1D9E75]" placeholder="सर्वेक्षण शीर्षक..." />
+              <input value={titleHI} onChange={e => setTitleHI(e.target.value)} className="flex-1 p-2 border border-[#D3D1C7] rounded-lg text-sm focus:outline-none focus:border-[#02343F]" placeholder="सर्वेक्षण शीर्षक..." />
             </div>
           </div>
         </div>
 
         {/* Cross-Survey Linkage Section */}
         <div className="mb-6 border border-[#D3D1C7] rounded-xl p-4 bg-[#F5F4EF]">
-          <h3 className="text-sm font-bold text-[#085041] mb-3">Cross-Survey Linkage (Optional)</h3>
+          <h3 className="text-sm font-bold text-[#02343F] mb-3">Cross-Survey Linkage (Optional)</h3>
           
           <div className="space-y-4">
             <div>
@@ -432,7 +432,7 @@ export default function SurveyBuilder() {
                   setConnectedSurvey(e.target.value);
                   if (!e.target.value) setLinkMethod('');
                 }}
-                className="w-full max-w-sm p-2 border border-[#D3D1C7] rounded-lg text-sm focus:outline-none focus:border-[#1D9E75]"
+                className="w-full max-w-sm p-2 border border-[#D3D1C7] rounded-lg text-sm focus:outline-none focus:border-[#02343F]"
               >
                 <option value="">None (default)</option>
                 <option value="family_survey">Family Survey</option>
@@ -444,7 +444,7 @@ export default function SurveyBuilder() {
             </div>
 
             {connectedSurvey && (
-              <div className="pl-4 border-l-2 border-[#1D9E75] space-y-2">
+              <div className="pl-4 border-l-2 border-[#02343F] space-y-2">
                 <label className="block text-xs font-bold text-[#5F5E5A]">Link by:</label>
                 <div className="flex items-center gap-4 text-sm">
                   <label className="flex items-center gap-2 cursor-pointer">
@@ -454,7 +454,7 @@ export default function SurveyBuilder() {
                       value="aadhaar" 
                       checked={linkMethod === 'aadhaar'}
                       onChange={(e) => setLinkMethod(e.target.value)}
-                      className="text-[#1D9E75] focus:ring-[#1D9E75]"
+                      className="text-[#02343F] focus:ring-[#02343F]"
                     />
                     Aadhaar Number
                   </label>
@@ -465,13 +465,13 @@ export default function SurveyBuilder() {
                       value="name_dob" 
                       checked={linkMethod === 'name_dob'}
                       onChange={(e) => setLinkMethod(e.target.value)}
-                      className="text-[#1D9E75] focus:ring-[#1D9E75]"
+                      className="text-[#02343F] focus:ring-[#02343F]"
                     />
                     Name + Date of Birth
                   </label>
                 </div>
                 <p className="text-[10px] text-[#5F5E5A] max-w-md mt-2">
-                  When this survey is submitted, AshaAI will attempt to automatically link each record to the selected survey using the chosen identifier.
+                  When this survey is submitted, Asha Vaani will attempt to automatically link each record to the selected survey using the chosen identifier.
                 </p>
               </div>
             )}
@@ -492,7 +492,7 @@ export default function SurveyBuilder() {
               return (
                 <div
                   key={field.id}
-                  className={`bg-white border rounded-2xl p-4 transition-all ${isExpanded ? 'border-[#1D9E75] shadow-md' : 'border-[#D3D1C7] shadow-sm'}`}
+                  className={`bg-white border rounded-2xl p-4 transition-all ${isExpanded ? 'border-[#02343F] shadow-md' : 'border-[#D3D1C7] shadow-sm'}`}
                 >
                   <div className="flex items-center gap-3">
                     {/* Drag handle */}
@@ -501,8 +501,8 @@ export default function SurveyBuilder() {
                       <button onClick={() => moveField(field.id, 1)} disabled={i === fields.length - 1} className="text-[#D3D1C7] hover:text-[#5F5E5A] disabled:opacity-30"><span className="material-symbols-outlined text-sm">arrow_downward</span></button>
                     </div>
 
-                    <div className="w-9 h-9 rounded-xl bg-[#EAF3DE] flex items-center justify-center flex-shrink-0">
-                      <span className="material-symbols-outlined text-lg text-[#1D9E75]">{ft.icon}</span>
+                    <div className="w-9 h-9 rounded-xl bg-[#FAF8EA] flex items-center justify-center flex-shrink-0">
+                      <span className="material-symbols-outlined text-lg text-[#02343F]">{ft.icon}</span>
                     </div>
 
                     <div className="flex-1 min-w-0">
@@ -513,7 +513,7 @@ export default function SurveyBuilder() {
                     <div className="flex items-center gap-1 flex-shrink-0">
                       <button
                         onClick={() => setExpandedField(isExpanded ? null : field.id)}
-                        className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors ${isExpanded ? 'bg-[#EAF3DE] text-[#085041]' : 'bg-gray-100 text-[#5F5E5A] hover:bg-gray-200'}`}
+                        className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors ${isExpanded ? 'bg-[#FAF8EA] text-[#02343F]' : 'bg-gray-100 text-[#5F5E5A] hover:bg-gray-200'}`}
                       >
                         {isExpanded ? 'Close ▲' : 'Edit ▼'}
                       </button>
@@ -535,10 +535,10 @@ export default function SurveyBuilder() {
       <div className="w-64 flex-shrink-0 hidden xl:block bg-[#F1EFE8] border-l border-[#D3D1C7] p-4 overflow-y-auto">
         <h3 className="text-xs font-bold text-[#5F5E5A] uppercase tracking-wide mb-3 flex justify-between">
           <span>Preview</span>
-          <span className="text-[#1D9E75]">{language}</span>
+          <span className="text-[#02343F]">{language}</span>
         </h3>
         <div className="bg-white rounded-xl p-3 shadow-sm border border-[#D3D1C7]">
-          {getDisplayTitle() ? <p className="font-bold text-sm mb-3 text-[#085041]">{getDisplayTitle()}</p> : <p className="text-xs text-gray-400 mb-3 italic">No title yet</p>}
+          {getDisplayTitle() ? <p className="font-bold text-sm mb-3 text-[#02343F]">{getDisplayTitle()}</p> : <p className="text-xs text-gray-400 mb-3 italic">No title yet</p>}
           {fields.map(f => (
             <div key={f.id} className="mb-3">
               <p className="text-xs font-medium text-[#1A1A18] mb-1">{getLabel(f)}{f.required && <span className="text-[#E24B4A] ml-0.5">*</span>}</p>
@@ -547,7 +547,7 @@ export default function SurveyBuilder() {
               
               {f.type === 'number' && <div className="h-8 bg-gray-50 border border-gray-200 rounded-lg text-[10px] text-gray-400 flex items-center px-2">0 {f.unit}</div>}
               
-              {f.type === 'boolean' && <div className="flex gap-2"><span className="text-[10px] bg-[#EAF3DE] text-[#085041] px-3 py-1.5 rounded-full font-medium">Yes</span><span className="text-[10px] bg-gray-100 text-gray-500 px-3 py-1.5 rounded-full font-medium">No</span></div>}
+              {f.type === 'boolean' && <div className="flex gap-2"><span className="text-[10px] bg-[#FAF8EA] text-[#02343F] px-3 py-1.5 rounded-full font-medium">Yes</span><span className="text-[10px] bg-gray-100 text-gray-500 px-3 py-1.5 rounded-full font-medium">No</span></div>}
               
               {f.type === 'select' && (
                 <div className="flex flex-col gap-1">
@@ -567,7 +567,7 @@ export default function SurveyBuilder() {
               
               {f.type === 'date' && <div className="h-8 bg-gray-50 border border-gray-200 rounded-lg text-[10px] text-gray-400 flex items-center px-2 gap-1 justify-between"><span>Pick date</span><span className="material-symbols-outlined text-[14px]">calendar_today</span></div>}
               
-              {f.type === 'gps' && <div className="h-8 bg-[#EAF3DE] border border-[#1D9E75] rounded-lg text-[10px] text-[#085041] flex items-center px-2 gap-1 justify-center font-medium"><span className="material-symbols-outlined text-[14px]">location_on</span> Capture location</div>}
+              {f.type === 'gps' && <div className="h-8 bg-[#FAF8EA] border border-[#02343F] rounded-lg text-[10px] text-[#02343F] flex items-center px-2 gap-1 justify-center font-medium"><span className="material-symbols-outlined text-[14px]">location_on</span> Capture location</div>}
               
               {f.type === 'photo' && <div className="h-8 bg-gray-50 border border-gray-200 rounded-lg text-[10px] text-gray-400 flex items-center px-2 gap-1 justify-center"><span className="material-symbols-outlined text-[14px]">photo_camera</span> Take photo</div>}
               
@@ -576,8 +576,8 @@ export default function SurveyBuilder() {
           ))}
           {fields.length === 0 && <p className="text-[10px] text-gray-400 text-center py-4">Add fields to preview</p>}
         </div>
-        <div className="mt-4 text-[10px] text-[#5F5E5A] bg-[#EAF3DE] rounded-lg p-3 border border-[#1D9E75]">
-          <p className="font-bold text-[#085041] mb-1 flex items-center gap-1"><span className="material-symbols-outlined text-[14px]">push_pin</span> Publish Info</p>
+        <div className="mt-4 text-[10px] text-[#5F5E5A] bg-[#FAF8EA] rounded-lg p-3 border border-[#02343F]">
+          <p className="font-bold text-[#02343F] mb-1 flex items-center gap-1"><span className="material-symbols-outlined text-[14px]">push_pin</span> Publish Info</p>
           <p>This survey will be auto-assigned to <strong>all ASHA workers</strong> under your account.</p>
         </div>
       </div>
@@ -607,11 +607,11 @@ const FieldConfig = ({ field, updateField, autoTranslateProperty, translating })
                     value={field[key] || ''}
                     onChange={e => updateField(field.id, { [key]: e.target.value })}
                     onBlur={() => key === en && autoTranslateProperty(field, en, mr, hi)}
-                    className="w-full mt-1 p-2 border border-[#D3D1C7] rounded-lg text-sm focus:outline-none focus:border-[#1D9E75]"
+                    className="w-full mt-1 p-2 border border-[#D3D1C7] rounded-lg text-sm focus:outline-none focus:border-[#02343F]"
                     placeholder={`e.g. ${title}`}
                   />
                   {key === en && translating === `${field.id}-${en}` && (
-                    <span className="material-symbols-outlined text-sm animate-spin text-[#1D9E75] flex-shrink-0">refresh</span>
+                    <span className="material-symbols-outlined text-sm animate-spin text-[#02343F] flex-shrink-0">refresh</span>
                   )}
                 </div>
               </div>
@@ -623,7 +623,7 @@ const FieldConfig = ({ field, updateField, autoTranslateProperty, translating })
       {/* Required toggle */}
       <label className="flex items-center gap-2 cursor-pointer select-none">
         <div
-          className={`w-10 h-5 rounded-full transition-colors ${field.required ? 'bg-[#1D9E75]' : 'bg-gray-300'}`}
+          className={`w-10 h-5 rounded-full transition-colors ${field.required ? 'bg-[#02343F]' : 'bg-gray-300'}`}
           onClick={() => updateField(field.id, { required: !field.required })}
         >
           <div className={`w-4 h-4 bg-white rounded-full shadow mt-0.5 transition-transform ${field.required ? 'translate-x-5' : 'translate-x-0.5'}`} />
@@ -647,11 +647,11 @@ const FieldConfig = ({ field, updateField, autoTranslateProperty, translating })
                     value={field[key] || ''}
                     onChange={e => updateField(field.id, { [key]: e.target.value })}
                     onBlur={() => key === 'placeholder_en' && autoTranslateProperty(field, 'placeholder_en', 'placeholder_mr', 'placeholder_hi')}
-                    className="w-full mt-1 p-2 border border-[#D3D1C7] rounded-lg text-sm focus:outline-none focus:border-[#1D9E75]"
+                    className="w-full mt-1 p-2 border border-[#D3D1C7] rounded-lg text-sm focus:outline-none focus:border-[#02343F]"
                     placeholder={`e.g. ${title}`}
                   />
                   {key === 'placeholder_en' && translating === `${field.id}-placeholder_en` && (
-                    <span className="material-symbols-outlined text-sm animate-spin text-[#1D9E75] flex-shrink-0">refresh</span>
+                    <span className="material-symbols-outlined text-sm animate-spin text-[#02343F] flex-shrink-0">refresh</span>
                   )}
                 </div>
               </div>
@@ -659,7 +659,7 @@ const FieldConfig = ({ field, updateField, autoTranslateProperty, translating })
           </div>
           <div>
             <label className="text-[10px] text-[#5F5E5A] font-medium uppercase">Max Length</label>
-            <input type="number" value={field.maxLength || ''} onChange={e => updateField(field.id, { maxLength: e.target.value })} className="w-full sm:w-1/3 mt-1 p-2 border border-[#D3D1C7] rounded-lg text-sm focus:outline-none focus:border-[#1D9E75]" placeholder="250" />
+            <input type="number" value={field.maxLength || ''} onChange={e => updateField(field.id, { maxLength: e.target.value })} className="w-full sm:w-1/3 mt-1 p-2 border border-[#D3D1C7] rounded-lg text-sm focus:outline-none focus:border-[#02343F]" placeholder="250" />
           </div>
         </div>
       )}
@@ -668,15 +668,15 @@ const FieldConfig = ({ field, updateField, autoTranslateProperty, translating })
         <div className="grid grid-cols-3 gap-2">
           <div>
             <label className="text-[10px] text-[#5F5E5A] font-medium uppercase">Min</label>
-            <input type="number" value={field.min || ''} onChange={e => updateField(field.id, { min: e.target.value })} className="w-full mt-1 p-2 border border-[#D3D1C7] rounded-lg text-sm focus:outline-none focus:border-[#1D9E75]" placeholder="0" />
+            <input type="number" value={field.min || ''} onChange={e => updateField(field.id, { min: e.target.value })} className="w-full mt-1 p-2 border border-[#D3D1C7] rounded-lg text-sm focus:outline-none focus:border-[#02343F]" placeholder="0" />
           </div>
           <div>
             <label className="text-[10px] text-[#5F5E5A] font-medium uppercase">Max</label>
-            <input type="number" value={field.max || ''} onChange={e => updateField(field.id, { max: e.target.value })} className="w-full mt-1 p-2 border border-[#D3D1C7] rounded-lg text-sm focus:outline-none focus:border-[#1D9E75]" placeholder="999" />
+            <input type="number" value={field.max || ''} onChange={e => updateField(field.id, { max: e.target.value })} className="w-full mt-1 p-2 border border-[#D3D1C7] rounded-lg text-sm focus:outline-none focus:border-[#02343F]" placeholder="999" />
           </div>
           <div>
             <label className="text-[10px] text-[#5F5E5A] font-medium uppercase">Unit</label>
-            <input value={field.unit || ''} onChange={e => updateField(field.id, { unit: e.target.value })} className="w-full mt-1 p-2 border border-[#D3D1C7] rounded-lg text-sm focus:outline-none focus:border-[#1D9E75]" placeholder="kg, cm…" />
+            <input value={field.unit || ''} onChange={e => updateField(field.id, { unit: e.target.value })} className="w-full mt-1 p-2 border border-[#D3D1C7] rounded-lg text-sm focus:outline-none focus:border-[#02343F]" placeholder="kg, cm…" />
           </div>
         </div>
       )}
@@ -685,11 +685,11 @@ const FieldConfig = ({ field, updateField, autoTranslateProperty, translating })
         <div className="grid grid-cols-2 gap-2">
           <div>
             <label className="text-[10px] text-[#5F5E5A] font-medium uppercase">Min Date</label>
-            <input type="date" value={field.minDate || ''} onChange={e => updateField(field.id, { minDate: e.target.value })} className="w-full mt-1 p-2 border border-[#D3D1C7] rounded-lg text-sm focus:outline-none focus:border-[#1D9E75]" />
+            <input type="date" value={field.minDate || ''} onChange={e => updateField(field.id, { minDate: e.target.value })} className="w-full mt-1 p-2 border border-[#D3D1C7] rounded-lg text-sm focus:outline-none focus:border-[#02343F]" />
           </div>
           <div>
             <label className="text-[10px] text-[#5F5E5A] font-medium uppercase">Max Date</label>
-            <input type="date" value={field.maxDate || ''} onChange={e => updateField(field.id, { maxDate: e.target.value })} className="w-full mt-1 p-2 border border-[#D3D1C7] rounded-lg text-sm focus:outline-none focus:border-[#1D9E75]" />
+            <input type="date" value={field.maxDate || ''} onChange={e => updateField(field.id, { maxDate: e.target.value })} className="w-full mt-1 p-2 border border-[#D3D1C7] rounded-lg text-sm focus:outline-none focus:border-[#02343F]" />
           </div>
         </div>
       )}
@@ -709,11 +709,11 @@ const FieldConfig = ({ field, updateField, autoTranslateProperty, translating })
                     value={field[key] || ''}
                     onChange={e => updateField(field.id, { [key]: e.target.value })}
                     onBlur={() => key === 'options_en' && autoTranslateProperty(field, 'options_en', 'options_mr', 'options_hi')}
-                    className="w-full mt-1 p-2 border border-[#D3D1C7] rounded-lg text-sm focus:outline-none focus:border-[#1D9E75]"
+                    className="w-full mt-1 p-2 border border-[#D3D1C7] rounded-lg text-sm focus:outline-none focus:border-[#02343F]"
                     placeholder="Opt 1, Opt 2"
                   />
                   {key === 'options_en' && translating === `${field.id}-options_en` && (
-                    <span className="material-symbols-outlined text-sm animate-spin text-[#1D9E75] flex-shrink-0">refresh</span>
+                    <span className="material-symbols-outlined text-sm animate-spin text-[#02343F] flex-shrink-0">refresh</span>
                   )}
                 </div>
               </div>
@@ -727,18 +727,18 @@ const FieldConfig = ({ field, updateField, autoTranslateProperty, translating })
       )}
 
       {field.type === 'number' && field.unit && (
-        <p className="text-xs text-[#1D9E75]">Preview: "Enter value in {field.unit}" ({field.min || '0'} – {field.max || '∞'})</p>
+        <p className="text-xs text-[#02343F]">Preview: "Enter value in {field.unit}" ({field.min || '0'} – {field.max || '∞'})</p>
       )}
 
       {field.type === 'conditional' && (
         <div className="grid grid-cols-2 gap-2">
           <div>
             <label className="text-[10px] text-[#5F5E5A] font-medium uppercase">Show when field (ID)</label>
-            <input value={field.condition?.field || ''} onChange={e => updateField(field.id, { condition: { ...field.condition, field: e.target.value } })} className="w-full mt-1 p-2 border border-[#D3D1C7] rounded-lg text-sm focus:outline-none focus:border-[#1D9E75]" placeholder="field_id" />
+            <input value={field.condition?.field || ''} onChange={e => updateField(field.id, { condition: { ...field.condition, field: e.target.value } })} className="w-full mt-1 p-2 border border-[#D3D1C7] rounded-lg text-sm focus:outline-none focus:border-[#02343F]" placeholder="field_id" />
           </div>
           <div>
             <label className="text-[10px] text-[#5F5E5A] font-medium uppercase">Equals value</label>
-            <input value={field.condition?.value || ''} onChange={e => updateField(field.id, { condition: { ...field.condition, value: e.target.value } })} className="w-full mt-1 p-2 border border-[#D3D1C7] rounded-lg text-sm focus:outline-none focus:border-[#1D9E75]" placeholder="yes" />
+            <input value={field.condition?.value || ''} onChange={e => updateField(field.id, { condition: { ...field.condition, value: e.target.value } })} className="w-full mt-1 p-2 border border-[#D3D1C7] rounded-lg text-sm focus:outline-none focus:border-[#02343F]" placeholder="yes" />
           </div>
         </div>
       )}
@@ -746,7 +746,7 @@ const FieldConfig = ({ field, updateField, autoTranslateProperty, translating })
       {field.type === 'photo' && (
         <div>
           <label className="text-[10px] text-[#5F5E5A] font-medium uppercase">Max Photos</label>
-          <input type="number" min={1} max={5} value={field.maxPhotos || 1} onChange={e => updateField(field.id, { maxPhotos: parseInt(e.target.value) })} className="w-24 mt-1 p-2 border border-[#D3D1C7] rounded-lg text-sm focus:outline-none focus:border-[#1D9E75]" />
+          <input type="number" min={1} max={5} value={field.maxPhotos || 1} onChange={e => updateField(field.id, { maxPhotos: parseInt(e.target.value) })} className="w-24 mt-1 p-2 border border-[#D3D1C7] rounded-lg text-sm focus:outline-none focus:border-[#02343F]" />
         </div>
       )}
 
@@ -766,6 +766,6 @@ const FieldConfig = ({ field, updateField, autoTranslateProperty, translating })
       )}
 
       {/* Auto-translate hint */}
-      <p className="text-[10px] text-[#1D9E75] italic flex items-center gap-1"><span className="material-symbols-outlined text-[14px]">lightbulb</span> Blur the English fields to auto-translate to Marathi & Hindi</p>
+      <p className="text-[10px] text-[#02343F] italic flex items-center gap-1"><span className="material-symbols-outlined text-[14px]">lightbulb</span> Blur the English fields to auto-translate to Marathi & Hindi</p>
     </div>
   );

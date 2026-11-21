@@ -21,8 +21,8 @@ export default defineConfig({
         enabled: true
       },
       manifest: {
-        name: 'AshaAI',
-        short_name: 'AshaAI',
+        name: 'Asha Vaani',
+        short_name: 'Asha Vaani',
         description: 'The Complete Digital Work Companion for ASHA Health Workers',
         theme_color: '#ffffff',
         icons: [
@@ -40,7 +40,7 @@ export default defineConfig({
       },
       workbox: {
         // Add a cache version — increment this on every deploy
-        cacheId: 'ashaai-v2',
+        cacheId: 'ashavaani-v2',
         // Clean up old caches automatically
         cleanupOutdatedCaches: true,
         // Skip waiting — new SW activates immediately instead of waiting

@@ -18,7 +18,7 @@ import autoTable from 'jspdf-autotable';
  * @returns {Promise<{success: boolean, filename: string, blob?: Blob}>}
  */
 export async function exportReportPdf({
-  title = 'AshaAI Report',
+  title = 'Asha Vaani Report',
   subtitle = '',
   headers = [],
   rows = [],
@@ -28,11 +28,11 @@ export async function exportReportPdf({
   try {
     const doc = new jsPDF({ orientation: 'landscape' });
     const timestamp = new Date().toISOString().split('T')[0];
-    const targetFilename = filename || `AshaAI_${title.replace(/[^a-zA-Z0-9]/g, '_')}_${timestamp}.pdf`;
+    const targetFilename = filename || `AshaVaani_${title.replace(/[^a-zA-Z0-9]/g, '_')}_${timestamp}.pdf`;
 
     // Report Header
     doc.setFontSize(18);
-    doc.setTextColor(8, 80, 65); // AshaAI Primary Green
+    doc.setTextColor(2, 52, 63); // Asha Vaani Primary Green
     doc.text(title, 14, 20);
 
     doc.setFontSize(10);
@@ -61,7 +61,7 @@ export async function exportReportPdf({
         body: rows,
         theme: 'striped',
         headStyles: {
-          fillColor: [29, 158, 117],
+          fillColor: [2, 52, 63],
           fontSize: 9,
           textColor: [255, 255, 255],
           fontStyle: 'bold'

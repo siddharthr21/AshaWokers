@@ -47,7 +47,7 @@ const EditableField = ({ label, value, fieldName, onSave, disabled = false }) =>
           type="text"
           value={editValue}
           onChange={(e) => setEditValue(e.target.value)}
-          className="w-full bg-white border border-gray-300 rounded-lg px-4 h-[44px] focus:outline-none focus:border-[#1D9E75] text-gray-800 mb-3"
+          className="w-full bg-white border border-gray-300 rounded-lg px-4 h-[44px] focus:outline-none focus:border-[#02343F] text-gray-800 mb-3"
           autoFocus
         />
 
@@ -59,7 +59,7 @@ const EditableField = ({ label, value, fieldName, onSave, disabled = false }) =>
               onClick={() => setReason(r)}
               className={`px-3 py-1.5 rounded-full text-xs font-medium border transition-colors ${
                 reason === r
-                  ? 'bg-[#1D9E75] text-white border-[#1D9E75]'
+                  ? 'bg-[#02343F] text-white border-[#02343F]'
                   : 'bg-white text-gray-600 border-gray-300'
               }`}
             >
@@ -72,7 +72,7 @@ const EditableField = ({ label, value, fieldName, onSave, disabled = false }) =>
           <button
             onClick={handleSave}
             disabled={!reason || editValue === value}
-            className="flex-1 bg-[#1D9E75] text-white h-10 rounded-lg font-medium text-sm disabled:opacity-40"
+            className="flex-1 bg-[#02343F] text-white h-10 rounded-lg font-medium text-sm disabled:opacity-40"
           >
             Save Edit
           </button>

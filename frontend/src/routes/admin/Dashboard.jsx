@@ -12,7 +12,7 @@ const FALLBACK_ASHA_IDS = [
 
 function HorizontalBarChart({ data, title }) {
   const max = Math.max(...data.map(d => d.value), 1);
-  const COLORS = ['#1D9E75','#085041','#BA7517','#185FA5','#6A1B9A','#BF360C','#E24B4A'];
+  const COLORS = ['#02343F','#0A6B7E','#BA7517','#185FA5','#6A1B9A','#BF360C','#E24B4A'];
   return (
     <div>
       <h3 className="text-sm font-semibold text-[#5F5E5A] mb-3 uppercase tracking-wide">{title}</h3>
@@ -36,7 +36,7 @@ function HorizontalBarChart({ data, title }) {
 
 function DonutChart({ data, title }) {
   const total = data.reduce((s, d) => s + d.value, 0) || 1;
-  const COLORS = { CRITICAL: '#E24B4A', HIGH: '#BA7517', MEDIUM: '#185FA5', LOW: '#1D9E75' };
+  const COLORS = { CRITICAL: '#E24B4A', HIGH: '#BA7517', MEDIUM: '#185FA5', LOW: '#02343F' };
   
   // SVG donut
   const size = 100;
@@ -91,7 +91,7 @@ function DonutChart({ data, title }) {
 
 function MiniBarChart({ data, title }) {
   const max = Math.max(...data.map(d => d.value), 1);
-  const COLORS = ['#1D9E75','#085041','#1D9E75','#085041','#1D9E75'];
+  const COLORS = ['#02343F','#02343F','#02343F','#02343F','#02343F'];
   return (
     <div>
       <h3 className="text-sm font-semibold text-[#5F5E5A] mb-3 uppercase tracking-wide">{title}</h3>
@@ -224,7 +224,7 @@ export default function AdminDashboard() {
   }, [workerActivityChart, workers]);
 
   const cards = [
-    { label: tx('ASHA Workers', 'total_workers'), value: stats.workerCount, icon: 'group', color: 'text-[#085041]', bg: 'bg-[#EAF3DE]' },
+    { label: tx('ASHA Workers', 'total_workers'), value: stats.workerCount, icon: 'group', color: 'text-[#02343F]', bg: 'bg-[#FAF8EA]' },
     { label: tx('Active Today'), value: stats.activeToday, icon: 'bolt', color: 'text-[#1565C0]', bg: 'bg-[#E3F2FD]' },
     { label: tx('Total Families', 'total_families'), value: stats.totalFamilies, icon: 'family_restroom', color: 'text-[#6A1B9A]', bg: 'bg-[#F3E5F5]' },
     { label: tx('Critical Cases', 'critical_cases'), value: stats.criticalCases, icon: 'warning', color: 'text-[#E24B4A]', bg: 'bg-[#FCEBEB]' },
@@ -307,7 +307,7 @@ export default function AdminDashboard() {
         </h2>
         {workersLoading ? (
           <div className="flex justify-center p-8">
-            <span className="material-symbols-outlined animate-spin text-3xl text-[#1D9E75]">refresh</span>
+            <span className="material-symbols-outlined animate-spin text-3xl text-[#02343F]">refresh</span>
           </div>
         ) : workersError ? (
           <div className="p-4 bg-[#FCEBEB] text-[#791F1F] rounded-xl font-medium border border-[#E24B4A] text-sm">
@@ -334,7 +334,7 @@ export default function AdminDashboard() {
                     <td className="p-3 text-sm text-[#5F5E5A]">{w.submissions_this_month ?? w.submissionsThisMonth ?? 0}</td>
                     <td className="p-3 text-sm">
                       {w.isActive ? (
-                        <span className="px-2 py-1 bg-[#EAF3DE] text-[#085041] rounded-lg text-xs font-bold border border-[#1D9E75]">Active</span>
+                        <span className="px-2 py-1 bg-[#FAF8EA] text-[#02343F] rounded-lg text-xs font-bold border border-[#02343F]">Active</span>
                       ) : (
                         <span className="px-2 py-1 bg-gray-100 text-gray-600 rounded-lg text-xs font-bold border border-gray-300">Inactive</span>
                       )}
@@ -360,7 +360,7 @@ export default function AdminDashboard() {
         </h2>
         <div className="space-y-3">
           {alerts.length === 0 ? (
-            <div className="p-4 bg-[#EAF3DE] text-[#085041] rounded-xl font-medium border border-[#1D9E75] text-sm flex items-center gap-2">
+            <div className="p-4 bg-[#FAF8EA] text-[#02343F] rounded-xl font-medium border border-[#02343F] text-sm flex items-center gap-2">
               <span className="material-symbols-outlined text-lg">check_circle</span>
               {tx('All systems nominal. No critical cases.')}
             </div>
@@ -379,7 +379,7 @@ export default function AdminDashboard() {
               } else if (a.type === 'rejected_referral') {
                 config = { bg: 'bg-gray-100', border: 'border-gray-400', text: 'text-gray-700', icon: 'cancel', iconColor: 'text-gray-500' };
               } else if (a.type === 'admitted_referral') {
-                config = { bg: 'bg-[#EAF3DE]', border: 'border-[#1D9E75]', text: 'text-[#085041]', icon: 'local_hospital', iconColor: 'text-[#1D9E75]' };
+                config = { bg: 'bg-[#FAF8EA]', border: 'border-[#02343F]', text: 'text-[#02343F]', icon: 'local_hospital', iconColor: 'text-[#02343F]' };
               }
 
               return (

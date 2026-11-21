@@ -110,8 +110,8 @@ export default function DailyReportModal({ isOpen, onClose, ashaId }) {
       const doc = new jsPDF({ orientation: 'landscape' });
       
       doc.setFontSize(18);
-      doc.setTextColor(8, 80, 65);
-      doc.text(tx("AshaAI - " + surveyConfig.title), 14, 22);
+      doc.setTextColor(2, 52, 63);
+      doc.text(tx("Asha Vaani - " + surveyConfig.title), 14, 22);
       
       doc.setFontSize(11);
       doc.setTextColor(100);
@@ -140,14 +140,14 @@ export default function DailyReportModal({ isOpen, onClose, ashaId }) {
           head: [surveyConfig.headers],
           body: tableData,
           theme: 'striped',
-          headStyles: { fillColor: [29, 158, 117], fontSize: 8 },
+          headStyles: { fillColor: [2, 52, 63], fontSize: 8 },
           bodyStyles: { fontSize: 8 },
           margin: { left: 14, right: 14 }
         });
       }
 
       // Save PDF
-      doc.save(`AshaAI_${selectedSurvey}_${start.toISOString().split('T')[0]}.pdf`);
+      doc.save(`AshaVaani_${selectedSurvey}_${start.toISOString().split('T')[0]}.pdf`);
       
       onClose();
     } catch (error) {
@@ -172,11 +172,11 @@ export default function DailyReportModal({ isOpen, onClose, ashaId }) {
 
         <div className="space-y-4 mb-6">
           <div>
-            <label className="block text-sm font-medium text-[#5F5E5A] mb-1">{tx('Select Survey')}</label>
+            <label className="block text-sm font-semibold text-[#02343F]/80 mb-1">{tx('Select Survey')}</label>
             <select 
               value={selectedSurvey} 
               onChange={e => setSelectedSurvey(e.target.value)}
-              className="w-full border border-[#D3D1C7] rounded-xl p-3 bg-[#F1EFE8] text-[#1A1A18] focus:outline-none focus:ring-2 focus:ring-[#1D9E75]"
+              className="w-full border border-[#D8D4B0] rounded-xl p-3 bg-[#FAF8EA] text-[#02343F] focus:outline-none focus:ring-2 focus:ring-[#02343F]"
             >
               {Object.entries(SURVEY_CONFIGS).map(([key, config]) => (
                 <option key={key} value={key}>{tx(config.title)}</option>
@@ -185,11 +185,11 @@ export default function DailyReportModal({ isOpen, onClose, ashaId }) {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-[#5F5E5A] mb-1">{tx('Select Range')}</label>
+            <label className="block text-sm font-semibold text-[#02343F]/80 mb-1">{tx('Select Range')}</label>
             <select 
               value={rangeType} 
               onChange={e => setRangeType(e.target.value)}
-              className="w-full border border-[#D3D1C7] rounded-xl p-3 bg-[#F1EFE8] text-[#1A1A18] focus:outline-none focus:ring-2 focus:ring-[#1D9E75]"
+              className="w-full border border-[#D8D4B0] rounded-xl p-3 bg-[#FAF8EA] text-[#02343F] focus:outline-none focus:ring-2 focus:ring-[#02343F]"
             >
               <option value="today">{tx('Today')}</option>
               <option value="custom">{tx('Custom Date Range')}</option>
@@ -199,21 +199,21 @@ export default function DailyReportModal({ isOpen, onClose, ashaId }) {
           {rangeType === 'custom' && (
             <div className="flex space-x-3">
               <div className="flex-1">
-                <label className="block text-xs font-medium text-[#5F5E5A] mb-1">{tx('Start Date')}</label>
+                <label className="block text-xs font-semibold text-[#02343F]/70 mb-1">{tx('Start Date')}</label>
                 <input 
                   type="date" 
                   value={startDate} 
                   onChange={e => setStartDate(e.target.value)}
-                  className="w-full border border-[#D3D1C7] rounded-xl p-2 bg-[#F1EFE8] text-sm focus:outline-none focus:ring-2 focus:ring-[#1D9E75]"
+                  className="w-full border border-[#D8D4B0] rounded-xl p-2 bg-[#FAF8EA] text-sm focus:outline-none focus:ring-2 focus:ring-[#02343F] text-[#02343F]"
                 />
               </div>
               <div className="flex-1">
-                <label className="block text-xs font-medium text-[#5F5E5A] mb-1">{tx('End Date')}</label>
+                <label className="block text-xs font-semibold text-[#02343F]/70 mb-1">{tx('End Date')}</label>
                 <input 
                   type="date" 
                   value={endDate} 
                   onChange={e => setEndDate(e.target.value)}
-                  className="w-full border border-[#D3D1C7] rounded-xl p-2 bg-[#F1EFE8] text-sm focus:outline-none focus:ring-2 focus:ring-[#1D9E75]"
+                  className="w-full border border-[#D8D4B0] rounded-xl p-2 bg-[#FAF8EA] text-sm focus:outline-none focus:ring-2 focus:ring-[#02343F] text-[#02343F]"
                 />
               </div>
             </div>
@@ -223,7 +223,7 @@ export default function DailyReportModal({ isOpen, onClose, ashaId }) {
         <button 
           onClick={handleGenerate}
           disabled={isGenerating}
-          className="w-full py-3 bg-[#1D9E75] text-white rounded-xl font-medium flex items-center justify-center space-x-2 shadow-md disabled:opacity-70 disabled:cursor-not-allowed transition-all"
+          className="w-full py-3 bg-[#02343F] text-[#F0EDCC] hover:bg-[#012128] rounded-xl font-bold flex items-center justify-center space-x-2 shadow-md disabled:opacity-70 disabled:cursor-not-allowed transition-all"
         >
           {isGenerating ? (
             <>

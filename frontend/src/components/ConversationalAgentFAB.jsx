@@ -145,14 +145,14 @@ export default function ConversationalAgentFAB({ role = 'ASHA' }) {
               status === 'PROCESSING' ? 'bg-yellow-500 animate-bounce' :
               status === 'SPEAKING' ? 'bg-green-500' :
               status === 'ERROR' ? 'bg-red-700' :
-              'bg-[#1D9E75]'
+              'bg-[#02343F]'
             }`} />
             <span className="text-sm font-medium text-[#5F5E5A]">
               {status === 'LISTENING' ? t('Listening...') :
                status === 'PROCESSING' ? t('Thinking...') :
                status === 'SPEAKING' ? t('Speaking...') :
                status === 'ERROR' ? t('Error') :
-               t('AshaAI Agent')}
+               t('Asha Vaani Agent')}
             </span>
           </div>
           {status === 'LISTENING' && vad.volumeLevel > 0.05 && (
@@ -172,7 +172,7 @@ export default function ConversationalAgentFAB({ role = 'ASHA' }) {
       <button
         onClick={toggleSession}
         className={`w-14 h-14 rounded-full flex items-center justify-center shadow-xl transition-all duration-300 ${
-          isOpen ? 'bg-[#E24B4A] hover:bg-red-600 rotate-45' : 'bg-[#085041] hover:bg-[#0a6652] hover:scale-105'
+          isOpen ? 'bg-[#E24B4A] hover:bg-red-600 rotate-45' : 'bg-[#02343F] text-[#F0EDCC] hover:bg-[#012128] hover:scale-105 border-2 border-[#F0EDCC]/40'
         }`}
         aria-label="Toggle Conversational Agent"
       >

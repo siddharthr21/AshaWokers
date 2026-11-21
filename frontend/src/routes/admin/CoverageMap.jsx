@@ -107,9 +107,9 @@ const CoverageMap = () => {
               center={{ lat: v.lat, lng: v.lng }}
               radius={Math.min(2500, Math.max(800, v.total * 120))}
               options={{
-                fillColor: v.critical > 0 ? '#E24B4A' : v.coveragePercent < 70 ? '#BA7517' : '#1D9E75',
+                fillColor: v.critical > 0 ? '#E24B4A' : v.coveragePercent < 70 ? '#BA7517' : '#02343F',
                 fillOpacity: 0.35,
-                strokeColor: v.critical > 0 ? '#E24B4A' : v.coveragePercent < 70 ? '#BA7517' : '#1D9E75',
+                strokeColor: v.critical > 0 ? '#E24B4A' : v.coveragePercent < 70 ? '#BA7517' : '#02343F',
                 strokeWeight: 2,
                 cursor: 'pointer',
               }}
@@ -163,7 +163,7 @@ const CoverageMap = () => {
 
       <div className="flex items-center gap-6 px-4 py-3 bg-gray-50 border-t border-[#D3D1C7] text-xs text-[#5F5E5A]">
         <span className="font-semibold">{tx('Legend')}:</span>
-        <span className="flex items-center gap-1.5"><span className="w-4 h-4 rounded-full bg-[#1D9E75] inline-block opacity-70"/> {tx('Good coverage (≥70%)')}</span>
+        <span className="flex items-center gap-1.5"><span className="w-4 h-4 rounded-full bg-[#02343F] inline-block opacity-70"/> {tx('Good coverage (≥70%)')}</span>
         <span className="flex items-center gap-1.5"><span className="w-4 h-4 rounded-full bg-[#BA7517] inline-block opacity-70"/> {tx('Low coverage (<70%)')}</span>
         <span className="flex items-center gap-1.5"><span className="w-4 h-4 rounded-full bg-[#E24B4A] inline-block opacity-70"/> {tx('Critical cases present')}</span>
       </div>
@@ -189,15 +189,15 @@ const VillageCard = ({ v, onClick, tx }) => (
   >
     <div className="flex items-center justify-between mb-3">
       <h3 className="font-bold text-[#1A1A18]">{v.name}</h3>
-      <span className={`w-3 h-3 rounded-full ${v.critical > 0 ? 'bg-[#E24B4A]' : v.coveragePercent < 70 ? 'bg-[#BA7517]' : 'bg-[#1D9E75]'}`} />
+      <span className={`w-3 h-3 rounded-full ${v.critical > 0 ? 'bg-[#E24B4A]' : v.coveragePercent < 70 ? 'bg-[#BA7517]' : 'bg-[#02343F]'}`} />
     </div>
     <div className="grid grid-cols-2 gap-2 text-center">
       <div>
-        <p className="text-xl font-bold text-[#085041]">{v.total}</p>
+        <p className="text-xl font-bold text-[#02343F]">{v.total}</p>
         <p className="text-[10px] text-[#5F5E5A] uppercase tracking-wide">{tx ? tx('Families', 'families') : 'Families'}</p>
       </div>
       <div>
-        <p className={`text-xl font-bold ${v.critical > 0 ? 'text-[#E24B4A]' : 'text-[#1D9E75]'}`}>{v.critical}</p>
+        <p className={`text-xl font-bold ${v.critical > 0 ? 'text-[#E24B4A]' : 'text-[#02343F]'}`}>{v.critical}</p>
         <p className="text-[10px] text-[#5F5E5A] uppercase tracking-wide">{tx ? tx('Critical', 'critical') : 'Critical'}</p>
       </div>
     </div>

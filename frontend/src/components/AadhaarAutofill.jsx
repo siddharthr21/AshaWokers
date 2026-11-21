@@ -372,16 +372,16 @@ export default function AadhaarAutofill({ moduleName = 'default', personLabel = 
   if (mode === 'confirmed') {
     return (
       <div style={{
-        background: '#EAF3DE', border: '1px solid #1D9E75',
+        background: '#FAF8EA', border: '1px solid #02343F',
         borderRadius: '12px', padding: '12px 14px',
         display: 'flex', justifyContent: 'space-between', alignItems: 'center',
         marginBottom: '16px',
       }}>
         <div>
-          <p style={{ fontWeight: '700', color: '#085041', fontSize: '13px', display: 'flex', alignItems: 'center', gap: '4px' }}>
+          <p style={{ fontWeight: '700', color: '#02343F', fontSize: '13px', display: 'flex', alignItems: 'center', gap: '4px' }}>
             <span className="material-symbols-outlined" style={{ fontSize: '16px' }}>check_circle</span> Aadhaar verified
           </p>
-          <p style={{ fontSize: '11px', fontFamily: 'monospace', color: '#27500A', marginTop: '2px' }}>
+          <p style={{ fontSize: '11px', fontFamily: 'monospace', color: '#02343F', marginTop: '2px' }}>
             {masked}
           </p>
           {filled.length > 0 && (
@@ -393,7 +393,7 @@ export default function AadhaarAutofill({ moduleName = 'default', personLabel = 
         <button
           type="button"
           onClick={() => setMode('idle')}
-          style={{ fontSize: '12px', color: '#1D9E75', fontWeight: '600', background: 'none', border: 'none', cursor: 'pointer' }}
+          style={{ fontSize: '12px', color: '#02343F', fontWeight: '600', background: 'none', border: 'none', cursor: 'pointer' }}
         >
           Rescan
         </button>
@@ -413,7 +413,7 @@ export default function AadhaarAutofill({ moduleName = 'default', personLabel = 
           }}>
             <div style={{
               width: '60%', aspectRatio: '1',
-              border: '2px solid rgba(29,158,117,0.8)',
+              border: '2px solid rgba(2,52,63,0.8)',
               borderRadius: '8px',
               boxShadow: '0 0 0 9999px rgba(0,0,0,0.4)',
             }} />
@@ -439,7 +439,7 @@ export default function AadhaarAutofill({ moduleName = 'default', personLabel = 
       <div style={{ background: '#F5F4EF', borderRadius: '12px', padding: '12px', marginBottom: '16px' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
           <p style={{ fontSize: '12px', fontWeight: '700', color: '#222' }}>Photograph Aadhaar Card</p>
-          <span style={{ fontSize: '10px', background: '#EAF3DE', color: '#085041', fontWeight: '700', padding: '2px 6px', borderRadius: '4px' }}>
+          <span style={{ fontSize: '10px', background: '#FAF8EA', color: '#02343F', fontWeight: '700', padding: '2px 6px', borderRadius: '4px' }}>
             100% On-Device OCR
           </span>
         </div>
@@ -447,21 +447,21 @@ export default function AadhaarAutofill({ moduleName = 'default', personLabel = 
         {isProcessing ? (
           <div style={{ background: '#fff', borderRadius: '10px', padding: '20px', textAlign: 'center', border: '1px solid #D3D1C7' }}>
             <div style={{
-              width: '36px', height: '36px', border: '3px solid #1D9E75', borderTopColor: 'transparent',
+              width: '36px', height: '36px', border: '3px solid #02343F', borderTopColor: 'transparent',
               borderRadius: '50%', margin: '0 auto 12px', animation: 'spin 1s linear infinite'
             }} />
             <p style={{ fontSize: '13px', fontWeight: '600', color: '#333' }}>{ocrStatus}</p>
             <div style={{ width: '100%', height: '6px', background: '#eee', borderRadius: '3px', margin: '10px 0', overflow: 'hidden' }}>
-              <div style={{ width: `${ocrProgress}%`, height: '100%', background: '#1D9E75', transition: 'width 0.3s' }} />
+              <div style={{ width: `${ocrProgress}%`, height: '100%', background: '#02343F', transition: 'width 0.3s' }} />
             </div>
             <p style={{ fontSize: '11px', color: '#777' }}>Processed entirely in browser. Raw image never leaves device.</p>
           </div>
         ) : (
           <>
-            <div style={{ position: 'relative', borderRadius: '10px', overflow: 'hidden', background: '#000', aspectRatio: '16/9', border: '2px solid #1D9E75' }}>
+            <div style={{ position: 'relative', borderRadius: '10px', overflow: 'hidden', background: '#000', aspectRatio: '16/9', border: '2px solid #02343F' }}>
               <video ref={videoRef} playsInline style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
               <div style={{
-                position: 'absolute', inset: '16px', border: '2px dashed rgba(29,158,117,0.9)',
+                position: 'absolute', inset: '16px', border: '2px dashed rgba(2,52,63,0.9)',
                 borderRadius: '8px', pointerEvents: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center'
               }}>
                 <span style={{ color: '#fff', fontSize: '11px', background: 'rgba(0,0,0,0.6)', padding: '3px 8px', borderRadius: '4px' }}>
@@ -475,7 +475,7 @@ export default function AadhaarAutofill({ moduleName = 'default', personLabel = 
                 type="button"
                 onClick={capturePhotoAndRunOcr}
                 style={{
-                  flex: 1, padding: '10px', background: '#1D9E75', color: '#fff',
+                  flex: 1, padding: '10px', background: '#02343F', color: '#fff',
                   border: 'none', borderRadius: '10px', fontSize: '13px', fontWeight: '700',
                   cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px'
                 }}
@@ -518,19 +518,19 @@ export default function AadhaarAutofill({ moduleName = 'default', personLabel = 
   if (mode === 'review_ocr') {
     return (
       <div style={{
-        background: '#F5FBF9', border: '2px solid #1D9E75',
+        background: '#F5FBF9', border: '2px solid #02343F',
         borderRadius: '12px', padding: '12px 14px', marginBottom: '16px',
       }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid #C2E7DC', paddingBottom: '6px', marginBottom: '10px' }}>
-          <p style={{ fontSize: '13px', fontWeight: '700', color: '#085041', display: 'flex', alignItems: 'center', gap: '4px' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid #F0EDCC', paddingBottom: '6px', marginBottom: '10px' }}>
+          <p style={{ fontSize: '13px', fontWeight: '700', color: '#02343F', display: 'flex', alignItems: 'center', gap: '4px' }}>
             <span className="material-symbols-outlined" style={{ fontSize: '16px' }}>verified</span> Review Extracted Fields
           </p>
-          <span style={{ fontSize: '10px', background: '#C2E7DC', color: '#085041', fontWeight: '700', padding: '2px 6px', borderRadius: '4px' }}>
+          <span style={{ fontSize: '10px', background: '#F0EDCC', color: '#02343F', fontWeight: '700', padding: '2px 6px', borderRadius: '4px' }}>
             Tier 2 Review Gate
           </span>
         </div>
 
-        <p style={{ fontSize: '11px', color: '#085041', marginBottom: '8px' }}>
+        <p style={{ fontSize: '11px', color: '#02343F', marginBottom: '8px' }}>
           Extracted locally via browser OCR. Please verify details before autofilling:
         </p>
 
@@ -551,8 +551,8 @@ export default function AadhaarAutofill({ moduleName = 'default', personLabel = 
               {extractedData.aadhaar_raw.length === 12 && (
                 <span style={{
                   fontSize: '10px', fontWeight: '700', padding: '4px 6px', borderRadius: '4px',
-                  background: validateVerhoeff(extractedData.aadhaar_raw) ? '#EAF3DE' : '#FFF3E0',
-                  color: validateVerhoeff(extractedData.aadhaar_raw) ? '#27500A' : '#E65100'
+                  background: validateVerhoeff(extractedData.aadhaar_raw) ? '#FAF8EA' : '#FFF3E0',
+                  color: validateVerhoeff(extractedData.aadhaar_raw) ? '#02343F' : '#E65100'
                 }}>
                   {validateVerhoeff(extractedData.aadhaar_raw) ? '✓ Checksum Valid' : '⚠ Checksum Warning'}
                 </span>
@@ -608,7 +608,7 @@ export default function AadhaarAutofill({ moduleName = 'default', personLabel = 
             type="button"
             onClick={() => handleParsed(extractedData)}
             style={{
-              flex: 1, padding: '10px', background: '#1D9E75', color: '#fff',
+              flex: 1, padding: '10px', background: '#02343F', color: '#fff',
               border: 'none', borderRadius: '10px', fontSize: '13px', fontWeight: '700',
               cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px'
             }}
@@ -637,7 +637,7 @@ export default function AadhaarAutofill({ moduleName = 'default', personLabel = 
         <p style={{ fontSize: '12px', fontWeight: '700', color: '#555', textTransform: 'uppercase', letterSpacing: '0.04em', display: 'flex', alignItems: 'center', gap: '4px', margin: 0 }}>
           <span className="material-symbols-outlined" style={{ fontSize: '16px' }}>badge</span> Aadhaar Autofill {personLabel ? `— ${personLabel}` : ''}
         </p>
-        <span style={{ fontSize: '10px', background: '#EAF3DE', color: '#085041', fontWeight: '700', padding: '2px 6px', borderRadius: '4px' }}>
+        <span style={{ fontSize: '10px', background: '#FAF8EA', color: '#02343F', fontWeight: '700', padding: '2px 6px', borderRadius: '4px' }}>
           🔒 On-Device OCR
         </span>
       </div>
@@ -648,7 +648,7 @@ export default function AadhaarAutofill({ moduleName = 'default', personLabel = 
           onClick={startCardCapture}
           style={{
             flex: 1.2, padding: '10px 8px',
-            background: '#1D9E75', color: '#fff',
+            background: '#02343F', color: '#fff',
             border: 'none', borderRadius: '10px',
             fontSize: '13px', fontWeight: '600', cursor: 'pointer',
             display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px',

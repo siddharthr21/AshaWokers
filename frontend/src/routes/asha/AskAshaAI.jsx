@@ -19,9 +19,9 @@ function TypingDots() {
   return (
     <div className="flex items-start">
       <div className="bg-white border border-gray-200 rounded-2xl rounded-tl-sm px-4 py-3 shadow-sm flex items-center gap-1.5">
-        <div className="w-2 h-2 bg-[#1D9E75] rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
-        <div className="w-2 h-2 bg-[#1D9E75] rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
-        <div className="w-2 h-2 bg-[#1D9E75] rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
+        <div className="w-2 h-2 bg-[#02343F] rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
+        <div className="w-2 h-2 bg-[#02343F] rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
+        <div className="w-2 h-2 bg-[#02343F] rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
       </div>
     </div>
   );
@@ -34,7 +34,7 @@ export default function AskAshaAI() {
   const [messages, setMessages] = useState([
     {
       role: 'ai',
-      content: 'Namaste! I am AshaAI — your health assistant. Ask me about malnutrition, ANC, vaccination, danger signs, or any health protocol.',
+      content: 'Namaste! I am Asha Vaani — your health assistant. Ask me about malnutrition, ANC, vaccination, danger signs, or any health protocol.',
       timestamp: Date.now(),
     },
   ]);
@@ -69,9 +69,21 @@ export default function AskAshaAI() {
         }),
       });
 
+      let replyContent = 'No response received. Please try again.';
+      if (typeof data === 'string') {
+        try {
+          const parsed = JSON.parse(data);
+          replyContent = parsed.response || parsed.message || parsed.reply || data;
+        } catch {
+          replyContent = data;
+        }
+      } else if (data && typeof data === 'object') {
+        replyContent = data.response || data.message || data.reply || (data.detail ? String(data.detail) : JSON.stringify(data));
+      }
+
       setMessages(prev => [
         ...prev,
-        { role: 'ai', content: data.response, timestamp: Date.now() },
+        { role: 'ai', content: replyContent, timestamp: Date.now() },
       ]);
     } catch (err) {
       console.error('[AskAshaAI] chat error:', err);
@@ -80,7 +92,7 @@ export default function AskAshaAI() {
         ...prev,
         {
           role: 'ai',
-          content: `Could not reach AshaAI. ${err.message || 'Check your connection.'}`,
+          content: `Could not reach Asha Vaani. ${err.message || 'Check your connection.'}`,
           isError: true,
           timestamp: Date.now(),
         },
@@ -143,14 +155,14 @@ export default function AskAshaAI() {
     <div style={{ display: 'flex', flexDirection: 'column', height: 'calc(100vh - 140px)', background: '#F5F4EF', borderRadius: '20px', overflow: 'hidden', border: '1px solid #D3D1C7' }}>
 
       {/* ── Header ── */}
-      <div style={{ background: '#fff', borderBottom: '1px solid #E8E7E0', padding: '14px 18px', display: 'flex', alignItems: 'center', gap: '12px', flexShrink: 0 }}>
-        <div style={{ width: '42px', height: '42px', background: 'linear-gradient(135deg, #EAF3DE, #C3E8D3)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-          <span className="material-symbols-outlined" style={{ color: '#085041', fontSize: '22px' }}>smart_toy</span>
+      <div style={{ background: '#fff', borderBottom: '1px solid #D8D4B0', padding: '14px 18px', display: 'flex', alignItems: 'center', gap: '12px', flexShrink: 0 }}>
+        <div style={{ width: '42px', height: '42px', background: 'linear-gradient(135deg, #F0EDCC, #E5E0BC)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, border: '1px solid #D8D4B0' }}>
+          <span className="material-symbols-outlined" style={{ color: '#02343F', fontSize: '22px' }}>smart_toy</span>
         </div>
         <div style={{ flex: 1 }}>
-          <h2 style={{ fontWeight: '800', color: '#1A1A18', fontSize: '15px', lineHeight: 1.2 }}>Ask AshaAI</h2>
-          <p style={{ fontSize: '11px', color: '#1D9E75', fontWeight: '600', display: 'flex', alignItems: 'center', gap: '5px', marginTop: '2px' }}>
-            <span style={{ width: '7px', height: '7px', background: '#1D9E75', borderRadius: '50%', display: 'inline-block' }} />
+          <h2 style={{ fontWeight: '800', color: '#02343F', fontSize: '15px', lineHeight: 1.2 }}>Ask Asha Vaani</h2>
+          <p style={{ fontSize: '11px', color: '#02343F', fontWeight: '600', display: 'flex', alignItems: 'center', gap: '5px', marginTop: '2px' }}>
+            <span style={{ width: '7px', height: '7px', background: '#02343F', borderRadius: '50%', display: 'inline-block' }} />
             {tx('Powered by Gemini')} · {tx('Always online')}
           </p>
         </div>
@@ -169,8 +181,8 @@ export default function AskAshaAI() {
               onClick={() => handleQuickQuestion(item.q)}
               disabled={isTyping}
               style={{
-                background: '#fff', border: '1.5px solid #1D9E75', color: '#085041',
-                borderRadius: '20px', padding: '6px 14px', fontSize: '12px', fontWeight: '600',
+                background: '#FAF8EA', border: '1.5px solid #02343F', color: '#02343F',
+                borderRadius: '20px', padding: '6px 14px', fontSize: '12px', fontWeight: '700',
                 cursor: 'pointer', transition: 'all 0.15s', flexShrink: 0,
               }}
             >
@@ -190,16 +202,16 @@ export default function AskAshaAI() {
                 ...(m.role === 'ai'
                   ? m.isError
                     ? { background: '#FCEBEB', border: '1px solid #E24B4A', color: '#791F1F', borderTopLeftRadius: '4px' }
-                    : { background: '#fff', border: '1px solid #E8E7E0', color: '#1A1A18', borderTopLeftRadius: '4px', boxShadow: '0 1px 4px rgba(0,0,0,0.06)' }
-                  : { background: '#085041', color: '#fff', borderTopRightRadius: '4px', boxShadow: '0 2px 8px rgba(8,80,65,0.3)' }
+                    : { background: '#fff', border: '1px solid #D8D4B0', color: '#02343F', borderTopLeftRadius: '4px', boxShadow: '0 1px 4px rgba(0,0,0,0.06)' }
+                  : { background: '#02343F', color: '#F0EDCC', borderTopRightRadius: '4px', boxShadow: '0 2px 8px rgba(2,52,63,0.3)' }
                 ),
               }}
             >
               {/* AI icon + voice tag */}
               {m.role === 'ai' && !m.isError && (
                 <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '6px' }}>
-                  <span className="material-symbols-outlined" style={{ fontSize: '14px', color: '#1D9E75' }}>smart_toy</span>
-                  <span style={{ fontSize: '10px', fontWeight: '700', color: '#1D9E75', textTransform: 'uppercase', letterSpacing: '0.05em' }}>AshaAI</span>
+                  <span className="material-symbols-outlined" style={{ fontSize: '14px', color: '#02343F' }}>smart_toy</span>
+                  <span style={{ fontSize: '10px', fontWeight: '700', color: '#02343F', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Asha Vaani</span>
                 </div>
               )}
               {m.isVoice && (
@@ -249,12 +261,13 @@ export default function AskAshaAI() {
             onClick={isRecording ? stopRecording : startRecording}
             disabled={isProcessing || isTyping}
             style={{
-              width: '36px', height: '36px', borderRadius: '50%', border: 'none', flexShrink: 0,
+              width: '36px', height: '36px', borderRadius: '50%', flexShrink: 0,
               display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer',
               transition: 'all 0.2s',
-              background: isRecording ? '#E24B4A' : isProcessing ? '#D3D1C7' : '#EAF3DE',
-              color: isRecording ? '#fff' : '#085041',
+              background: isRecording ? '#E24B4A' : isProcessing ? '#D8D4B0' : '#FAF8EA',
+              color: isRecording ? '#fff' : '#02343F',
               animation: isRecording ? 'pulse 1s infinite' : 'none',
+              border: isRecording ? 'none' : '1px solid #D8D4B0',
             }}
           >
             {isProcessing
@@ -274,7 +287,7 @@ export default function AskAshaAI() {
             disabled={isRecording || isProcessing}
             style={{
               flex: 1, background: 'transparent', border: 'none', outline: 'none',
-              fontSize: '14px', color: '#1A1A18',
+              fontSize: '14px', color: '#02343F',
             }}
           />
 
@@ -285,15 +298,15 @@ export default function AskAshaAI() {
             style={{
               width: '36px', height: '36px', borderRadius: '50%', border: 'none', flexShrink: 0,
               display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer',
-              background: inputText.trim() && !isTyping ? '#085041' : '#D3D1C7',
-              color: '#fff', transition: 'background 0.2s',
+              background: inputText.trim() && !isTyping ? '#02343F' : '#D8D4B0',
+              color: '#F0EDCC', transition: 'background 0.2s',
             }}
           >
             <span className="material-symbols-outlined" style={{ fontSize: '18px' }}>send</span>
           </button>
         </div>
         <p style={{ textAlign: 'center', fontSize: '10px', color: '#AAA', marginTop: '8px' }}>
-          {tx('AshaAI provides guidance based on official protocols. Always refer emergencies to PHC.')}
+          {tx('Asha Vaani provides guidance based on official protocols. Always refer emergencies to PHC.')}
         </p>
         <style>{`
           @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }

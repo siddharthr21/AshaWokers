@@ -1,6 +1,6 @@
-# AshaAI — Backend
+# Asha Vaani — Backend
 
-The AshaAI backend is a **Spring Boot 3.5 (Java 21)** service and the only component that writes application data to the database.
+The Asha Vaani backend is a **Spring Boot 3.5 (Java 21)** service and the only component that writes application data to the database.
 
 The frontend does **not** write directly to Supabase. The AI service is also isolated from the database and is called only by the backend.
 

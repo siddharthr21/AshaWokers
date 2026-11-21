@@ -149,8 +149,8 @@ export default function MemberLookupField({
           onChange={handleQueryChange}
           disabled={disabled}
           placeholder={field.placeholder || `Search by name, DOB, or address…`}
-          className={`w-full max-w-full box-border p-3 border rounded-xl outline-none focus:border-[#1D9E75] transition-colors pr-10 ${
-            error ? 'border-[#E24B4A]' : isSelected ? 'border-[#1D9E75] bg-[#F0FFF8]' : 'border-[#D3D1C7]'
+          className={`w-full max-w-full box-border p-3 border rounded-xl outline-none focus:border-[#02343F] transition-colors pr-10 ${
+            error ? 'border-[#E24B4A]' : isSelected ? 'border-[#02343F] bg-[#F0FFF8]' : 'border-[#D3D1C7]'
           }`}
         />
         {searching && (
@@ -159,7 +159,7 @@ export default function MemberLookupField({
           </span>
         )}
         {isSelected && !searching && (
-          <span className="material-symbols-outlined absolute right-3 top-3 text-[#1D9E75] text-lg">
+          <span className="material-symbols-outlined absolute right-3 top-3 text-[#02343F] text-lg">
             verified_user
           </span>
         )}
@@ -167,7 +167,7 @@ export default function MemberLookupField({
 
       {/* Confirmed badge */}
       {isSelected && (
-        <div className="mt-1.5 flex items-center gap-1.5 text-xs font-semibold text-[#085041]">
+        <div className="mt-1.5 flex items-center gap-1.5 text-xs font-semibold text-[#02343F]">
           <span className="material-symbols-outlined text-sm">link</span>
           Linked to household_members ID: {value.memberId.slice(0, 8)}…
         </div>
@@ -183,7 +183,7 @@ export default function MemberLookupField({
                   key={m.id}
                   type="button"
                   onClick={() => handleSelect(m)}
-                  className="w-full text-left px-4 py-3 hover:bg-[#EAF3DE] border-b border-[#F0EFE8] last:border-0 transition-colors"
+                  className="w-full text-left px-4 py-3 hover:bg-[#FAF8EA] border-b border-[#F0EFE8] last:border-0 transition-colors"
                 >
                   <p className="font-bold text-sm text-[#1A1A18]">{m.name}</p>
                   <p className="text-xs text-[#5F5E5A]">
@@ -213,7 +213,7 @@ export default function MemberLookupField({
               <button
                 type="button"
                 onClick={() => { setShowNewForm(true); setShowDropdown(false); setNewPerson({ name: query, dob: '', gender: '' }); }}
-                className="text-sm font-bold text-[#1D9E75] flex items-center gap-1.5"
+                className="text-sm font-bold text-[#02343F] flex items-center gap-1.5"
               >
                 <span className="material-symbols-outlined text-sm">person_add</span>
                 Register as new person
@@ -236,7 +236,7 @@ export default function MemberLookupField({
               type="text"
               value={newPerson.name}
               onChange={(e) => setNewPerson((p) => ({ ...p, name: e.target.value }))}
-              className="w-full p-2.5 border border-[#D3D1C7] rounded-xl text-sm outline-none focus:border-[#1D9E75]"
+              className="w-full p-2.5 border border-[#D3D1C7] rounded-xl text-sm outline-none focus:border-[#02343F]"
               placeholder="Full name"
             />
           </div>
@@ -247,7 +247,7 @@ export default function MemberLookupField({
                 type="date"
                 value={newPerson.dob}
                 onChange={(e) => setNewPerson((p) => ({ ...p, dob: e.target.value }))}
-                className="w-full p-2.5 border border-[#D3D1C7] rounded-xl text-sm outline-none focus:border-[#1D9E75]"
+                className="w-full p-2.5 border border-[#D3D1C7] rounded-xl text-sm outline-none focus:border-[#02343F]"
               />
             </div>
             <div>
@@ -255,7 +255,7 @@ export default function MemberLookupField({
               <select
                 value={newPerson.gender}
                 onChange={(e) => setNewPerson((p) => ({ ...p, gender: e.target.value }))}
-                className="w-full p-2.5 border border-[#D3D1C7] rounded-xl text-sm outline-none focus:border-[#1D9E75] bg-white"
+                className="w-full p-2.5 border border-[#D3D1C7] rounded-xl text-sm outline-none focus:border-[#02343F] bg-white"
               >
                 <option value="">Select…</option>
                 <option value="Male">Male</option>
@@ -275,7 +275,7 @@ export default function MemberLookupField({
               type="button"
               onClick={handleCreateNew}
               disabled={creating}
-              className="flex-1 py-2.5 bg-[#1D9E75] text-white rounded-xl font-bold text-sm flex items-center justify-center gap-2 disabled:opacity-50"
+              className="flex-1 py-2.5 bg-[#02343F] text-white rounded-xl font-bold text-sm flex items-center justify-center gap-2 disabled:opacity-50"
             >
               {creating ? (
                 <span className="material-symbols-outlined animate-spin text-sm">refresh</span>

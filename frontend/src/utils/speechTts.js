@@ -9,7 +9,8 @@
 
 const LANG_MAPPINGS = {
   hi: ['hi-IN', 'hi'],
-  mr: ['mr-IN', 'mr', 'hi-IN'], // Marathi falls back to Hindi phonetics if mr-IN voice not installed
+  kn: ['kn-IN', 'kn'],
+  mr: ['mr-IN', 'mr', 'hi-IN'],
   en: ['en-IN', 'en-GB', 'en-US', 'en']
 };
 
@@ -142,7 +143,7 @@ class SpeechTts {
           utterance.voice = voice;
           utterance.lang = voice.lang;
         } else {
-          utterance.lang = lang === 'hi' ? 'hi-IN' : (lang === 'mr' ? 'mr-IN' : 'en-IN');
+          utterance.lang = lang === 'en' ? 'en-IN' : (lang === 'kn' ? 'kn-IN' : 'hi-IN');
         }
 
         utterance.rate = rate;

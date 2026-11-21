@@ -430,7 +430,7 @@ export default function PendingReview() {
             style={{
               padding:'6px 16px', borderRadius:'20px', fontSize:'13px',
               border: sourceFilter === f ? 'none' : '1px solid #ddd',
-              background: sourceFilter === f ? '#1D9E75' : 'white',
+              background: sourceFilter === f ? '#02343F' : 'white',
               color: sourceFilter === f ? 'white' : '#666',
               cursor:'pointer'
             }}
@@ -449,7 +449,7 @@ export default function PendingReview() {
             <div className="text-center p-12 text-gray-500">Loading reviews...</div>
           ) : filteredReviews.length === 0 ? (
             <div className="bg-white rounded-2xl p-12 text-center border border-[#D3D1C7]">
-              <span className="material-symbols-outlined text-5xl text-[#1D9E75] mb-4 block">task_alt</span>
+              <span className="material-symbols-outlined text-5xl text-[#02343F] mb-4 block">task_alt</span>
               <p className="text-[#5F5E5A]">{tx('All caught up! No pending reviews.')}</p>
             </div>
           ) : (
@@ -498,7 +498,7 @@ export default function PendingReview() {
                         <div style={{display:'flex', gap:'8px', marginTop:'12px'}}>
                           <button
                             onClick={() => handleApproveNGO(r.originalId)}
-                            style={{flex:1, padding:'8px', background:'#1D9E75', color:'white',
+                            style={{flex:1, padding:'8px', background:'#02343F', color:'white',
                                     border:'none', borderRadius:'8px', fontSize:'13px', cursor:'pointer', display:'flex', alignItems:'center', justifyContent:'center', gap:'4px'}}
                           >
                             <span className="material-symbols-outlined" style={{ fontSize: '16px' }}>check_circle</span> Approve & Register NGO
@@ -518,7 +518,7 @@ export default function PendingReview() {
                       <div key={r.id} style={{border:'1px solid #CECBF6', borderRadius:'12px', padding:'16px', background:'white'}}>
                         <div style={{display:'flex', justifyContent:'space-between', alignItems:'flex-start'}}>
                           <div>
-                            <span style={{background:'#EAF3DE', color:'#27500A', fontSize:'11px',
+                            <span style={{background:'#FAF8EA', color:'#02343F', fontSize:'11px',
                                           padding:'3px 8px', borderRadius:'4px', fontWeight:500, display:'inline-flex', alignItems:'center'}}>
                               <span className="material-symbols-outlined" style={{ fontSize: '14px', marginRight: '4px' }}>event</span> APPOINTMENT CHANGE
                             </span>
@@ -585,7 +585,7 @@ export default function PendingReview() {
                       <div key={r.id} style={{border:'1px solid #CECBF6', borderRadius:'12px', padding:'16px', background:'white'}}>
                         <div style={{display:'flex', justifyContent:'space-between', alignItems:'flex-start'}}>
                           <div>
-                            <span style={{background:'#EAF3DE', color:'#27500A', fontSize:'11px',
+                            <span style={{background:'#FAF8EA', color:'#02343F', fontSize:'11px',
                                           padding:'3px 8px', borderRadius:'4px', fontWeight:500, display:'inline-flex', alignItems:'center'}}>
                               <span className="material-symbols-outlined" style={{ fontSize: '14px', marginRight: '4px' }}>event</span> APPOINTMENT REQUEST
                             </span>
@@ -611,7 +611,7 @@ export default function PendingReview() {
                               setAppointmentTime('10:00');
                               setShowAppointmentModal(true);
                             }}
-                            style={{flex:1, padding:'8px', background:'#1D9E75', color:'white',
+                            style={{flex:1, padding:'8px', background:'#02343F', color:'white',
                                     border:'none', borderRadius:'8px', fontSize:'13px', cursor:'pointer', display:'flex', alignItems:'center', justifyContent:'center', gap:'4px'}}
                           >
                             <span className="material-symbols-outlined" style={{ fontSize: '16px' }}>calendar_today</span> Book Appointment
@@ -648,7 +648,7 @@ export default function PendingReview() {
                               setAppointmentTime('10:00');
                               setShowAppointmentModal(true);
                             }}
-                            style={{flex:1, padding:'8px', background:'#1D9E75', color:'white',
+                            style={{flex:1, padding:'8px', background:'#02343F', color:'white',
                                     border:'none', borderRadius:'8px', fontSize:'13px', cursor:'pointer', display:'flex', alignItems:'center', justifyContent:'center', gap:'4px'}}
                           >
                             <span className="material-symbols-outlined" style={{ fontSize: '16px' }}>calendar_today</span> Book Appointment
@@ -674,7 +674,7 @@ export default function PendingReview() {
                     onClick={() => setSelectedReview(r)}
                     className={`bg-white rounded-2xl p-4 md:p-6 shadow-sm border cursor-pointer transition-all ${
                       selectedReview?.id === r.id
-                        ? 'border-[#1D9E75] bg-[#F5FBF9]'
+                        ? 'border-[#02343F] bg-[#F5FBF9]'
                         : 'border-[#D3D1C7] hover:shadow-md'
                     }`}
                   >
@@ -763,14 +763,14 @@ export default function PendingReview() {
                       onClick={() => setVisitHistoryOpen(v => !v)}
                       className="flex items-center gap-2 w-full text-left"
                     >
-                      <span className="material-symbols-outlined text-lg text-[#1D9E75]">
+                      <span className="material-symbols-outlined text-lg text-[#02343F]">
                         {visitHistoryOpen ? 'expand_less' : 'expand_more'}
                       </span>
                       <span className="font-bold text-sm text-[#1A1A18] uppercase tracking-wide">
                         Past Visits
                       </span>
                       {visitHistoryLoading && (
-                        <span className="material-symbols-outlined animate-spin text-sm text-[#1D9E75] ml-auto">refresh</span>
+                        <span className="material-symbols-outlined animate-spin text-sm text-[#02343F] ml-auto">refresh</span>
                       )}
                     </button>
                     {visitHistoryOpen && !visitHistoryLoading && (
@@ -802,7 +802,7 @@ export default function PendingReview() {
                               return d ? (
                                 <div key={n} className="flex justify-between text-sm border-b border-gray-100 pb-2">
                                   <span className="text-[#5F5E5A]">ANC {n}</span>
-                                  <span className="font-medium text-[#1D9E75]">{d}</span>
+                                  <span className="font-medium text-[#02343F]">{d}</span>
                                 </div>
                               ) : (
                                 <div key={n} className="flex justify-between text-sm border-b border-gray-100 pb-2">
@@ -865,7 +865,7 @@ export default function PendingReview() {
                     <button
                       onClick={handleApprove}
                       disabled={processing}
-                      className="flex-1 bg-[#1D9E75] text-white py-2.5 rounded-xl font-medium flex items-center justify-center gap-2 hover:bg-[#085041] transition-colors disabled:opacity-50 text-sm"
+                      className="flex-1 bg-[#02343F] text-white py-2.5 rounded-xl font-medium flex items-center justify-center gap-2 hover:bg-[#02343F] transition-colors disabled:opacity-50 text-sm"
                     >
                       <span className="material-symbols-outlined text-lg">check</span>
                       {tx('Approve', 'approve')}
@@ -932,7 +932,7 @@ export default function PendingReview() {
 
             <div>
               <label style={{display:'block', fontSize:'13px', color:'#666', marginBottom:'8px'}}>Assign ASHA Workers</label>
-              <label style={{display:'flex', alignItems:'center', gap:'8px', padding:'8px', background:'#F5FBF9', borderRadius:'8px', marginBottom:'8px', border:'1px solid #1D9E75'}}>
+              <label style={{display:'flex', alignItems:'center', gap:'8px', padding:'8px', background:'#F5FBF9', borderRadius:'8px', marginBottom:'8px', border:'1px solid #02343F'}}>
                 <input
                   type="checkbox"
                   checked={assignAll}
@@ -941,7 +941,7 @@ export default function PendingReview() {
                     if (e.target.checked) setSelectedAshas([]);
                   }}
                 />
-                <span style={{fontSize:'14px', fontWeight:600, color:'#1D9E75'}}>Assign All Workers</span>
+                <span style={{fontSize:'14px', fontWeight:600, color:'#02343F'}}>Assign All Workers</span>
               </label>
 
               <div style={{maxHeight:'150px', overflowY:'auto', border:'1px solid #ddd', borderRadius:'8px', padding:'8px'}}>
@@ -969,7 +969,7 @@ export default function PendingReview() {
             <div style={{display:'flex', gap:'8px', marginTop:'8px'}}>
               <button
                 onClick={handleBookAppointment}
-                style={{flex:1, padding:'10px', background:'#1D9E75', color:'white',
+                style={{flex:1, padding:'10px', background:'#02343F', color:'white',
                         border:'none', borderRadius:'8px', fontSize:'14px', cursor:'pointer'}}
               >
                 Confirm Appointment
@@ -1029,7 +1029,7 @@ export default function PendingReview() {
                       <button
                         key={d}
                         onClick={() => setRescheduleDate(parseToInputDate(d))}
-                        style={{flex:1, padding:'10px', border: rescheduleDate===parseToInputDate(d) ? '2px solid #1D9E75' : '1px solid #ddd', borderRadius:'8px', background: rescheduleDate===parseToInputDate(d) ? '#f0fdf4' : 'white', cursor:'pointer', fontWeight: rescheduleDate===parseToInputDate(d) ? 600 : 400}}
+                        style={{flex:1, padding:'10px', border: rescheduleDate===parseToInputDate(d) ? '2px solid #02343F' : '1px solid #ddd', borderRadius:'8px', background: rescheduleDate===parseToInputDate(d) ? '#f0fdf4' : 'white', cursor:'pointer', fontWeight: rescheduleDate===parseToInputDate(d) ? 600 : 400}}
                       >
                         {formatDisplayDate(d)}
                       </button>
@@ -1073,7 +1073,7 @@ export default function PendingReview() {
             <div style={{display:'flex', gap:'8px', marginTop:'8px'}}>
               <button
                 onClick={handleConfirmReschedule}
-                style={{flex:1, padding:'10px', background:'#1D9E75', color:'white',
+                style={{flex:1, padding:'10px', background:'#02343F', color:'white',
                         border:'none', borderRadius:'8px', fontSize:'14px', cursor:'pointer'}}
               >
                 Confirm New Date

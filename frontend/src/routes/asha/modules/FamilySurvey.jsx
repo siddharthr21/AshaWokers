@@ -10,13 +10,13 @@ import VoiceOverlay from '../../../components/VoiceOverlay';
 import { parseToIsoDate, calculateAgeFromDob, extractDobFromText, normalizeGender, normalizeRelationship, normalizeMaritalStatus } from '../../../utils/formDateUtils';
 
 const FAMILY_MEMBER_FIELDS = [
-  { id: 'member_name', label: 'Full Name / पूर्ण नाव / Name', type: 'text' },
+  { id: 'member_name', label: 'Full Name / पूरा नाम', type: 'text' },
   { id: 'gender', label: 'Gender / लिंग (Male / Female / Other)', type: 'select' },
-  { id: 'date_of_birth', label: 'Date of Birth / जन्मतारीख (YYYY-MM-DD)', type: 'date' },
-  { id: 'age', label: 'Age (years) / वय', type: 'number' },
-  { id: 'relationship_to_head', label: 'Relationship / नाते (Self / Spouse / Son / Daughter / Father / Mother / Other)', type: 'select' },
-  { id: 'marital_status', label: 'Marital Status / वैवाहिक स्थिती (Married / Unmarried / Widow / Separated)', type: 'select' },
-  { id: 'mobile_number', label: 'Mobile Number / मोबाईल नंबर (10 digits)', type: 'tel' },
+  { id: 'date_of_birth', label: 'Date of Birth / जन्म तिथि (YYYY-MM-DD)', type: 'date' },
+  { id: 'age', label: 'Age (years) / उम्र / आयु', type: 'number' },
+  { id: 'relationship_to_head', label: 'Relationship / संबंध (Self / Spouse / Son / Daughter / Father / Mother / Other)', type: 'select' },
+  { id: 'marital_status', label: 'Marital Status / वैवाहिक स्थिति (Married / Unmarried / Widow / Separated)', type: 'select' },
+  { id: 'mobile_number', label: 'Mobile Number / मोबाइल नंबर (10 digits)', type: 'tel' },
   { id: 'abha_id', label: 'ABHA ID', type: 'text' },
 ];
 
@@ -409,7 +409,7 @@ export default React.memo(function FamilySurvey() {
 
   const getVoiceTag = (memberId, field) => {
     if (voiceFilledFields[memberId]?.includes(field)) {
-      return <span className="text-xs text-[#1D9E75] font-bold px-2 py-0.5 bg-[#EAF3DE] rounded border border-[#1D9E75] mt-1 inline-flex items-center"><span className="material-symbols-outlined text-[14px] mr-1">mic</span> Voice filled</span>;
+      return <span className="text-xs text-[#02343F] font-bold px-2 py-0.5 bg-[#FAF8EA] rounded border border-[#02343F] mt-1 inline-flex items-center"><span className="material-symbols-outlined text-[14px] mr-1">mic</span> Voice filled</span>;
     }
     return null;
   };
@@ -417,7 +417,7 @@ export default React.memo(function FamilySurvey() {
   const getInputClass = (memberId, field) => {
     const isFilled = voiceFilledFields[memberId]?.includes(field);
     return `w-full p-3 border rounded-xl outline-none transition-colors ${
-      isFilled ? 'border-[#1D9E75] bg-[#EAF3DE]/30' : 'border-[#D3D1C7] focus:border-[#1D9E75] bg-white'
+      isFilled ? 'border-[#02343F] bg-[#FAF8EA]/30' : 'border-[#D3D1C7] focus:border-[#02343F] bg-white'
     }`;
   };
 
@@ -448,7 +448,7 @@ export default React.memo(function FamilySurvey() {
   if (memberCount === null) {
     return (
       <div className="p-4 flex flex-col justify-center items-center h-[80vh]">
-        <div className="w-16 h-16 bg-[#EAF3DE] rounded-full flex items-center justify-center text-[#1D9E75] mb-6">
+        <div className="w-16 h-16 bg-[#FAF8EA] rounded-full flex items-center justify-center text-[#02343F] mb-6">
           <span className="material-symbols-outlined text-4xl">family_restroom</span>
         </div>
         <h1 className="text-3xl font-bold text-[#1A1A18] mb-2 text-center">New Family Survey</h1>
@@ -466,7 +466,7 @@ export default React.memo(function FamilySurvey() {
              type="number" 
              value={initialCount} 
              readOnly
-             className="w-24 h-24 text-center text-5xl font-black bg-transparent outline-none border-b-4 border-[#1D9E75]" 
+             className="w-24 h-24 text-center text-5xl font-black bg-transparent outline-none border-b-4 border-[#02343F]" 
            />
            <button 
              type="button" 
@@ -484,7 +484,7 @@ export default React.memo(function FamilySurvey() {
             autoFocus
             value={household.house_number} 
             onChange={e => setHousehold(prev => ({ ...prev, house_number: e.target.value }))} 
-            className="w-full p-4 border-2 border-[#D3D1C7] rounded-xl outline-none focus:border-[#1D9E75] mb-8 text-lg" 
+            className="w-full p-4 border-2 border-[#D3D1C7] rounded-xl outline-none focus:border-[#02343F] mb-8 text-lg" 
             placeholder="E.g., 102/B" 
           />
         </div>
@@ -497,7 +497,7 @@ export default React.memo(function FamilySurvey() {
             }
             initMembers(initialCount);
           }}
-          className="w-full max-w-sm py-4 bg-[#1D9E75] text-white rounded-2xl font-bold text-xl shadow-lg active:scale-95 transition-all"
+          className="w-full max-w-sm py-4 bg-[#02343F] text-white rounded-2xl font-bold text-xl shadow-lg active:scale-95 transition-all"
         >
           Start Survey
         </button>
@@ -528,7 +528,7 @@ export default React.memo(function FamilySurvey() {
 
       {toast && (
         <div className={`fixed top-4 left-1/2 -translate-x-1/2 z-50 px-4 py-2 rounded-xl shadow-lg text-sm font-medium animate-slide-down ${
-          toast.type === 'success' ? 'bg-[#EAF3DE] text-[#085041] border border-[#1D9E75]' : 'bg-[#FCEBEB] text-[#791F1F] border border-[#E24B4A]'
+          toast.type === 'success' ? 'bg-[#FAF8EA] text-[#02343F] border border-[#02343F]' : 'bg-[#FCEBEB] text-[#791F1F] border border-[#E24B4A]'
         }`}>
           {toast.message}
         </div>
@@ -545,12 +545,12 @@ export default React.memo(function FamilySurvey() {
 
       <form onSubmit={handleSubmit} className="px-4 mt-6 space-y-4">
         {isViewMode && !isEditMode && (
-          <div style={{background:'#EAF3DE', padding:'10px 16px', borderRadius:8, marginBottom:12, display:'flex', justifyContent:'space-between', alignItems:'center'}}>
-            <span style={{fontSize:13, color:'#27500A'}}>Viewing submitted record</span>
+          <div style={{background:'#FAF8EA', padding:'10px 16px', borderRadius:8, marginBottom:12, display:'flex', justifyContent:'space-between', alignItems:'center'}}>
+            <span style={{fontSize:13, color:'#02343F'}}>Viewing submitted record</span>
             <button
               type="button"
               onClick={() => setIsEditMode(true)}
-              style={{fontSize:13, color:'#1D9E75', background:'none', border:'none', cursor:'pointer', fontWeight:500}}
+              style={{fontSize:13, color:'#02343F', background:'none', border:'none', cursor:'pointer', fontWeight:500}}
             >
               Edit ✏️
             </button>
@@ -562,15 +562,15 @@ export default React.memo(function FamilySurvey() {
           const isExpanded = expandedMember === index;
           const complete = isMemberComplete(member);
           return (
-            <div key={member.id} className={`bg-white rounded-2xl shadow-sm border overflow-hidden ${complete ? 'border-[#1D9E75]' : 'border-[#D3D1C7]'}`}>
+            <div key={member.id} className={`bg-white rounded-2xl shadow-sm border overflow-hidden ${complete ? 'border-[#02343F]' : 'border-[#D3D1C7]'}`}>
               <div 
-                className={`w-full p-4 flex items-center justify-between ${isExpanded ? 'bg-[#EAF3DE]/30' : 'hover:bg-gray-50'}`}
+                className={`w-full p-4 flex items-center justify-between ${isExpanded ? 'bg-[#FAF8EA]/30' : 'hover:bg-gray-50'}`}
               >
                 <div 
                    className="flex items-center gap-3 flex-1 cursor-pointer"
                    onClick={() => setExpandedMember(isExpanded ? -1 : index)}
                 >
-                  <div className={`w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm text-white ${complete ? 'bg-[#1D9E75]' : 'bg-gray-400'}`}>
+                  <div className={`w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm text-white ${complete ? 'bg-[#02343F]' : 'bg-gray-400'}`}>
                     {complete ? <span className="material-symbols-outlined text-[16px]">check</span> : (index + 1)}
                   </div>
                   <span className="font-bold text-[#1A1A18] text-lg">
@@ -600,7 +600,7 @@ export default React.memo(function FamilySurvey() {
                     
                     <div className="mt-3 flex items-center justify-between bg-gray-50 p-3 rounded-lg border">
                       <label className="flex items-center gap-2 cursor-pointer">
-                        <input type="checkbox" className="w-5 h-5 text-[#1D9E75] rounded focus:ring-[#1D9E75]" checked={member.noAadhaar} onChange={e => handleNoAadhaarChange(index, e.target.checked)} />
+                        <input type="checkbox" className="w-5 h-5 text-[#02343F] rounded focus:ring-[#02343F]" checked={member.noAadhaar} onChange={e => handleNoAadhaarChange(index, e.target.checked)} />
                         <span className="font-medium text-gray-700">No Aadhaar available?</span>
                       </label>
                     </div>
@@ -700,7 +700,7 @@ export default React.memo(function FamilySurvey() {
 
                   <div className="border-t pt-4 mt-2">
                     <label className="flex items-center gap-2 cursor-pointer mb-3">
-                      <input type="checkbox" className="w-5 h-5 text-[#1D9E75] rounded focus:ring-[#1D9E75]" checked={member.has_genetic_condition} onChange={e => updateMember(index, 'has_genetic_condition', e.target.checked)} />
+                      <input type="checkbox" className="w-5 h-5 text-[#02343F] rounded focus:ring-[#02343F]" checked={member.has_genetic_condition} onChange={e => updateMember(index, 'has_genetic_condition', e.target.checked)} />
                       <span className="font-bold text-[#1A1A18]">Has Genetic / Hereditary Condition?</span>
                     </label>
                     {member.has_genetic_condition && (
@@ -738,11 +738,11 @@ export default React.memo(function FamilySurvey() {
              <div className="flex flex-col space-y-2 max-w-lg mx-auto">
                <div className="flex justify-between text-sm font-medium">
                   <span className="text-gray-600">Progress</span>
-                  <span className={isAllComplete ? "text-[#1D9E75]" : "text-amber-500"}>{completeCount} of {members.length} members complete</span>
+                  <span className={isAllComplete ? "text-[#02343F]" : "text-amber-500"}>{completeCount} of {members.length} members complete</span>
                </div>
                <div className="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
                   <div 
-                     className={`h-full transition-all duration-500 ${isAllComplete ? 'bg-[#1D9E75]' : 'bg-amber-500'}`} 
+                     className={`h-full transition-all duration-500 ${isAllComplete ? 'bg-[#02343F]' : 'bg-amber-500'}`} 
                      style={{ width: `${Math.round((completeCount / members.length) * 100)}%` }}
                   ></div>
                </div>
@@ -751,7 +751,7 @@ export default React.memo(function FamilySurvey() {
                   type="submit" 
                   disabled={isLoading || !isAllComplete} 
                   className={`w-full mt-3 py-4 rounded-xl font-bold shadow-md transition-all flex justify-center items-center gap-2 ${
-                    isAllComplete && !isLoading ? 'bg-[#1D9E75] text-white hover:bg-[#16815e] active:scale-95' : 'bg-gray-200 text-gray-400 cursor-not-allowed'
+                    isAllComplete && !isLoading ? 'bg-[#02343F] text-white hover:bg-[#01252D] active:scale-95' : 'bg-gray-200 text-gray-400 cursor-not-allowed'
                   }`}
                >
                   {isLoading ? <span className="material-symbols-outlined animate-spin">refresh</span> : 'Save Survey & Confirm'}
@@ -765,7 +765,7 @@ export default React.memo(function FamilySurvey() {
         type="button"
         onClick={() => setShowVoice(true)}
         style={{ position: 'fixed', bottom: '100px', right: '20px' }}
-        className="w-[72px] h-[72px] bg-[#1D9E75] text-white rounded-full flex items-center justify-center shadow-[0_8px_30px_rgba(29,158,117,0.3)] hover:scale-105 active:scale-95 transition-transform z-40"
+        className="w-[72px] h-[72px] bg-[#02343F] text-white rounded-full flex items-center justify-center shadow-[0_8px_30px_rgba(2,52,63,0.3)] hover:scale-105 active:scale-95 transition-transform z-40"
       >
         <span className="material-symbols-outlined text-4xl">mic</span>
       </button>

@@ -32,8 +32,8 @@ const Root = () => {
 
   if (!isConfigLoaded) {
     return (
-      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', fontFamily: 'sans-serif' }}>
-        <h2>Loading AshaAI...</h2>
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', fontFamily: 'sans-serif', background: '#F0EDCC', color: '#02343F' }}>
+        <h2>Loading Asha Vaani...</h2>
       </div>
     );
   }

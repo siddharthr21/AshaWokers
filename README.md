@@ -1,4 +1,4 @@
-# AshaAI
+# Asha Vaani
 
 ## Introduction
 
@@ -8,11 +8,11 @@
 
 **Problem statement:** India has more than a million ASHA (Accredited Social Health Activist) workers. They still use paper registers to track maternal health, child nutrition, vaccinations, disease surveillance and the welfare of orphaned and vulnerable children in rural villages. The result is late detection of high-risk cases, double data entry, no real-time view for supervisors, and loose coordination with the NGOs that care for vulnerable children. (Google Solution Challenge 2026 theme: Data Driven Volunteer Coordination For Social Impact.)
 
-**Solution:** AshaAI moves ASHA work from paper to the phone, in Marathi, Hindi and English. Workers fill 12 health registers by voice, photograph paper registers for OCR import, and screen children for malnutrition using a photo and a ₹5 coin as a size reference. A fixed-formula risk engine scores every child and flags high-risk pregnancies. Supervisors use a web portal to review flags, verify and close referrals, and follow each case through a care loop view. NGOs register through Google Forms, and supervisors book visits, assign workers and email the NGO from the app. Everything works offline and syncs when the phone reconnects. AI only drafts and suggests. A person confirms before anything is saved or closed.
+**Solution:** Asha Vaani moves ASHA work from paper to the phone, in Marathi, Hindi and English. Workers fill 12 health registers by voice, photograph paper registers for OCR import, and screen children for malnutrition using a photo and a ₹5 coin as a size reference. A fixed-formula risk engine scores every child and flags high-risk pregnancies. Supervisors use a web portal to review flags, verify and close referrals, and follow each case through a care loop view. NGOs register through Google Forms, and supervisors book visits, assign workers and email the NGO from the app. Everything works offline and syncs when the phone reconnects. AI only drafts and suggests. A person confirms before anything is saved or closed.
 
-AshaAI was built for Google Solution Challenge 2026, where it was selected in the Global Top 100. It is also entered in the Future Health Digital Innovation Challenge (Population Health: Closing the Screening-to-Care Loop). Built by Team AshaAI.
+Asha Vaani was built for Google Solution Challenge 2026, where it was selected in the Global Top 100. It is also entered in the Future Health Digital Innovation Challenge (Population Health: Closing the Screening-to-Care Loop). Built by Team Asha Vaani.
 
-## Intro To AshaAI Video
+## Intro To Asha Vaani Video
 
 [![Intro To AshaAI](https://res.cloudinary.com/drb4gctam/image/upload/v1781581550/Empowering_ASHAs_Elevating_Healthcare_1_pe40sk.png)](https://youtu.be/ZbqG6uUldfI?si=LarbruBTeVuaWRxU)
 
@@ -499,7 +499,7 @@ These sources shaped the data model, the module list and the feature priorities.
 - [Apps Script, installable triggers (onFormSubmit)](https://developers.google.com/apps-script/guides/triggers/installable): the trigger behind the NGO registration webhook.
 - [Apps Script, UrlFetchApp](https://developers.google.com/apps-script/reference/url-fetch/url-fetch-app): used to POST form submissions to the backend's `/api/ngo/form-submission` endpoint.
 
-# Hi, We are Team AshaAI
+# Hi, We are Team Asha Vaani
 
 ## Contributors
 
@@ -510,4 +510,4 @@ We are two Computer Engineering students at [Maharashtra Institute of Technology
 | <img src="https://res.cloudinary.com/drb4gctam/image/upload/v1782743962/1769608412988_tun4ta.png" width="300"> | <img src="https://res.cloudinary.com/drb4gctam/image/upload/v1782743949/1764447703320_wwkboz.png" width="300"> |
 | Team Lead / Full-Stack & AI | Frontend Dev / Researcher |
 
-AshaAI aims to take paperwork off ASHA workers and bring early risk scoring and coordinated child welfare support to the villages that need them.
+Asha Vaani aims to take paperwork off ASHA workers and bring early risk scoring and coordinated child welfare support to the villages that need them.

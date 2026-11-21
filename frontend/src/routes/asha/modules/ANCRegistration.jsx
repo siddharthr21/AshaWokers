@@ -1,16 +1,16 @@
 // TODO: Add view mode — same pattern as FamilySurvey.jsx
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import BaseModuleForm from '../../../components/BaseModuleForm';
 import AadhaarLinkagePopup from '../../../components/AadhaarLinkagePopup';
 import AiScreeningDisclaimer from '../../../components/AiScreeningDisclaimer';
 import { apiFetch } from '../../../utils/api';
 
 const FIELDS = [
-  { id: 'mother_name', label: 'Pregnant Woman Name / गरोदर महिलेचे नाव', required: true, placeholder: 'Full name' },
-  { id: 'husband_name', label: 'Husband Name / पतीचे नाव', required: true, placeholder: 'Full name' },
-  { id: 'age', label: 'Age (years)', type: 'number', required: true },
-  { id: 'lmp_date', label: 'LMP Date / शेवटची मासिक पाळी', type: 'date', required: true },
-  { id: 'edd_date', label: 'Expected Delivery Date / अपेक्षित तारीख', type: 'date' },
+  { id: 'mother_name', label: 'Pregnant Woman Name / गर्भवती महिला का नाम', required: true, placeholder: 'Full name' },
+  { id: 'husband_name', label: 'Husband Name / पति का नाम', required: true, placeholder: 'Full name' },
+  { id: 'age', label: 'Age (years) / आयु', type: 'number', required: true },
+  { id: 'lmp_date', label: 'LMP Date / अंतिम मासिक धर्म तारीख (LMP)', type: 'date', required: true },
+  { id: 'edd_date', label: 'Expected Delivery Date / प्रसव की संभावित तारीख (EDD)', type: 'date' },
   { id: 'registration_date', label: 'Registration Date', type: 'date', required: true },
   { id: 'gravida', label: 'Gravida (Total Pregnancies)', type: 'number', placeholder: '1' },
   { id: 'para', label: 'Para (Deliveries)', type: 'number', placeholder: '0' },
@@ -100,18 +100,18 @@ export default function ANCRegistration() {
 
   const CustomSection = () => {
     if (loadingPrediction) {
-      return <div className="mt-4 p-4 bg-[#EAF3DE] rounded-xl text-center text-[#1D9E75] font-bold animate-pulse">Analyzing Genetic Risk...</div>;
+      return <div className="mt-4 p-4 bg-[#FAF8EA] rounded-xl text-center text-[#02343F] font-bold animate-pulse">Analyzing Genetic Risk...</div>;
     }
     if (!prediction) return null;
 
     const isHigh = prediction.riskLevel === 'HIGH' || prediction.riskLevel === 'MODERATE';
     return (
-      <div className={`mt-4 p-5 rounded-2xl border ${isHigh ? 'bg-[#FCEBEB] border-[#E24B4A]' : 'bg-[#EAF3DE] border-[#1D9E75]'}`}>
-        <h3 className={`font-bold text-lg mb-2 flex items-center gap-2 ${isHigh ? 'text-[#791F1F]' : 'text-[#085041]'}`}>
+      <div className={`mt-4 p-5 rounded-2xl border ${isHigh ? 'bg-[#FCEBEB] border-[#E24B4A]' : 'bg-[#FAF8EA] border-[#02343F]'}`}>
+        <h3 className={`font-bold text-lg mb-2 flex items-center gap-2 ${isHigh ? 'text-[#791F1F]' : 'text-[#02343F]'}`}>
           <span className="material-symbols-outlined">genetics</span>
           AI Genetic & Maternal Risk Prediction
         </h3>
-        <p className={`text-sm font-bold mb-2 ${isHigh ? 'text-[#E24B4A]' : 'text-[#1D9E75]'}`}>Risk Level: {prediction.riskLevel}</p>
+        <p className={`text-sm font-bold mb-2 ${isHigh ? 'text-[#E24B4A]' : 'text-[#02343F]'}`}>Risk Level: {prediction.riskLevel}</p>
         <AiScreeningDisclaimer className="my-2.5" />
         <p className="text-sm text-gray-700 mb-4">{prediction.predictionSummary}</p>
         
@@ -139,12 +139,12 @@ export default function ANCRegistration() {
   return (
     <>
       <BaseModuleForm 
-        title="ANC Registration / गरोदर नोंदणी" 
+        title="ANC Registration / प्रसव पूर्व देखभाल (ANC)" 
         moduleIcon="pregnant_woman" 
         collectionName="pregnancies"
         moduleName="anc"
         fields={FIELDS}
-        aadhaarPersonLabel="Mother / गर्भवती"
+        aadhaarPersonLabel="Mother / गर्भवती महिला"
         onAadhaarScanned={handleAadhaarEntered}
         afterSubmit={handleAfterSubmit}
         renderCustomTop={CustomSection}
@@ -161,4 +161,5 @@ export default function ANCRegistration() {
     </>
   );
 }
-
+
+

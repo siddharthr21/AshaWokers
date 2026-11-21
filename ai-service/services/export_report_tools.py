@@ -136,7 +136,7 @@ def export_pdf(
         ])
 
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    filename = f"AshaAI_Report_{timestamp}.pdf"
+    filename = f"AshaVaani_Report_{timestamp}.pdf"
 
     export_response = {
         "status": "EXPORT_READY",

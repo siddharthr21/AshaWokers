@@ -482,7 +482,7 @@ export default function BaseModuleForm({ title, moduleIcon, templateIcon, collec
       {/* Toast */}
       {toast && (
         <div className={`fixed top-4 left-1/2 -translate-x-1/2 z-50 px-4 py-2 rounded-xl shadow-lg text-sm font-medium flex items-center space-x-2 animate-slide-down ${
-          toast.type === 'success' ? 'bg-[#EAF3DE] text-[#085041] border border-[#1D9E75]' :
+          toast.type === 'success' ? 'bg-[#FAF8EA] text-[#02343F] border border-[#02343F]' :
           toast.type === 'error' ? 'bg-[#FCEBEB] text-[#791F1F] border border-[#E24B4A]' :
           'bg-white text-[#1A1A18] border border-[#D3D1C7]'
         }`}>
@@ -496,10 +496,10 @@ export default function BaseModuleForm({ title, moduleIcon, templateIcon, collec
       {/* Header */}
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center space-x-3">
-          <div className="w-12 h-12 bg-[#EAF3DE] rounded-full flex items-center justify-center text-[#1D9E75]">
+          <div className="w-12 h-12 bg-[#FAF8EA] rounded-full flex items-center justify-center text-[#02343F]">
             {/* templateIcon is a lucide-react component; moduleIcon is a material-symbols string */}
             {templateIcon ? (
-              <span className="text-[#1D9E75]">{templateIcon}</span>
+              <span className="text-[#02343F]">{templateIcon}</span>
             ) : (
               <span className="material-symbols-outlined text-2xl">{moduleIcon}</span>
             )}
@@ -515,8 +515,8 @@ export default function BaseModuleForm({ title, moduleIcon, templateIcon, collec
 
       <form onSubmit={handleSubmit} className="space-y-4 w-full max-w-full min-w-0 box-border">
         {isViewMode && (
-          <div style={{background:'#EAF3DE', padding:'10px 16px', borderRadius:8, marginBottom:12, display:'flex', justifyContent:'space-between', alignItems:'center'}}>
-            <span style={{fontSize:13, color:'#27500A', fontWeight:500}}>{tx('Viewing submitted record')}</span>
+          <div style={{background:'#FAF8EA', padding:'10px 16px', borderRadius:8, marginBottom:12, display:'flex', justifyContent:'space-between', alignItems:'center'}}>
+            <span style={{fontSize:13, color:'#02343F', fontWeight:500}}>{tx('Viewing submitted record')}</span>
           </div>
         )}
         <fieldset disabled={isViewMode} className="space-y-4 border-none p-0 m-0 w-full max-w-full min-w-0 box-border">
@@ -533,7 +533,7 @@ export default function BaseModuleForm({ title, moduleIcon, templateIcon, collec
                   name={preGate.id}
                   checked={gateValue === true}
                   onChange={() => setGateValue(true)}
-                  className="w-5 h-5 accent-[#1D9E75]"
+                  className="w-5 h-5 accent-[#02343F]"
                 />
                 <span className="font-medium">Yes</span>
               </label>
@@ -543,7 +543,7 @@ export default function BaseModuleForm({ title, moduleIcon, templateIcon, collec
                   name={preGate.id}
                   checked={gateValue === false}
                   onChange={() => setGateValue(false)}
-                  className="w-5 h-5 accent-[#1D9E75]"
+                  className="w-5 h-5 accent-[#02343F]"
                 />
                 <span className="font-medium">No</span>
               </label>
@@ -613,8 +613,8 @@ export default function BaseModuleForm({ title, moduleIcon, templateIcon, collec
                       });
                     }, 0);
                   }
-                  const colorMap = { GREEN: '#1D9E75', YELLOW: '#F0A500', RED: '#E24B4A',
-                    NORMAL: '#1D9E75', MAM: '#F0A500', SAM: '#E24B4A' };
+                  const colorMap = { GREEN: '#02343F', YELLOW: '#F0A500', RED: '#E24B4A',
+                    NORMAL: '#02343F', MAM: '#F0A500', SAM: '#E24B4A' };
                   const color = colorMap[displayVal] || '#5F5E5A';
                   return (
                     <div key={errorKey} className="mb-4 w-full max-w-full min-w-0 box-border">
@@ -678,7 +678,7 @@ export default function BaseModuleForm({ title, moduleIcon, templateIcon, collec
                         required={field.required}
                         value={val}
                         onChange={(e) => handleChange(e, field.id, sectionId, index)}
-                        className={`w-full max-w-full box-border p-3 border rounded-xl outline-none focus:border-[#1D9E75] bg-white transition-colors ${
+                        className={`w-full max-w-full box-border p-3 border rounded-xl outline-none focus:border-[#02343F] bg-white transition-colors ${
                           errors[errorKey] ? 'border-[#E24B4A]' : 'border-[#D3D1C7]'
                         }`}
                       >
@@ -691,7 +691,7 @@ export default function BaseModuleForm({ title, moduleIcon, templateIcon, collec
                           type="checkbox"
                           checked={val === true || val === 'true'}
                           onChange={(e) => handleChange(e, field.id, sectionId, index)}
-                          className="w-5 h-5 accent-[#1D9E75]"
+                          className="w-5 h-5 accent-[#02343F]"
                         />
                         <span className="text-sm">{tx(field.checkboxLabel || field.label)}</span>
                       </div>
@@ -702,7 +702,7 @@ export default function BaseModuleForm({ title, moduleIcon, templateIcon, collec
                         onChange={(e) => handleChange(e, field.id, sectionId, index)}
                         placeholder={field.placeholder}
                         rows={3}
-                        className={`w-full max-w-full box-border p-3 border rounded-xl outline-none focus:border-[#1D9E75] transition-colors resize-none ${
+                        className={`w-full max-w-full box-border p-3 border rounded-xl outline-none focus:border-[#02343F] transition-colors resize-none ${
                           errors[errorKey] ? 'border-[#E24B4A]' : 'border-[#D3D1C7]'
                         }`}
                       />
@@ -720,7 +720,7 @@ export default function BaseModuleForm({ title, moduleIcon, templateIcon, collec
                         }}
                         placeholder={field.placeholder}
                         maxLength={field.maxLength}
-                        className={`w-full max-w-full box-border p-3 border rounded-xl outline-none focus:border-[#1D9E75] transition-colors ${
+                        className={`w-full max-w-full box-border p-3 border rounded-xl outline-none focus:border-[#02343F] transition-colors ${
                           errors[errorKey] ? 'border-[#E24B4A]' : 'border-[#D3D1C7]'
                         }`}
                       />
@@ -774,7 +774,7 @@ export default function BaseModuleForm({ title, moduleIcon, templateIcon, collec
               <button type="button" onClick={() => navigate(-1)} className="flex-1 py-3 border border-[#D3D1C7] text-[#5F5E5A] rounded-xl font-medium text-center hover:bg-gray-50 flex justify-center items-center">
                 {tx('Cancel', 'cancel')}
               </button>
-              <button type="submit" disabled={isLoading} className="flex-1 py-3 bg-[#1D9E75] text-white rounded-xl font-medium text-center shadow-md active:scale-[0.98] flex justify-center items-center">
+              <button type="submit" disabled={isLoading} className="flex-1 py-3 bg-[#02343F] text-white rounded-xl font-medium text-center shadow-md active:scale-[0.98] flex justify-center items-center">
                 {isLoading ? <span className="material-symbols-outlined animate-spin">refresh</span> : tx('Save Record', 'save_record')}
               </button>
             </div>
@@ -789,7 +789,7 @@ export default function BaseModuleForm({ title, moduleIcon, templateIcon, collec
           type="button"
           onClick={() => setShowVoice(true)}
           style={{ position: 'fixed', bottom: '80px', right: '20px' }}
-          className="w-[72px] h-[72px] bg-[#1D9E75] text-white rounded-full flex items-center justify-center shadow-lg z-40 hover:scale-105 transition-transform"
+          className="w-[72px] h-[72px] bg-[#02343F] text-white rounded-full flex items-center justify-center shadow-lg z-40 hover:scale-105 transition-transform"
         >
           <span className="material-symbols-outlined text-4xl">mic</span>
         </button>

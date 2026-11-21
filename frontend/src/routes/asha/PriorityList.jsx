@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from 'react';
 import { useAuthStore } from '../../stores/authStore';
 import { apiFetch, showToast } from '../../utils/api';
+import { toFemaleName, transformPriorityItem } from '../../utils/nameUtils';
 import { useTx } from '../../context/TranslationContext';
 import AiScreeningDisclaimer from '../../components/AiScreeningDisclaimer';
 
@@ -9,11 +10,11 @@ const RISK_CONFIG = {
   CRITICAL: { color: '#E24B4A', bg: '#FCEBEB', border: '#E24B4A', dot: <span className="material-symbols-outlined" style={{color: '#E24B4A'}}>error</span>, label: 'CRITICAL' },
   HIGH:     { color: '#BA7517', bg: '#FAEEDA', border: '#BA7517', dot: <span className="material-symbols-outlined" style={{color: '#BA7517'}}>warning</span>, label: 'HIGH' },
   MEDIUM:   { color: '#185FA5', bg: '#E6F1FB', border: '#185FA5', dot: <span className="material-symbols-outlined" style={{color: '#185FA5'}}>info</span>, label: 'MEDIUM' },
-  LOW:      { color: '#27500A', bg: '#EAF3DE', border: '#1D9E75', dot: <span className="material-symbols-outlined" style={{color: '#1D9E75'}}>check_circle</span>, label: 'LOW' },
+  LOW:      { color: '#02343F', bg: '#FAF8EA', border: '#02343F', dot: <span className="material-symbols-outlined" style={{color: '#02343F'}}>check_circle</span>, label: 'LOW' },
 };
 
 // ─── Detail bottom-sheet for a single priority item ──────────────────────────
-const DetailSheet = ({ item, ashaId, ashaName, headId, onClose }) => {
+const DetailSheet = ({ item, onClose }) => {
   const cfg = RISK_CONFIG[item.risk_level] || RISK_CONFIG.LOW;
   const tx = useTx();
   const [sending, setSending]     = useState(false);
@@ -92,7 +93,7 @@ const DetailSheet = ({ item, ashaId, ashaName, headId, onClose }) => {
         if (item.village) {
           destination = encodeURIComponent(`${item.village}, Maharashtra, India`);
         } else {
-          destination = encodeURIComponent(`${item.name}'s home, Maharashtra`);
+          destination = encodeURIComponent(`${toFemaleName(item.name)}'s home, Maharashtra`);
         }
 
         const mapsUrl = `https://www.google.com/maps/dir/?api=1&origin=${myLat},${myLng}&destination=${destination}&travelmode=driving`;
@@ -111,7 +112,7 @@ const DetailSheet = ({ item, ashaId, ashaName, headId, onClose }) => {
   const scoreColor =
     item.risk_score >= 80 ? '#E24B4A' :
     item.risk_score >= 50 ? '#BA7517' :
-    item.risk_score >= 30 ? '#185FA5' : '#1D9E75';
+    item.risk_score >= 30 ? '#185FA5' : '#02343F';
 
   return (
     // Backdrop
@@ -267,13 +268,13 @@ const DetailSheet = ({ item, ashaId, ashaName, headId, onClose }) => {
           ) : (
             <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
               <div style={{
-                background: '#EAF3DE', border: '1px solid #1D9E75',
+                background: '#FAF8EA', border: '1px solid #02343F',
                 borderRadius: '14px', padding: '14px 16px',
                 display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px',
               }}>
-                <span className="material-symbols-outlined text-[#1D9E75] text-[24px]">check_circle</span>
+                <span className="material-symbols-outlined text-[#02343F] text-[24px]">check_circle</span>
                 <div>
-                  <p style={{ fontWeight: '700', color: '#085041', fontSize: '15px', margin: 0 }}>{tx('NRC Referral Sent')}</p>
+                  <p style={{ fontWeight: '700', color: '#02343F', fontSize: '15px', margin: 0 }}>{tx('NRC Referral Sent')}</p>
                   <p style={{ fontSize: '12px', color: '#555', margin: '2px 0 0' }}>{referralStatus ? `Status: ${referralStatus}` : tx('Awaiting admin review')}</p>
                 </div>
               </div>
@@ -282,8 +283,8 @@ const DetailSheet = ({ item, ashaId, ashaName, headId, onClose }) => {
                 disabled={requestingClosure}
                 style={{
                   width: '100%', padding: '12px',
-                  background: '#fff', border: '1.5px solid #085041',
-                  borderRadius: '12px', color: '#085041',
+                  background: '#fff', border: '1.5px solid #02343F',
+                  borderRadius: '12px', color: '#02343F',
                   fontSize: '13px', fontWeight: '700', cursor: requestingClosure ? 'not-allowed' : 'pointer',
                   display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px'
                 }}
@@ -338,15 +339,15 @@ const DetailSheet = ({ item, ashaId, ashaName, headId, onClose }) => {
           style={{
             width: '100%', marginTop: '12px',
             padding: '14px',
-            background: journeyLoading ? '#D3D1C7' : 'linear-gradient(135deg, #185FA5, #1D9E75)',
-            color: '#fff',
+            background: journeyLoading ? '#D8D4B0' : 'linear-gradient(135deg, #02343F, #0A5C6F)',
+            color: '#F0EDCC',
             border: 'none',
             borderRadius: '14px',
             fontSize: '15px',
             fontWeight: '700',
             cursor: journeyLoading ? 'not-allowed' : 'pointer',
             display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px',
-            boxShadow: journeyLoading ? 'none' : '0 4px 16px rgba(24,95,165,0.3)',
+            boxShadow: journeyLoading ? 'none' : '0 4px 16px rgba(2,52,63,0.3)',
             transition: 'all 0.2s',
           }}
         >
@@ -431,7 +432,8 @@ const PriorityList = () => {
     try {
       const data = await apiFetch(`/api/risk/priority/${ashaId}`);
       if (Array.isArray(data)) {
-        const withReferrals = await loadExistingReferrals(data);
+        const femaleItems = data.map(transformPriorityItem);
+        const withReferrals = await loadExistingReferrals(femaleItems);
         setItems(withReferrals);
         setSource('api');
       } else {
@@ -495,7 +497,7 @@ const PriorityList = () => {
           disabled={calculating || loading}
           style={{
             fontSize: '12px', padding: '7px 14px',
-            background: '#1D9E75', color: 'white',
+            background: '#02343F', color: 'white',
             border: 'none', borderRadius: '8px', cursor: 'pointer',
             display: 'flex', alignItems: 'center', gap: '6px',
             fontWeight: '600', opacity: (calculating || loading) ? 0.6 : 1,
@@ -518,7 +520,7 @@ const PriorityList = () => {
             disabled={calculating}
             style={{
               marginTop: '16px', padding: '10px 20px',
-              background: '#1D9E75', color: 'white',
+              background: '#02343F', color: '#F0EDCC',
               border: 'none', borderRadius: '10px', cursor: calculating ? 'not-allowed' : 'pointer',
               fontWeight: '600', opacity: calculating ? 0.6 : 1,
             }}
@@ -553,13 +555,13 @@ const PriorityList = () => {
                 <div style={{ flex: 1 }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '3px' }}>
                     <p style={{ fontWeight: '700', fontSize: '15px', color: '#1a1a1a' }}>
-                      <span className="mr-1 inline-flex items-center align-middle">{cfg.dot}</span> {item.name}
+                      <span className="mr-1 inline-flex items-center align-middle">{cfg.dot}</span> {toFemaleName(item.name)}
                     </p>
                     {item._referralSent && (
                       <span style={{
                         fontSize: '10px', fontWeight: '700',
-                        background: item._referralStatus === 'closed' ? '#F1F5F9' : item._referralStatus === 'awaiting_verification' ? '#FEF3C7' : '#EAF3DE',
-                        color: item._referralStatus === 'closed' ? '#334155' : item._referralStatus === 'awaiting_verification' ? '#92400E' : '#085041',
+                        background: item._referralStatus === 'closed' ? '#F1F5F9' : item._referralStatus === 'awaiting_verification' ? '#FEF3C7' : '#FAF8EA',
+                        color: item._referralStatus === 'closed' ? '#334155' : item._referralStatus === 'awaiting_verification' ? '#92400E' : '#02343F',
                         padding: '2px 8px', borderRadius: '8px',
                         display: 'inline-flex', alignItems: 'center', gap: '3px'
                       }}>

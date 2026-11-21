@@ -19,8 +19,8 @@ const messages = {
 export default function EmptyState({ module = "default", message }) {
   return (
     <div className="flex flex-col items-center justify-center h-64 gap-4 text-center px-6">
-      <div className="w-16 h-16 bg-[#EAF3DE] rounded-full flex items-center justify-center">
-        <span className="material-symbols-outlined text-3xl text-[#1D9E75]">{icons[module] || icons.default}</span>
+      <div className="w-16 h-16 bg-[#FAF8EA] rounded-full flex items-center justify-center">
+        <span className="material-symbols-outlined text-3xl text-[#02343F]">{icons[module] || icons.default}</span>
       </div>
       <p className="text-sm text-[#5F5E5A]">{message || messages[module] || messages.default}</p>
     </div>

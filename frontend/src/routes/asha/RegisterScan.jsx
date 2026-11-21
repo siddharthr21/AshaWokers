@@ -1,16 +1,16 @@
 import { useState, useRef } from 'react';
 import { useAuthStore } from '../../stores/authStore';
-import { apiFetch, showToast } from '../../utils/api';
+import { apiFetch } from '../../utils/api';
 
 // ─── Register type config ─────────────────────────────────────────────────────
 const REGISTER_TYPES = [
-  { value: 'family_survey',  label: 'Family Survey Register (कुटुंब पाहणी)',    collection: 'household_members' },
-  { value: 'village_survey', label: 'Village Health Survey (ग्राम आरोग्य)',      collection: 'village_surveys' },
-  { value: 'vaccination',    label: 'Vaccination Register (लसीकरण)',             collection: 'vaccinations' },
-  { value: 'anc',            label: 'ANC Register (गर्भवती)',                    collection: 'anc' },
-  { value: 'child_growth',   label: 'Child Growth Register (बालवृद्धी)',          collection: 'children' },
-  { value: 'birth_record',   label: 'Birth Record Register (जन्म नोंद)',          collection: 'birth_records' },
-  { value: 'death_record',   label: 'Death Record Register (मृत्यू नोंद)',        collection: 'death_records' },
+  { value: 'family_survey',  label: 'Family Survey Register (परिवार सर्वेक्षण)',    collection: 'household_members' },
+  { value: 'village_survey', label: 'Village Health Survey (ग्राम स्वास्थ्य सर्वेक्षण)', collection: 'village_surveys' },
+  { value: 'vaccination',    label: 'Vaccination Register (टीकाकरण रजिस्टर)',         collection: 'vaccinations' },
+  { value: 'anc',            label: 'ANC Register (गर्भवती महिला / प्रसव पूर्व)',    collection: 'anc' },
+  { value: 'child_growth',   label: 'Child Growth Register (बाल विकास एवं पोषण)',     collection: 'children' },
+  { value: 'birth_record',   label: 'Birth Record Register (जन्म पंजीकरण)',          collection: 'birth_records' },
+  { value: 'death_record',   label: 'Death Record Register (मृत्यु पंजीकरण)',        collection: 'death_records' },
 ];
 
 const RegisterScan = () => {
@@ -65,7 +65,7 @@ const RegisterScan = () => {
       let imageBlob;
       try {
         imageBlob = await compressImage(file);
-      } catch (_) {
+      } catch {
         imageBlob = file; // use original if compression fails
       }
 
@@ -179,7 +179,7 @@ const RegisterScan = () => {
       </select>
 
       {/* Target collection info */}
-      <div style={{ background: '#EAF3DE', borderRadius: '10px', padding: '10px 14px', marginBottom: '20px', fontSize: '12px', color: '#27500A' }}>
+      <div style={{ background: '#FAF8EA', borderRadius: '10px', padding: '10px 14px', marginBottom: '20px', fontSize: '12px', color: '#02343F' }}>
         <span className="material-symbols-outlined text-[16px] align-middle mr-1">folder_open</span> Records will be saved to: <strong>{currentRegister?.collection || 'household_members'}</strong>
       </div>
 
@@ -187,14 +187,14 @@ const RegisterScan = () => {
       <div
         onClick={() => fileInputRef.current?.click()}
         style={{
-          border: '2px dashed #1D9E75', borderRadius: '16px',
+          border: '2px dashed #02343F', borderRadius: '16px',
           padding: '48px 20px', textAlign: 'center', cursor: 'pointer',
-          background: '#EAF3DE', marginBottom: '12px',
+          background: '#FAF8EA', marginBottom: '12px',
           transition: 'all 0.15s',
         }}
       >
         <span className="material-symbols-outlined" style={{ fontSize: '52px', marginBottom: '8px' }}>photo_camera</span>
-        <p style={{ fontWeight: '700', color: '#1D9E75', fontSize: '16px' }}>Take Photo of Register</p>
+        <p style={{ fontWeight: '700', color: '#02343F', fontSize: '16px' }}>Take Photo of Register</p>
         <p style={{ color: '#666', fontSize: '12px', marginTop: '4px' }}>
           Ensure good lighting · One page at a time
         </p>
@@ -254,7 +254,7 @@ const RegisterScan = () => {
         <p style={{ color: '#E24B4A', fontSize: '13px', marginTop: '8px' }}>{error}</p>
         <button
           onClick={() => { setError(''); setPreviewUrl(null); setStep('upload'); }}
-          style={{ marginTop: '20px', padding: '12px 24px', background: '#1D9E75', color: '#fff', border: 'none', borderRadius: '10px', cursor: 'pointer', fontWeight: '600', fontSize: '14px' }}
+          style={{ marginTop: '20px', padding: '12px 24px', background: '#02343F', color: '#fff', border: 'none', borderRadius: '10px', cursor: 'pointer', fontWeight: '600', fontSize: '14px' }}
         >
           ← Try Again
         </button>
@@ -266,9 +266,9 @@ const RegisterScan = () => {
   if (step === 'review') return (
     <div style={S.page}>
       {/* Summary banner */}
-      <div style={{ background: '#EAF3DE', borderRadius: '10px', padding: '12px 16px', marginBottom: '12px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+      <div style={{ background: '#FAF8EA', borderRadius: '10px', padding: '12px 16px', marginBottom: '12px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <div>
-          <p style={{ fontWeight: '700', color: '#27500A', fontSize: '15px', display: 'flex', alignItems: 'center', gap: '4px' }}><span className="material-symbols-outlined text-[18px]">check_circle</span> {totalFound} records extracted</p>
+          <p style={{ fontWeight: '700', color: '#02343F', fontSize: '15px', display: 'flex', alignItems: 'center', gap: '4px' }}><span className="material-symbols-outlined text-[18px]">check_circle</span> {totalFound} records extracted</p>
           <p style={{ fontSize: '12px', color: '#555', marginTop: '2px' }}>Saving to: <strong>{targetCollection}</strong></p>
         </div>
         {needsReviewCount > 0 && (
@@ -282,7 +282,7 @@ const RegisterScan = () => {
           key={i}
           style={{
             ...S.card,
-            borderLeft: `4px solid ${row.needs_review ? '#BA7517' : '#1D9E75'}`,
+            borderLeft: `4px solid ${row.needs_review ? '#BA7517' : '#02343F'}`,
             background: row.needs_review ? '#FFFBF4' : '#fff',
           }}
         >
@@ -294,7 +294,7 @@ const RegisterScan = () => {
               </span>
               {row.needs_review
                 ? <span style={{ ...S.badge('#FAEEDA', '#BA7517'), display: 'inline-flex', alignItems: 'center', gap: '4px' }}><span className="material-symbols-outlined text-[14px]">warning</span> Review needed</span>
-                : <span style={{ ...S.badge('#EAF3DE', '#27500A'), display: 'inline-flex', alignItems: 'center', gap: '4px' }}><span className="material-symbols-outlined text-[14px]">check_circle</span> Ready</span>
+                : <span style={{ ...S.badge('#FAF8EA', '#02343F'), display: 'inline-flex', alignItems: 'center', gap: '4px' }}><span className="material-symbols-outlined text-[14px]">check_circle</span> Ready</span>
               }
             </div>
             <div style={{ display: 'flex', gap: '6px' }}>
@@ -363,7 +363,7 @@ const RegisterScan = () => {
       <button
         onClick={saveAll}
         disabled={rows.length === 0}
-        style={{ ...S.btn(rows.length === 0 ? '#ccc' : '#1D9E75'), marginBottom: '10px' }}
+        style={{ ...S.btn(rows.length === 0 ? '#ccc' : '#02343F'), marginBottom: '10px' }}
       >
         <span className="material-symbols-outlined text-[18px] align-middle mr-2">save</span> Import All {rows.length} Records &rarr; {targetCollection}
       </button>
@@ -383,7 +383,7 @@ const RegisterScan = () => {
       <p style={{ fontWeight: '700', fontSize: '16px', marginTop: '16px' }}>Saving records…</p>
       <p style={{ color: '#666', fontSize: '13px', marginTop: '4px' }}>{savedCount} of {rows.length} saved</p>
       <div style={{ background: '#E8E6DF', borderRadius: '6px', height: '8px', margin: '16px 0', overflow: 'hidden' }}>
-        <div style={{ width: `${(savedCount / rows.length) * 100}%`, height: '100%', background: '#1D9E75', transition: 'width 0.3s' }} />
+        <div style={{ width: `${(savedCount / rows.length) * 100}%`, height: '100%', background: '#02343F', transition: 'width 0.3s' }} />
       </div>
     </div>
   );
@@ -391,8 +391,8 @@ const RegisterScan = () => {
   // ═══ DONE STEP ═══════════════════════════════════════════════════════════
   if (step === 'done') return (
     <div style={{ padding: '40px', textAlign: 'center' }}>
-      <span className="material-symbols-outlined" style={{ fontSize: '56px', color: '#27500A' }}>check_circle</span>
-      <p style={{ fontWeight: '700', fontSize: '20px', marginTop: '16px', color: '#27500A' }}>
+      <span className="material-symbols-outlined" style={{ fontSize: '56px', color: '#02343F' }}>check_circle</span>
+      <p style={{ fontWeight: '700', fontSize: '20px', marginTop: '16px', color: '#02343F' }}>
         {rows.length} records imported!
       </p>
       <p style={{ color: '#666', fontSize: '13px', marginTop: '4px' }}>
@@ -400,7 +400,7 @@ const RegisterScan = () => {
       </p>
       <button
         onClick={() => { setStep('upload'); setRows([]); setPreviewUrl(null); setError(''); setSavedCount(0); }}
-        style={{ marginTop: '24px', padding: '14px 28px', background: '#1D9E75', color: '#fff', border: 'none', borderRadius: '12px', cursor: 'pointer', fontWeight: '700', fontSize: '15px' }}
+        style={{ marginTop: '24px', padding: '14px 28px', background: '#02343F', color: '#fff', border: 'none', borderRadius: '12px', cursor: 'pointer', fontWeight: '700', fontSize: '15px' }}
       >
         <span className="material-symbols-outlined text-[18px] align-middle mr-2">add_a_photo</span> Import Another Page
       </button>

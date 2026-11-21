@@ -94,45 +94,36 @@ export default function ASHALogin() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-[#F1EFE8] px-4 font-sans text-[#1A1A18]">
+    <div className="min-h-screen flex flex-col items-center justify-center bg-[#F0EDCC] px-4 font-sans text-[#02343F]">
       <div className="absolute top-4 right-4">
         <LanguageToggle />
       </div>
-      <div className="w-full max-w-sm my-5 bg-white rounded-2xl shadow-xl overflow-hidden">
-        <div className="bg-[#085041] p-8 text-center">
-          <img src="/logo.png" alt="AshaAI Logo" className="w-60 mx-auto mb-4" />
-          <p className="text-[#EAF3DE] mt-2 opacity-90 text-sm">Empowering ASHA Workers</p>
+      <div className="w-full max-w-sm my-5 bg-white rounded-2xl shadow-xl overflow-hidden border border-[#D8D4B0]">
+        <div className="bg-[#02343F] p-8 text-center border-b border-[#F0EDCC]/20">
+          <img src="/logo.png?v=2" alt="Asha Vaani Logo" className="w-60 mx-auto mb-4" />
+          <p className="text-[#F0EDCC] mt-2 opacity-90 text-sm">Empowering ASHA Workers</p>
         </div>
         <div className="p-8">
-          <h2 className="text-2xl font-semibold mb-6 flex items-center justify-center text-[#1A1A18]">
+          <h2 className="text-2xl font-bold mb-6 flex items-center justify-center text-[#02343F]">
             {t('login')}
           </h2>
 
-          {/* Demo Credentials
-               IMPORTANT: These must match the actual seeded ashas row + Supabase test phone config exactly.
-               DB row:        ashas WHERE phone = '+919876543211' (Lata Patil)
-               Auth:          Supabase auth.users id = db1aabfb-673a-40a4-a80c-14041f43edc4
-               Supabase OTP:  Dashboard → Auth → Providers → Phone → Test phone numbers
-                              Entry must be exactly: 919876543211=123456 (no + prefix)
-               If the phone number shown here changes, update seed_demo_dataset.sql,
-               re-seed via scripts/seed-auth-users.js, and update the Supabase test OTP entry. */}
-          <div className="mt-6 bg-[#EAF3DE] border border-[#1D9E75] rounded-xl p-4">
-            <p className="text-xs font-bold text-[#27500A] mb-2"><span className="material-symbols-outlined text-[16px] align-middle mr-1">key</span> Demo Credentials</p>
-            {/* Must match: ashas.phone = '+919876543211' (stored in DB with +91 prefix) */}
-            <p className="text-xs text-[#27500A] font-mono">Phone Number: 9876543211</p>
-            {/* Must match: Supabase Dashboard → Auth → Providers → Phone → Test numbers: 919876543211=123456 */}
-            <p className="text-xs text-[#27500A] font-mono mt-1">OTP: 123456</p>
+          {/* Demo Credentials */}
+          <div className="mt-6 bg-[#F0EDCC]/60 border border-[#02343F]/30 rounded-xl p-4 shadow-sm">
+            <p className="text-xs font-bold text-[#02343F] mb-2"><span className="material-symbols-outlined text-[16px] align-middle mr-1">key</span> Demo Credentials</p>
+            <p className="text-xs text-[#02343F] font-mono font-medium">Phone Number: 9876543211</p>
+            <p className="text-xs text-[#02343F] font-mono font-medium mt-1">OTP: 123456</p>
           </div>
           
           <form onSubmit={step === 1 ? handleSendOtp : handleVerifyOtp} className="space-y-5">
             {step === 1 ? (
               <div>
-                <label className="block text-sm font-medium mb-2 text-[#5F5E5A]">Phone Number</label>
-                <div className="flex border-2 border-[#D3D1C7] rounded-xl overflow-hidden focus-within:border-[#1D9E75] focus-within:ring-2 focus-within:ring-[#1D9E75]/20 transition-all">
-                  <span className="px-4 py-3 bg-gray-50 text-[#5F5E5A] border-r border-[#D3D1C7] font-medium">+91</span>
+                <label className="block text-sm font-semibold mb-2 text-[#02343F]/80">Phone Number</label>
+                <div className="flex border-2 border-[#D8D4B0] rounded-xl overflow-hidden focus-within:border-[#02343F] focus-within:ring-2 focus-within:ring-[#02343F]/20 transition-all">
+                  <span className="px-4 py-3 bg-[#FAF8EA] text-[#02343F] border-r border-[#D8D4B0] font-semibold">+91</span>
                   <input
                     type="tel"
-                    className="flex-1 px-4 py-3 outline-none text-lg tracking-wide"
+                    className="flex-1 px-4 py-3 outline-none text-lg tracking-wide text-[#02343F]"
                     value={phoneNumber}
                     onChange={(e) => setPhoneNumber(e.target.value.replace(/[^0-9]/g, ''))}
                     placeholder="9876543210"
@@ -143,10 +134,10 @@ export default function ASHALogin() {
               </div>
             ) : (
               <div>
-                <label className="block text-sm font-medium mb-2 text-[#5F5E5A]">Enter OTP</label>
+                <label className="block text-sm font-semibold mb-2 text-[#02343F]/80">Enter OTP</label>
                 <input
                   type="text"
-                  className="w-full px-4 py-3 border-2 border-[#D3D1C7] rounded-xl outline-none text-center text-2xl tracking-[0.5em] focus:border-[#1D9E75] focus:ring-2 focus:ring-[#1D9E75]/20 transition-all font-mono"
+                  className="w-full px-4 py-3 border-2 border-[#D8D4B0] rounded-xl outline-none text-center text-2xl tracking-[0.5em] focus:border-[#02343F] focus:ring-2 focus:ring-[#02343F]/20 transition-all font-mono text-[#02343F]"
                   value={otp}
                   onChange={(e) => setOtp(e.target.value.replace(/[^0-9]/g, ''))}
                   placeholder="------"
@@ -161,7 +152,7 @@ export default function ASHALogin() {
             <button
               type="submit"
               disabled={isLoading || (step === 1 ? phoneNumber.length < 10 : otp.length < 6)}
-              className="w-full bg-[#1D9E75] hover:bg-[#085041] text-white py-3.5 rounded-xl font-medium text-lg transition-colors flex items-center justify-center disabled:opacity-50 shadow-md hover:shadow-lg active:scale-[0.98]"
+              className="w-full bg-[#02343F] hover:bg-[#012128] text-[#F0EDCC] py-3.5 rounded-xl font-bold text-lg transition-colors flex items-center justify-center disabled:opacity-50 shadow-md hover:shadow-lg active:scale-[0.98]"
             >
               {isLoading ? (
                 <span className="material-symbols-outlined animate-spin">refresh</span>
@@ -170,7 +161,7 @@ export default function ASHALogin() {
           </form>
 
           {step === 2 && (
-            <button onClick={() => setStep(1)} type="button" className="mt-6 w-full text-sm font-medium text-[#1D9E75] hover:text-[#085041] transition-colors">
+            <button onClick={() => setStep(1)} type="button" className="mt-6 w-full text-sm font-medium text-[#02343F] hover:underline transition-colors">
               Change Phone Number
             </button>
           )}
@@ -179,7 +170,7 @@ export default function ASHALogin() {
             <p className="text-sm text-[#5F5E5A] mb-3">Supervisor or Admin?</p>
             <button
               onClick={() => navigate('/admin/login')}
-              className="text-sm font-medium border border-[#1D9E75] text-[#1D9E75] px-4 py-2 rounded-lg hover:bg-[#EAF3DE] transition-colors"
+              className="text-sm font-medium border border-[#02343F] text-[#02343F] px-4 py-2 rounded-lg hover:bg-[#FAF8EA] transition-colors"
             >
               Go to Admin Portal
             </button>
@@ -190,10 +181,10 @@ export default function ASHALogin() {
                 width: '100%',
                 padding: '12px',
                 marginTop: '8px',
-                border: '1px solid #1D9E75',
+                border: '1px solid #02343F',
                 borderRadius: '8px',
                 background: 'white',
-                color: '#1D9E75',
+                color: '#02343F',
                 fontSize: '14px',
                 cursor: 'pointer',
                 display: 'flex',
@@ -228,7 +219,7 @@ export default function ASHALogin() {
             <button
               onClick={() => handleNgoAction(ngoFormNewUrl)}
               style={{
-                padding: '12px', background: '#1D9E75', color: 'white', border: 'none',
+                padding: '12px', background: '#02343F', color: 'white', border: 'none',
                 borderRadius: '8px', fontSize: '14px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px'
               }}
             >
@@ -238,8 +229,8 @@ export default function ASHALogin() {
             <button
               onClick={() => handleNgoAction(ngoFormExistingUrl)}
               style={{
-                padding: '12px', background: 'white', color: '#1D9E75',
-                border: '1px solid #1D9E75', borderRadius: '8px', fontSize: '14px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px'
+                padding: '12px', background: 'white', color: '#02343F',
+                border: '1px solid #02343F', borderRadius: '8px', fontSize: '14px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px'
               }}
             >
               <span className="material-symbols-outlined" style={{ fontSize: '18px' }}>check_circle</span> Already Registered NGO

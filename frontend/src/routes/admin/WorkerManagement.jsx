@@ -121,7 +121,7 @@ export default React.memo(function WorkerManagement() {
         <h1 className="text-2xl md:text-3xl font-bold">Worker Management</h1>
         <button
           onClick={() => { setShowAddPanel(true); setAddError(''); }}
-          className="bg-[#1D9E75] text-white px-4 py-2 rounded-xl font-medium flex items-center gap-2 self-start hover:bg-[#085041] transition-colors"
+          className="bg-[#02343F] text-white px-4 py-2 rounded-xl font-medium flex items-center gap-2 self-start hover:bg-[#02343F] transition-colors"
         >
           <span className="material-symbols-outlined text-lg">person_add</span> Add Worker
         </button>
@@ -152,7 +152,7 @@ export default React.memo(function WorkerManagement() {
                     type="text"
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full p-3 border border-[#D3D1C7] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#1D9E75]"
+                    className="w-full p-3 border border-[#D3D1C7] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#02343F]"
                     placeholder="ASHA Worker Name"
                   />
                 </div>
@@ -165,7 +165,7 @@ export default React.memo(function WorkerManagement() {
                       type="tel"
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value.replace(/\D/g, '').slice(0, 10) })}
-                      className="flex-1 p-3 border border-[#D3D1C7] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#1D9E75]"
+                      className="flex-1 p-3 border border-[#D3D1C7] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#02343F]"
                       placeholder="9876543210"
                       maxLength="10"
                     />
@@ -178,7 +178,7 @@ export default React.memo(function WorkerManagement() {
                     type="text"
                     value={formData.village}
                     onChange={(e) => setFormData({ ...formData, village: e.target.value })}
-                    className="w-full p-3 border border-[#D3D1C7] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#1D9E75]"
+                    className="w-full p-3 border border-[#D3D1C7] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#02343F]"
                     placeholder="Village Name"
                   />
                 </div>
@@ -188,7 +188,7 @@ export default React.memo(function WorkerManagement() {
                   <select
                     value={formData.district}
                     onChange={(e) => setFormData({ ...formData, district: e.target.value })}
-                    className="w-full p-3 border border-[#D3D1C7] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#1D9E75]"
+                    className="w-full p-3 border border-[#D3D1C7] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#02343F]"
                   >
                     <option value="Beed">Beed</option>
                     <option value="Parbhani">Parbhani</option>
@@ -202,7 +202,7 @@ export default React.memo(function WorkerManagement() {
               <button
                 onClick={handleAddWorker}
                 disabled={submitting}
-                className="w-full mt-6 bg-[#1D9E75] text-white py-3 rounded-xl font-medium hover:bg-[#085041] transition-colors disabled:opacity-50"
+                className="w-full mt-6 bg-[#02343F] text-white py-3 rounded-xl font-medium hover:bg-[#02343F] transition-colors disabled:opacity-50"
               >
                 {submitting ? 'Creating Account...' : 'Create Account'}
               </button>
@@ -215,7 +215,7 @@ export default React.memo(function WorkerManagement() {
       <div className="overflow-x-auto">
         <table className="w-full bg-white rounded-2xl shadow-sm border border-[#D3D1C7] overflow-hidden">
           <thead>
-            <tr className="bg-[#085041] text-white text-sm">
+            <tr className="bg-[#02343F] text-white text-sm">
               <th className="text-left px-4 py-3">Name</th>
               <th className="text-left px-4 py-3 hidden md:table-cell">Village</th>
               <th className="text-left px-4 py-3 hidden lg:table-cell">Phone</th>
@@ -249,7 +249,7 @@ export default React.memo(function WorkerManagement() {
                 <td className="px-4 py-3 text-[#5F5E5A] hidden md:table-cell">{w.village}</td>
                 <td className="px-4 py-3 text-[#5F5E5A] hidden lg:table-cell">{w.phone}</td>
                 <td className="px-4 py-3 text-center">
-                  <span className={`text-[10px] font-bold px-2 py-1 rounded-full uppercase ${w.isActive ? 'bg-[#EAF3DE] text-[#085041]' : 'bg-gray-100 text-gray-500'}`}>
+                  <span className={`text-[10px] font-bold px-2 py-1 rounded-full uppercase ${w.isActive ? 'bg-[#FAF8EA] text-[#02343F]' : 'bg-gray-100 text-gray-500'}`}>
                     {w.isActive ? 'Active' : 'Inactive'}
                   </span>
                 </td>
@@ -261,7 +261,7 @@ export default React.memo(function WorkerManagement() {
                   {w.coveragePercent != null ? (
                     <div className="flex items-center justify-center gap-2">
                       <div className="w-12 h-2 bg-gray-200 rounded-full overflow-hidden">
-                        <div className="h-full bg-[#1D9E75] rounded-full" style={{width: `${w.coveragePercent}%`}} />
+                        <div className="h-full bg-[#02343F] rounded-full" style={{width: `${w.coveragePercent}%`}} />
                       </div>
                       <span className="text-xs font-medium">{w.coveragePercent}%</span>
                     </div>
@@ -273,7 +273,7 @@ export default React.memo(function WorkerManagement() {
                   <div className="flex items-center justify-center gap-2" onClick={(e) => e.stopPropagation()}>
                     <button
                       onClick={() => { setSelectedActivityWorker(w); setShowTimeline(true); }}
-                      className="text-[#1D9E75] hover:bg-[#EAF3DE] p-2 rounded-lg"
+                      className="text-[#02343F] hover:bg-[#FAF8EA] p-2 rounded-lg"
                       title="View Activity"
                     >
                       <span className="material-symbols-outlined text-lg">history</span>
@@ -299,21 +299,21 @@ export default React.memo(function WorkerManagement() {
             <div className="p-6 max-h-[60vh] overflow-y-auto">
               {timelineLoading ? (
                 <div className="text-center py-8">
-                  <span className="material-symbols-outlined animate-spin text-4xl text-[#1D9E75]">refresh</span>
+                  <span className="material-symbols-outlined animate-spin text-4xl text-[#02343F]">refresh</span>
                 </div>
               ) : timelineEvents.length === 0 ? (
                 <p className="text-center text-[#5F5E5A]">No recent activity found.</p>
               ) : (
-                <div className="relative border-l-2 border-[#EAF3DE] ml-4 space-y-6">
+                <div className="relative border-l-2 border-[#FAF8EA] ml-4 space-y-6">
                   {timelineEvents.map((evt, idx) => (
                     <div key={idx} className="relative pl-6">
-                      <span className="absolute -left-[11px] top-1 w-5 h-5 rounded-full bg-[#1D9E75] border-4 border-white shadow-sm"></span>
+                      <span className="absolute -left-[11px] top-1 w-5 h-5 rounded-full bg-[#02343F] border-4 border-white shadow-sm"></span>
                       <div className="bg-gray-50 rounded-xl p-4 shadow-sm border border-[#D3D1C7]">
                         <p className="font-bold text-[#1A1A18] capitalize">{(evt.moduleType || '').replace('_', ' ')}</p>
                         <p className="text-xs text-[#5F5E5A] mb-2">
                           {evt.submittedAt?.toDate ? format(evt.submittedAt.toDate(), 'PPpp') : '—'}
                         </p>
-                        {evt.notes && <p className="text-sm text-[#085041] bg-[#EAF3DE] p-2 rounded italic">"{evt.notes}"</p>}
+                        {evt.notes && <p className="text-sm text-[#02343F] bg-[#FAF8EA] p-2 rounded italic">"{evt.notes}"</p>}
                       </div>
                     </div>
                   ))}

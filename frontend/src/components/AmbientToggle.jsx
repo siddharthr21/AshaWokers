@@ -43,7 +43,7 @@ const AmbientToggle = ({ module = 'family_survey', onAcceptSuggestion }) => {
           {suggestions.map((suggestion, index) => (
             <div
               key={`${suggestion.field}-${index}`}
-              className="bg-white rounded-xl shadow-lg border border-[#1D9E75]/20 p-3 flex items-start gap-2"
+              className="bg-white rounded-xl shadow-lg border border-[#02343F]/20 p-3 flex items-start gap-2"
             >
               <div className="flex-1 min-w-0">
                 <p className="text-xs text-gray-500 font-medium">{suggestion.field}</p>
@@ -54,7 +54,7 @@ const AmbientToggle = ({ module = 'family_survey', onAcceptSuggestion }) => {
               <div className="flex gap-1 shrink-0">
                 <button
                   onClick={() => handleAccept(index)}
-                  className="w-7 h-7 rounded-full bg-[#1D9E75] text-white flex items-center justify-center hover:bg-[#15825f] transition-colors"
+                  className="w-7 h-7 rounded-full bg-[#02343F] text-white flex items-center justify-center hover:bg-[#01252D] transition-colors"
                 >
                   <Check className="w-4 h-4" />
                 </button>
@@ -75,7 +75,7 @@ const AmbientToggle = ({ module = 'family_survey', onAcceptSuggestion }) => {
         onClick={handleToggle}
         className={`w-14 h-14 rounded-full flex items-center justify-center shadow-lg transition-all ${
           isListening
-            ? 'bg-[#1D9E75] ring-4 ring-[#1D9E75]/30 animate-pulse'
+            ? 'bg-[#02343F] ring-4 ring-[#02343F]/30 animate-pulse'
             : 'bg-gray-600 hover:bg-gray-500'
         }`}
       >
@@ -89,7 +89,7 @@ const AmbientToggle = ({ module = 'family_survey', onAcceptSuggestion }) => {
       {/* Connection Status Indicator */}
       {isListening && (
         <div className={`flex items-center gap-1 text-[10px] font-medium ${
-          connectionStatus === 'connected' ? 'text-[#1D9E75]' :
+          connectionStatus === 'connected' ? 'text-[#02343F]' :
           connectionStatus === 'connecting' ? 'text-amber-500' :
           'text-red-500'
         }`}>

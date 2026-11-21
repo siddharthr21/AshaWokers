@@ -220,7 +220,7 @@ const AadhaarInput = ({ memberIndex, memberName, onAadhaarScanned }) => {
         <button 
           type="button" 
           onClick={startCardCapture} 
-          className="w-full py-2.5 bg-[#1D9E75] text-white rounded-lg flex items-center justify-center gap-2 font-medium hover:bg-[#168361] transition-colors shadow-sm"
+          className="w-full py-2.5 bg-[#02343F] text-white rounded-lg flex items-center justify-center gap-2 font-medium hover:bg-[#168361] transition-colors shadow-sm"
         >
           <span className="material-symbols-outlined text-[20px]">document_scanner</span> Photograph Aadhaar Card (On-Device OCR)
         </button>
@@ -280,16 +280,16 @@ const AadhaarInput = ({ memberIndex, memberName, onAadhaarScanned }) => {
 
       {isProcessingOcr ? (
         <div className="p-6 bg-white rounded-xl border border-gray-200 text-center flex flex-col items-center gap-3">
-          <div className="w-10 h-10 border-4 border-[#1D9E75] border-t-transparent rounded-full animate-spin"></div>
+          <div className="w-10 h-10 border-4 border-[#02343F] border-t-transparent rounded-full animate-spin"></div>
           <p className="text-sm font-medium text-gray-800">{ocrStatus}</p>
           <div className="w-full bg-gray-100 h-2 rounded-full overflow-hidden">
-            <div className="bg-[#1D9E75] h-full transition-all duration-300" style={{ width: `${ocrProgress}%` }}></div>
+            <div className="bg-[#02343F] h-full transition-all duration-300" style={{ width: `${ocrProgress}%` }}></div>
           </div>
           <p className="text-xs text-gray-500">Processing locally inside your browser...</p>
         </div>
       ) : (
         <>
-          <div className="relative rounded-lg overflow-hidden bg-black aspect-video flex items-center justify-center border-2 border-[#1D9E75]">
+          <div className="relative rounded-lg overflow-hidden bg-black aspect-video flex items-center justify-center border-2 border-[#02343F]">
             <video ref={videoRef} playsInline className="w-full h-full object-cover" />
             <div className="absolute inset-x-8 inset-y-4 border-2 border-dashed border-emerald-400 rounded-lg pointer-events-none flex items-center justify-center">
               <span className="text-white/80 text-xs bg-black/60 px-2 py-1 rounded">Align Aadhaar Card Front</span>
@@ -300,7 +300,7 @@ const AadhaarInput = ({ memberIndex, memberName, onAadhaarScanned }) => {
             <button 
               type="button" 
               onClick={capturePhotoAndRunOcr} 
-              className="flex-1 py-3 bg-[#1D9E75] text-white rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-[#168361]"
+              className="flex-1 py-3 bg-[#02343F] text-white rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-[#168361]"
             >
               <span className="material-symbols-outlined">camera</span> Capture & Read Card
             </button>
@@ -334,7 +334,7 @@ const AadhaarInput = ({ memberIndex, memberName, onAadhaarScanned }) => {
   );
 
   if (mode === 'review_ocr') return (
-    <div className="p-4 bg-emerald-50 rounded-xl border-2 border-[#1D9E75] space-y-3">
+    <div className="p-4 bg-emerald-50 rounded-xl border-2 border-[#02343F] space-y-3">
       <div className="flex items-center justify-between border-b border-emerald-200 pb-2">
         <div className="flex items-center gap-1.5 text-emerald-900 font-bold text-sm">
           <span className="material-symbols-outlined text-[18px]">verified</span> Review Extracted Aadhaar
@@ -409,7 +409,7 @@ const AadhaarInput = ({ memberIndex, memberName, onAadhaarScanned }) => {
         <button 
           type="button" 
           onClick={handleConfirmOcr}
-          className="flex-1 py-2.5 bg-[#1D9E75] text-white rounded-lg font-bold text-sm hover:bg-[#168361] shadow-sm flex items-center justify-center gap-1.5"
+          className="flex-1 py-2.5 bg-[#02343F] text-white rounded-lg font-bold text-sm hover:bg-[#168361] shadow-sm flex items-center justify-center gap-1.5"
         >
           <span className="material-symbols-outlined text-[18px]">check_circle</span> Confirm & Apply
         </button>

@@ -677,13 +677,14 @@ class AIService:
             )
 
         lang_instruction = {
-            "mr": "Respond in simple, clear, colloquial Marathi (मराठी) suitable for an ASHA worker in Maharashtra.",
+            "kn": "Respond in simple, clear Kannada (ಕನ್ನಡ) suitable for an ASHA community health worker.",
             "hi": "Respond in simple, clear Hindi (हिंदी) suitable for an ASHA community health worker.",
+            "mr": "Respond in simple, clear, colloquial Marathi (मराठी) suitable for an ASHA worker in Maharashtra.",
             "en": "Respond in clear Indian English with empathetic, direct clinical guidance.",
         }.get(language.lower(), "Respond in clear English.")
 
         prompt = (
-            "You are AshaAI, an empathetic and clinically authoritative AI health assistant for ASHA workers.\n"
+            "You are Asha Vaani, an empathetic and clinically authoritative AI health assistant for ASHA workers.\n"
             f"{STATIC_HEALTH_KNOWLEDGE}\n"
             f"{history_text}\n"
             f"ASHA Worker Query: '{message}'\n"
@@ -695,7 +696,7 @@ class AIService:
             "4. Never hallucinate medication dosages.\n"
             "5. SCOPE RESTRICTION (CRITICAL): You ONLY answer questions related to: ASHA worker duties, "
             "the 12 health modules in this app (Family Survey, ANC, Child Growth, Vaccination, etc.), "
-            "Indian public health protocols (NVHCP, MoHFW, IMNCI), or how to use AshaAI. "
+            "Indian public health protocols (NVHCP, MoHFW, IMNCI), or how to use Asha Vaani. "
             "If a question is clearly off-topic (politics, entertainment, coding, recipes, general knowledge, "
             "anything unrelated to community health work), respond ONLY with: "
             "'I can only help with ASHA health worker duties and health protocols. "

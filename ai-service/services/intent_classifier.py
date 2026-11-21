@@ -1,4 +1,4 @@
-"""Intent classifier for AshaAI Conversational Agent.
+"""Intent classifier for Asha Vaani Conversational Agent.
 
 Classifies opening utterances per docs/ARCHITECTURE.md:
 - FILL_SURVEY (Path A: Tier 2 survey filling with session-held draft)
@@ -145,7 +145,7 @@ def classify_intent_heuristic(utterance: str) -> IntentClassificationResult:
     )
 
 
-CLASSIFIER_SYSTEM_PROMPT = """You are AshaAI's conversational agent intent classifier.
+CLASSIFIER_SYSTEM_PROMPT = """You are Asha Vaani's conversational agent intent classifier.
 The user is an ASHA health worker speaking in English, Hindi, or Marathi.
 Classify the user's opening utterance into one of:
 1. FILL_SURVEY: User wants to fill, record, enter, or start a health survey or household visit.

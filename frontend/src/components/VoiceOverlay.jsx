@@ -38,7 +38,7 @@ const VoiceOverlay = ({ moduleType = 'family_survey', formFields = [], onFieldsF
             style={{
               width: '6px',
               borderRadius: '3px',
-              background: state === 'recording' ? '#1D9E75' : state === 'processing' ? '#BA7517' : '#444',
+              background: state === 'recording' ? '#02343F' : state === 'processing' ? '#BA7517' : '#444',
               height: state === 'recording' ? `${18 + Math.sin(i * 0.8) * 35 + Math.random() * 20}px` : '18px',
               transition: 'height 0.15s ease-in-out, background 0.3s',
               animation: state === 'recording' ? `voiceBar ${0.35 + i * 0.07}s ease-in-out infinite alternate` : 'none',
@@ -57,7 +57,7 @@ const VoiceOverlay = ({ moduleType = 'family_survey', formFields = [], onFieldsF
       {/* Status text */}
       <div style={{ color: 'white', fontSize: '17px', fontWeight: '600', marginBottom: '8px', textAlign: 'center', maxWidth: '300px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px' }}>
         {state === 'idle'       && <><span className="material-symbols-outlined" style={{fontSize:'20px'}}>mic_none</span> Tap the mic to start speaking</>}
-        {state === 'recording'  && <><span className="material-symbols-outlined" style={{fontSize:'20px'}}>mic</span> Listening… speak in Marathi or Hindi</>}
+        {state === 'recording'  && <><span className="material-symbols-outlined" style={{fontSize:'20px'}}>mic</span> Listening… speak in Hindi, Kannada or English</>}
         {state === 'processing' && <><span className="material-symbols-outlined" style={{fontSize:'20px'}}>hourglass_empty</span> Processing your voice…</>}
         {state === 'done'       && <><span className="material-symbols-outlined" style={{fontSize:'20px'}}>check_circle</span> {`${detectedCount} field${detectedCount !== 1 ? 's' : ''} filled from your voice`}</>}
         {state === 'error'      && <><span className="material-symbols-outlined" style={{fontSize:'20px'}}>error</span> {errorMsg}</>}
@@ -89,9 +89,9 @@ const VoiceOverlay = ({ moduleType = 'family_survey', formFields = [], onFieldsF
             onClick={startRecording}
             style={{
               width: '76px', height: '76px', borderRadius: '50%',
-              background: '#1D9E75', border: '4px solid rgba(255,255,255,0.3)',
+              background: '#02343F', border: '4px solid rgba(255,255,255,0.3)',
               color: 'white', fontSize: '30px', cursor: 'pointer',
-              boxShadow: '0 0 0 8px rgba(29,158,117,0.25)',
+              boxShadow: '0 0 0 8px rgba(2,52,63,0.35)',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
             }}
           >
@@ -144,7 +144,7 @@ const VoiceOverlay = ({ moduleType = 'family_survey', formFields = [], onFieldsF
               onClick={onClose}
               style={{
                 padding: '12px 22px', borderRadius: '10px',
-                background: state === 'done' ? '#1D9E75' : '#444',
+                background: state === 'done' ? '#02343F' : '#444',
                 border: 'none',
                 color: 'white', cursor: 'pointer', fontSize: '14px', fontWeight: '600',
               }}

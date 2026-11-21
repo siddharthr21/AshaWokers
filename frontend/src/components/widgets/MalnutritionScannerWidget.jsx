@@ -7,8 +7,8 @@ import AiScreeningDisclaimer from '../AiScreeningDisclaimer';
 
 const GRADE_CONFIG = {
   NORMAL: {
-    bg: '#EAF3DE', border: '#1D9E75', text: '#085041',
-    icon: 'check_circle', label: 'Normal', badgeBg: '#1D9E75',
+    bg: '#FAF8EA', border: '#02343F', text: '#02343F',
+    icon: 'check_circle', label: 'Normal', badgeBg: '#02343F',
   },
   YELLOW: {
     bg: '#FFF8E1', border: '#FFCA28', text: '#7A5500',
@@ -21,7 +21,7 @@ const GRADE_CONFIG = {
 };
 
 function ConfidenceBar({ value }) {
-  const color = value >= 75 ? '#1D9E75' : value >= 50 ? '#F0A500' : '#E24B4A';
+  const color = value >= 75 ? '#02343F' : value >= 50 ? '#F0A500' : '#E24B4A';
   return (
     <div style={{ marginTop: '10px' }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '11px', color: '#777', marginBottom: '4px' }}>
@@ -51,7 +51,7 @@ export default function MalnutritionScannerWidget({ onGradeConfirmed, prefillDat
   const [appliedWithNrc, setAppliedWithNrc] = useState(false);
 
   // Language toggle state & in-memory translation cache (per scan report)
-  const [activeLang, setActiveLang] = useState('en');          // 'en' | 'hi' | 'mr'
+  const [activeLang, setActiveLang] = useState('hi');          // 'hi' | 'en'
   const [translationCache, setTranslationCache] = useState({}); // { hi: translatedObj, mr: translatedObj }
   const [translateLoading, setTranslateLoading] = useState(false);
   const [translateError, setTranslateError] = useState(null);
@@ -220,9 +220,9 @@ export default function MalnutritionScannerWidget({ onGradeConfirmed, prefillDat
 
   // Lang toggle labels
   const LANG_LABELS = [
-    { code: 'en', label: 'English' },
     { code: 'hi', label: 'हिंदी' },
-    { code: 'mr', label: 'मराठी' },
+    { code: 'kn', label: 'ಕನ್ನಡ' },
+    { code: 'en', label: 'English' },
   ];
 
   return (
@@ -339,7 +339,7 @@ export default function MalnutritionScannerWidget({ onGradeConfirmed, prefillDat
               {/* ── Action Buttons: Send NRC Referral & Apply to Survey Fields ── */}
               <div style={{ marginTop: '16px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
                 {appliedToSurvey && (
-                  <div style={{ background: '#EAF3DE', border: '1.5px solid #1D9E75', borderRadius: '12px', padding: '10px 14px', display: 'flex', alignItems: 'center', gap: '8px', color: '#085041', fontWeight: '700', fontSize: '13px' }}>
+                  <div style={{ background: '#FAF8EA', border: '1.5px solid #02343F', borderRadius: '12px', padding: '10px 14px', display: 'flex', alignItems: 'center', gap: '8px', color: '#02343F', fontWeight: '700', fontSize: '13px' }}>
                     <span className="material-symbols-outlined text-[20px]">verified</span>
                     <span>
                       {appliedWithNrc ? 'Report applied to survey — Referred to NRC pre-checked' : 'Report applied to survey fields below'}
@@ -351,10 +351,10 @@ export default function MalnutritionScannerWidget({ onGradeConfirmed, prefillDat
                   type="button"
                   onClick={() => handleApplyToSurvey(true)}
                   style={{
-                    width: '100%', padding: '13px', background: '#085041', color: '#fff',
+                    width: '100%', padding: '13px', background: '#02343F', color: '#fff',
                     borderRadius: '12px', border: 'none', fontWeight: '800', fontSize: '14px',
                     cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    gap: '8px', boxShadow: '0 3px 12px rgba(8,80,65,0.25)', transition: 'opacity 0.15s',
+                    gap: '8px', boxShadow: '0 3px 12px rgba(2,52,63,0.25)', transition: 'opacity 0.15s',
                   }}
                 >
                   <span className="material-symbols-outlined" style={{ fontSize: '20px' }}>assignment_add</span>
@@ -365,8 +365,8 @@ export default function MalnutritionScannerWidget({ onGradeConfirmed, prefillDat
                   type="button"
                   onClick={() => handleApplyToSurvey(false)}
                   style={{
-                    width: '100%', padding: '11px', background: '#fff', color: '#085041',
-                    borderRadius: '12px', border: '1.5px solid #1D9E75', fontWeight: '700', fontSize: '13px',
+                    width: '100%', padding: '11px', background: '#fff', color: '#02343F',
+                    borderRadius: '12px', border: '1.5px solid #02343F', fontWeight: '700', fontSize: '13px',
                     cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center',
                     gap: '8px', transition: 'background 0.15s',
                   }}
@@ -398,7 +398,7 @@ export default function MalnutritionScannerWidget({ onGradeConfirmed, prefillDat
                       <div style={{ marginTop: '10px' }}>
                         <p style={{ fontSize: '13px', fontWeight: '600', color: '#1A1A18', marginBottom: '8px' }}>Please select the correct grade:</p>
                         <div style={{ display: 'flex', gap: '6px', flexDirection: 'column' }}>
-                          <button type="button" onClick={() => setCorrectedGrade('NORMAL')} style={{ padding: '10px', background: '#fff', border: '1px solid #1D9E75', borderRadius: '8px', fontSize: '13px', fontWeight: '600', color: '#085041', cursor: 'pointer' }}>Normal (Green)</button>
+                          <button type="button" onClick={() => setCorrectedGrade('NORMAL')} style={{ padding: '10px', background: '#fff', border: '1px solid #02343F', borderRadius: '8px', fontSize: '13px', fontWeight: '600', color: '#02343F', cursor: 'pointer' }}>Normal (Green)</button>
                           <button type="button" onClick={() => setCorrectedGrade('YELLOW')} style={{ padding: '10px', background: '#fff', border: '1px solid #F0A500', borderRadius: '8px', fontSize: '13px', fontWeight: '600', color: '#7A5500', cursor: 'pointer' }}>Moderate / MAM (Yellow)</button>
                           <button type="button" onClick={() => setCorrectedGrade('RED')} style={{ padding: '10px', background: '#fff', border: '1px solid #E24B4A', borderRadius: '8px', fontSize: '13px', fontWeight: '600', color: '#791F1F', cursor: 'pointer' }}>Severe / SAM (Red)</button>
                         </div>
@@ -410,7 +410,7 @@ export default function MalnutritionScannerWidget({ onGradeConfirmed, prefillDat
                         <p style={{ fontSize: '13px', fontWeight: '600', color: '#1A1A18', marginBottom: '4px' }}>Use this photo to help improve the model?</p>
                         <p style={{ fontSize: '11px', color: '#5F5E5A', marginBottom: '10px' }}>It will be deleted after training, never stored otherwise.</p>
                         <div style={{ display: 'flex', gap: '8px' }}>
-                          <button type="button" onClick={() => setConsentGiven(true)} style={{ flex: 1, padding: '10px', background: '#085041', border: 'none', borderRadius: '8px', fontSize: '13px', fontWeight: '600', color: '#fff', cursor: 'pointer' }}>Yes, Use for Training</button>
+                          <button type="button" onClick={() => setConsentGiven(true)} style={{ flex: 1, padding: '10px', background: '#02343F', border: 'none', borderRadius: '8px', fontSize: '13px', fontWeight: '600', color: '#fff', cursor: 'pointer' }}>Yes, Use for Training</button>
                           <button type="button" onClick={() => setConsentGiven(false)} style={{ flex: 1, padding: '10px', background: '#fff', border: '1px solid #D3D1C7', borderRadius: '8px', fontSize: '13px', fontWeight: '600', color: '#1A1A18', cursor: 'pointer' }}>No, Do Not Use</button>
                         </div>
                       </div>
@@ -442,7 +442,7 @@ export default function MalnutritionScannerWidget({ onGradeConfirmed, prefillDat
                     )}
                   </div>
                 ) : (
-                  <div style={{ background: '#EAF3DE', border: '1.5px solid #1D9E75', borderRadius: '12px', padding: '12px 16px', display: 'flex', alignItems: 'center', gap: '8px', color: '#085041', fontWeight: '700', fontSize: '13px' }}>
+                  <div style={{ background: '#FAF8EA', border: '1.5px solid #02343F', borderRadius: '12px', padding: '12px 16px', display: 'flex', alignItems: 'center', gap: '8px', color: '#02343F', fontWeight: '700', fontSize: '13px' }}>
                     <span className="material-symbols-outlined text-[20px]">verified</span>
                     Grade Confirmed by ASHA — Applied to Record
                   </div>
@@ -499,7 +499,7 @@ export default function MalnutritionScannerWidget({ onGradeConfirmed, prefillDat
             onClick={handleGrade}
             disabled={loading}
             style={{
-              marginTop: '12px', width: '100%', padding: '14px', background: loading ? '#7FB4AC' : '#085041',
+              marginTop: '12px', width: '100%', padding: '14px', background: loading ? '#7FB4AC' : '#02343F',
               color: '#fff', borderRadius: '14px', border: 'none', fontWeight: '700', fontSize: '14px',
               cursor: loading ? 'not-allowed' : 'pointer', display: 'flex', alignItems: 'center',
               justifyContent: 'center', gap: '8px', transition: 'background 0.2s',
@@ -523,15 +523,15 @@ export default function MalnutritionScannerWidget({ onGradeConfirmed, prefillDat
         <div
           onClick={() => fileInputRef.current.click()}
           style={{
-            border: '2px dashed #1D9E75', borderRadius: '14px', padding: '32px 20px',
+            border: '2px dashed #02343F', borderRadius: '14px', padding: '32px 20px',
             display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
             textAlign: 'center', cursor: 'pointer', transition: 'background 0.2s',
           }}
-          onMouseEnter={e => e.currentTarget.style.background = '#EAF3DE'}
+          onMouseEnter={e => e.currentTarget.style.background = '#FAF8EA'}
           onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
         >
-          <span className="material-symbols-outlined" style={{ fontSize: '40px', color: '#1D9E75', marginBottom: '8px' }}>add_a_photo</span>
-          <p style={{ fontWeight: '700', color: '#085041', fontSize: '14px' }}>Tap to photograph the child</p>
+          <span className="material-symbols-outlined" style={{ fontSize: '40px', color: '#02343F', marginBottom: '8px' }}>add_a_photo</span>
+          <p style={{ fontWeight: '700', color: '#02343F', fontSize: '14px' }}>Tap to photograph the child</p>
           <p style={{ fontSize: '12px', color: '#5F5E5A', marginTop: '4px' }}>Gemini AI will assess malnutrition risk visually</p>
         </div>
       )}

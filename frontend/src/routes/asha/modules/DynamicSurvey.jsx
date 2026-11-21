@@ -104,7 +104,7 @@ export default function DynamicSurvey() {
   // DynamicSurvey.jsx has no knowledge of what produced the payload — it simply
   // decodes and passes to BaseModuleForm. The NRC Referral flow in
   // MalnutritionScannerWidget is what currently produces this param.
-  const [initialValues, setInitialValues] = useState(() => {
+  const [initialValues] = useState(() => {
     const raw = searchParams.get('prefill');
     if (!raw) return null;
     try {
@@ -151,7 +151,7 @@ export default function DynamicSurvey() {
   if (loading) {
     return (
       <div className="flex justify-center items-center py-16">
-        <span className="material-symbols-outlined animate-spin text-3xl text-[#1D9E75]">refresh</span>
+        <span className="material-symbols-outlined animate-spin text-3xl text-[#02343F]">refresh</span>
       </div>
     );
   }

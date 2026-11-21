@@ -33,9 +33,9 @@ export default function AdminLayout() {
     <>
       <div className="p-6 border-b border-white/10">
         <div className="flex items-center space-x-3 mb-2">
-          {/* <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center text-[#085041] font-bold text-xl">A</div>
-          <h1 className="text-2xl font-bold">AshaAI</h1> */}
-          <img src='/logo.png' alt='Logo' className='w-35 rounded-full' />
+          {/* <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center text-[#02343F] font-bold text-xl">A</div>
+          <h1 className="text-2xl font-bold">Asha Vaani</h1> */}
+          <img src='/logo.png?v=2' alt='Asha Vaani Logo' className='w-35 rounded-full' />
         </div>
         <p className="text-sm opacity-80">{tx('Supervisor Portal')}</p>
       </div>
@@ -48,7 +48,7 @@ export default function AdminLayout() {
                 <Link 
                   to={item.path} 
                   onClick={() => setSidebarOpen(false)}
-                  className={`flex items-center px-4 py-3 rounded-lg transition-colors ${isActive ? 'bg-[#1D9E75] font-medium' : 'hover:bg-white/10 opacity-90'}`}
+                  className={`flex items-center px-4 py-3 rounded-lg transition-colors ${isActive ? 'bg-[#F0EDCC] text-[#02343F] font-bold shadow-md' : 'text-[#F0EDCC]/90 hover:bg-[#F0EDCC]/15'}`}
                 >
                   <span className="material-symbols-outlined mr-3 text-xl">{item.icon}</span>
                   <span className="md:inline">{tx(item.label, item.labelKey)}</span>
@@ -75,26 +75,26 @@ export default function AdminLayout() {
   );
 
   return (
-    <div className="flex h-screen bg-[#F1EFE8] font-sans text-[#1A1A18] overflow-hidden">
+    <div className="flex h-screen bg-[#F0EDCC] font-sans text-[#02343F] overflow-hidden">
       {/* Mobile hamburger overlay */}
       {sidebarOpen && (
         <div className="fixed inset-0 bg-black/50 z-30 md:hidden" onClick={() => setSidebarOpen(false)} />
       )}
 
       {/* Sidebar — hidden on mobile, visible on md+ */}
-      <aside className={`fixed md:static inset-y-0 left-0 z-40 w-64 flex flex-col bg-[#085041] text-white shadow-xl transition-transform duration-300 ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} md:translate-x-0`}>
+      <aside className={`fixed md:static inset-y-0 left-0 z-40 w-64 flex flex-col bg-[#02343F] text-[#F0EDCC] shadow-xl transition-transform duration-300 ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} md:translate-x-0`}>
         <NavContent />
       </aside>
 
       {/* Main content area */}
       <div className="flex-1 flex flex-col overflow-hidden">
         {/* Mobile top bar */}
-        <header className="md:hidden flex items-center justify-between p-4 bg-[#085041] text-white">
+        <header className="md:hidden flex items-center justify-between p-4 bg-[#02343F] text-[#F0EDCC]">
           <div className="flex items-center gap-2">
             <button onClick={() => setSidebarOpen(true)} className="p-2 hover:bg-white/10 rounded-lg">
               <span className="material-symbols-outlined">menu</span>
             </button>
-            <h1 className="text-lg font-bold">AshaAI {tx('Admin', 'admin_dashboard')}</h1>
+            <h1 className="text-lg font-bold">Asha Vaani {tx('Admin', 'admin_dashboard')}</h1>
           </div>
           <div className="flex items-center gap-2">
             <LanguageToggle />
@@ -104,7 +104,7 @@ export default function AdminLayout() {
           </div>
         </header>
 
-        <main className="flex-1 overflow-auto bg-[#F1EFE8] relative">
+        <main className="flex-1 overflow-auto bg-[#F0EDCC] relative">
           <div className="max-w-7xl mx-auto">
             <Outlet />
           </div>

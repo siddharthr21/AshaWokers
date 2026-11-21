@@ -6,7 +6,7 @@ export default function ErrorScreen({ message, onRetry }) {
       </div>
       <p className="text-sm text-[#791F1F]">{message || "Something went wrong."}</p>
       {onRetry && (
-        <button onClick={onRetry} className="text-sm text-[#1D9E75] font-medium underline hover:text-[#085041] transition-colors">
+        <button onClick={onRetry} className="text-sm text-[#02343F] font-medium underline hover:text-[#02343F] transition-colors">
           Try again
         </button>
       )}

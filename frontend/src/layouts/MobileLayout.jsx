@@ -31,16 +31,16 @@ export default function MobileLayout() {
   ];
 
   return (
-    // Desktop wrapper — grey background, centres the phone UI
-    <div className="min-h-screen bg-gray-200 sm:flex sm:items-start sm:justify-center sm:pt-4">
+    // Desktop wrapper — deep dark teal background, centres the phone UI
+    <div className="min-h-screen bg-[#011F26] sm:flex sm:items-start sm:justify-center sm:pt-4">
       {/* Phone container — full screen on mobile, bounded on desktop */}
-      <div className="w-full h-[100dvh] sm:h-[calc(100dvh-2rem)] sm:max-w-[430px] sm:shadow-2xl sm:rounded-2xl overflow-hidden bg-[#F1EFE8] flex flex-col relative font-sans antialiased text-[#1A1A18]">
+      <div className="w-full h-[100dvh] sm:h-[calc(100dvh-2rem)] sm:max-w-[430px] sm:shadow-2xl sm:rounded-2xl overflow-hidden bg-[#F0EDCC] flex flex-col relative font-sans antialiased text-[#02343F]">
         
         {/* Top bar */}
-        <header className="flex justify-between items-center p-4 bg-[#085041] text-white shadow-md z-10 sticky top-0">
+        <header className="flex justify-between items-center p-4 bg-[#02343F] text-[#F0EDCC] shadow-md z-10 sticky top-0 border-b border-[#F0EDCC]/15">
           <div className="flex items-center space-x-2">
-            <img src="/logo.png" alt="Logo" className="w-30 rounded-full" onError={(e) => { e.target.style.display='none'; }} />
-            {/* <h1 className="text-xl font-bold font-['Noto_Sans']">AshaAI</h1> */}
+            <img src="/logo.png?v=2" alt="Asha Vaani Logo" className="w-30 rounded-full" onError={(e) => { e.target.style.display='none'; }} />
+            {/* <h1 className="text-xl font-bold font-['Noto_Sans']">Asha Vaani</h1> */}
           </div>
           <div className="flex flex-col items-end gap-1">
             <LanguageToggle />
@@ -57,16 +57,16 @@ export default function MobileLayout() {
         )}
 
         {/* Page content */}
-        <main className="flex-1 overflow-y-auto overflow-x-hidden p-3 sm:p-4 pb-36 sm:pb-30 w-full max-w-full min-w-0 box-border">
+        <main className="flex-1 overflow-y-auto overflow-x-hidden p-3 sm:p-4 pb-36 sm:pb-30 w-full max-w-full min-w-0 box-border bg-[#F0EDCC]">
           <Outlet />
         </main>
 
         {/* Bottom nav */}
-        <nav className="absolute bottom-0 w-full bg-white border-t border-[#D3D1C7] flex justify-around p-2 z-10 shadow-[0_-2px_10px_rgba(0,0,0,0.05)]">
+        <nav className="absolute bottom-0 w-full bg-[#FAF9F0] border-t border-[#D8D4B0] flex justify-around p-2 z-10 shadow-[0_-2px_12px_rgba(2,52,63,0.08)]">
           {navItems.map((item) => {
             const isActive = pathname === item.path || pathname.startsWith(item.path + '/');
             return (
-              <Link key={item.path} to={item.path} className={`flex flex-col items-center p-2 rounded-xl transition-all duration-200 ${isActive ? 'text-[#1D9E75] bg-[#EAF3DE]' : 'text-[#5F5E5A] hover:bg-gray-50'}`}>
+              <Link key={item.path} to={item.path} className={`flex flex-col items-center p-2 rounded-xl transition-all duration-200 ${isActive ? 'text-[#02343F] bg-[#E5E0BC] font-bold shadow-sm' : 'text-[#4A6065] hover:bg-[#F0EDCC]/50'}`}>
                 <span className="material-symbols-outlined mb-1">{item.icon}</span>
                 <span className="text-[10px] font-medium">{item.label}</span>
               </Link>

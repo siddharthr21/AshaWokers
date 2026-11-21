@@ -1,6 +1,6 @@
-# AshaAI — Frontend
+# Asha Vaani — Frontend
 
-The AshaAI frontend is a **React 19 Progressive Web App (PWA)** built with Vite, Tailwind CSS, and Zustand.
+The Asha Vaani frontend is a **React 19 Progressive Web App (PWA)** built with Vite, Tailwind CSS, and Zustand.
 
 A single codebase provides two portals:
 
@@ -23,7 +23,7 @@ For the complete system architecture, see the [root README](../README.md).
 
 - **Node.js 20+ or 22+**
 - **npm**
-- The **AshaAI backend** running locally or deployed
+- The **Asha Vaani backend** running locally or deployed
 
 The frontend depends on the backend for its API and runtime configuration.
 
@@ -136,7 +136,7 @@ npm run lint
 
 ## PWA and offline support
 
-AshaAI is built as a **Progressive Web App** for field environments where network connectivity may be unreliable.
+Asha Vaani is built as a **Progressive Web App** for field environments where network connectivity may be unreliable.
 
 The frontend uses:
 

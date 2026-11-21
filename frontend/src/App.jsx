@@ -55,7 +55,7 @@ const ChildGrowthSurveyRedirect = () => {
 };
 
 const LoadingFallback = ({ authTimedOut }) => (
-  <div className="min-h-screen bg-[#F1EFE8] flex flex-col p-4 animate-pulse">
+  <div className="min-h-screen bg-[#F0EDCC] flex flex-col p-4 animate-pulse">
     {authTimedOut && (
       <div style={{
         display: 'flex', flexDirection: 'column', alignItems: 'center',
@@ -67,7 +67,7 @@ const LoadingFallback = ({ authTimedOut }) => (
         <button
           onClick={() => window.location.reload()}
           style={{
-            padding: '10px 24px', background: '#1D9E75', color: 'white',
+            padding: '10px 24px', background: '#02343F', color: 'white',
             border: 'none', borderRadius: '8px', fontSize: '14px', cursor: 'pointer'
           }}
         >
@@ -76,7 +76,7 @@ const LoadingFallback = ({ authTimedOut }) => (
       </div>
     )}
     <div className="h-16 bg-gray-200 rounded-2xl w-full mb-6"></div>
-    <div className="h-32 bg-[#EAF3DE] rounded-3xl w-full mb-6 opacity-60"></div>
+    <div className="h-32 bg-[#FAF8EA] rounded-3xl w-full mb-6 opacity-60"></div>
     <div className="grid grid-cols-2 gap-4">
        <div className="h-28 bg-white rounded-3xl w-full"></div>
        <div className="h-28 bg-white rounded-3xl w-full"></div>
@@ -187,11 +187,11 @@ const App = () => {
 
   if (error) {
     return (
-      <div className="min-h-screen bg-[#F1EFE8] flex items-center justify-center p-4">
-        <div className="bg-white p-6 rounded-2xl shadow text-center max-w-sm">
+      <div className="min-h-screen bg-[#F0EDCC] flex items-center justify-center p-4">
+        <div className="bg-white p-6 rounded-2xl shadow text-center max-w-sm border border-[#D8D4B0]">
           <h2 className="text-[#E24B4A] font-bold text-lg mb-2">Configuration Error</h2>
           <p className="text-gray-600 text-sm mb-4">{error}</p>
-          <button onClick={() => window.location.reload()} className="bg-[#1D9E75] text-white px-4 py-2 rounded-lg text-sm">Retry</button>
+          <button onClick={() => window.location.reload()} className="bg-[#02343F] text-[#F0EDCC] px-4 py-2 rounded-lg text-sm font-bold">Retry</button>
         </div>
       </div>
     );

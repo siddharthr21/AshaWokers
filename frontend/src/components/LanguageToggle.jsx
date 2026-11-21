@@ -14,18 +14,18 @@ export default function LanguageToggle() {
   };
 
   return (
-    <div className="flex bg-[#085041] rounded overflow-hidden relative">
-      {['en', 'mr', 'hi'].map((lang) => (
+    <div className="flex bg-[#02343F] border border-[#F0EDCC]/30 rounded-lg overflow-hidden relative shadow-sm">
+      {['en', 'hi', 'kn'].map((lang) => (
         <button
           key={lang}
           onClick={() => handleSwitch(lang)}
           disabled={switching}
-          className={`px-3 py-1 text-xs font-medium transition-colors ${language === lang
-              ? 'bg-[#1D9E75] text-white'
-              : 'text-[#EAF3DE] hover:bg-[#1D9E75]/50 disabled:opacity-60'
+          className={`px-3 py-1 text-xs font-semibold transition-all ${language === lang
+              ? 'bg-[#F0EDCC] text-[#02343F] shadow-sm font-bold'
+              : 'text-[#F0EDCC]/80 hover:bg-[#F0EDCC]/15 hover:text-[#F0EDCC] disabled:opacity-60'
             }`}
         >
-          {lang === 'en' ? 'EN' : lang === 'mr' ? 'मराठी' : 'हिंदी'}
+          {lang === 'en' ? 'EN' : lang === 'hi' ? 'हिंदी' : 'ಕನ್ನಡ'}
         </button>
       ))}
       {switching && (
@@ -33,7 +33,7 @@ export default function LanguageToggle() {
           className="material-symbols-outlined"
           style={{
             position: 'absolute', right: '-22px', top: '50%', transform: 'translateY(-50%)',
-            fontSize: '16px', color: '#EAF3DE',
+            fontSize: '16px', color: '#F0EDCC',
             animation: 'spin 0.8s linear infinite',
           }}
         >refresh</span>

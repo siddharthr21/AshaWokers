@@ -122,8 +122,8 @@ export default function AdminReportModal({ isOpen, onClose, metricName, ashaIds 
       const docPdf = new jsPDF({ orientation: 'landscape' });
       
       docPdf.setFontSize(18);
-      docPdf.setTextColor(8, 80, 65);
-      docPdf.text(tx("AshaAI - " + metricName + " Report"), 14, 22);
+      docPdf.setTextColor(2, 52, 63);
+      docPdf.text(tx("Asha Vaani - " + metricName + " Report"), 14, 22);
       
       docPdf.setFontSize(11);
       docPdf.setTextColor(100);
@@ -151,13 +151,13 @@ export default function AdminReportModal({ isOpen, onClose, metricName, ashaIds 
           head: [surveyConfig.headers],
           body: tableData,
           theme: 'striped',
-          headStyles: { fillColor: [29, 158, 117], fontSize: 8 },
+          headStyles: { fillColor: [2, 52, 63], fontSize: 8 },
           bodyStyles: { fontSize: 8 },
           margin: { left: 14, right: 14 }
         });
       }
 
-      docPdf.save(`AshaAI_Admin_${selectedSurvey}_${start.toISOString().split('T')[0]}.pdf`);
+      docPdf.save(`AshaVaani_Admin_${selectedSurvey}_${start.toISOString().split('T')[0]}.pdf`);
       onClose();
     } catch (error) {
       console.error("PDF Generation failed", error);
@@ -185,11 +185,11 @@ export default function AdminReportModal({ isOpen, onClose, metricName, ashaIds 
 
         <div className="space-y-4 mb-6">
           <div>
-            <label className="block text-sm font-medium text-[#5F5E5A] mb-1">{tx('Select Range')}</label>
+            <label className="block text-sm font-semibold text-[#02343F]/80 mb-1">{tx('Select Range')}</label>
             <select 
               value={rangeType} 
               onChange={e => setRangeType(e.target.value)}
-              className="w-full border border-[#D3D1C7] rounded-xl p-3 bg-[#F1EFE8] text-[#1A1A18] focus:outline-none focus:ring-2 focus:ring-[#1D9E75]"
+              className="w-full border border-[#D8D4B0] rounded-xl p-3 bg-[#FAF8EA] text-[#02343F] focus:outline-none focus:ring-2 focus:ring-[#02343F]"
             >
               <option value="today">{tx('Today')}</option>
               <option value="custom">{tx('Custom Date Range')}</option>
@@ -199,21 +199,21 @@ export default function AdminReportModal({ isOpen, onClose, metricName, ashaIds 
           {rangeType === 'custom' && (
             <div className="flex space-x-3">
               <div className="flex-1">
-                <label className="block text-xs font-medium text-[#5F5E5A] mb-1">{tx('Start Date')}</label>
+                <label className="block text-xs font-semibold text-[#02343F]/70 mb-1">{tx('Start Date')}</label>
                 <input 
                   type="date" 
                   value={startDate} 
                   onChange={e => setStartDate(e.target.value)}
-                  className="w-full border border-[#D3D1C7] rounded-xl p-2 bg-[#F1EFE8] text-sm focus:outline-none focus:ring-2 focus:ring-[#1D9E75]"
+                  className="w-full border border-[#D8D4B0] rounded-xl p-2 bg-[#FAF8EA] text-sm focus:outline-none focus:ring-2 focus:ring-[#02343F] text-[#02343F]"
                 />
               </div>
               <div className="flex-1">
-                <label className="block text-xs font-medium text-[#5F5E5A] mb-1">{tx('End Date')}</label>
+                <label className="block text-xs font-semibold text-[#02343F]/70 mb-1">{tx('End Date')}</label>
                 <input 
                   type="date" 
                   value={endDate} 
                   onChange={e => setEndDate(e.target.value)}
-                  className="w-full border border-[#D3D1C7] rounded-xl p-2 bg-[#F1EFE8] text-sm focus:outline-none focus:ring-2 focus:ring-[#1D9E75]"
+                  className="w-full border border-[#D8D4B0] rounded-xl p-2 bg-[#FAF8EA] text-sm focus:outline-none focus:ring-2 focus:ring-[#02343F] text-[#02343F]"
                 />
               </div>
             </div>
@@ -223,7 +223,7 @@ export default function AdminReportModal({ isOpen, onClose, metricName, ashaIds 
         <button 
           onClick={handleGenerate}
           disabled={isGenerating}
-          className="w-full py-3 bg-[#1D9E75] text-white rounded-xl font-medium flex items-center justify-center space-x-2 shadow-md disabled:opacity-70 disabled:cursor-not-allowed transition-all"
+          className="w-full py-3 bg-[#02343F] text-[#F0EDCC] hover:bg-[#012128] rounded-xl font-bold flex items-center justify-center space-x-2 shadow-md disabled:opacity-70 disabled:cursor-not-allowed transition-all"
         >
           {isGenerating ? (
             <>

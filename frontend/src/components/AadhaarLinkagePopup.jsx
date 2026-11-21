@@ -20,12 +20,12 @@ export default function AadhaarLinkagePopup({ isOpen, memberName, familyHeadName
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
-        <div className="bg-[#EAF3DE] px-5 py-4 border-b border-[#1D9E75]/20 flex items-center justify-between">
-          <h3 className="font-bold text-[#085041] flex items-center gap-2 text-lg">
+        <div className="bg-[#FAF8EA] px-5 py-4 border-b border-[#02343F]/20 flex items-center justify-between">
+          <h3 className="font-bold text-[#02343F] flex items-center gap-2 text-lg">
             <span className="material-symbols-outlined">link</span>
             Family Match Found
           </h3>
-          <button onClick={onClose} className="p-1 rounded-full hover:bg-white/50 text-[#085041] transition-colors">
+          <button onClick={onClose} className="p-1 rounded-full hover:bg-white/50 text-[#02343F] transition-colors">
             <span className="material-symbols-outlined">close</span>
           </button>
         </div>
@@ -51,7 +51,7 @@ export default function AadhaarLinkagePopup({ isOpen, memberName, familyHeadName
         <div className="p-5 border-t border-[#D3D1C7] flex flex-col gap-3">
           <button 
             onClick={onConfirm}
-            className="w-full py-3.5 bg-[#1D9E75] text-white rounded-xl font-bold shadow-md hover:bg-[#16815e] active:scale-[0.98] transition-all flex justify-center items-center gap-2"
+            className="w-full py-3.5 bg-[#02343F] text-white rounded-xl font-bold shadow-md hover:bg-[#01252D] active:scale-[0.98] transition-all flex justify-center items-center gap-2"
           >
             Yes, Link to Family
           </button>

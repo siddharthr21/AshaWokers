@@ -5,6 +5,7 @@ import { useAuthStore } from '../../stores/authStore';
 import { useSyncStore } from '../../stores/syncStore';
 import { useTx } from '../../context/TranslationContext';
 import { apiFetch, showToast } from '../../utils/api';
+import { toFemaleName, transformPriorityItem } from '../../utils/nameUtils';
 import AppointmentSheet from '../../components/AppointmentSheet';
 import { useLanguageStore } from '../../stores/languageStore';
 import { getOfflineQueueCount } from '../../hooks/useOfflineQueue';
@@ -48,7 +49,7 @@ const SURVEY_ICON_MAP = {
 
 // Map a moduleKey to the display color for the module tile background
 const MODULE_COLOR_MAP = {
-  family_survey:         'bg-[#EAF3DE] text-[#085041]',
+  family_survey:         'bg-[#F0EDCC] text-[#02343F] border border-[#D8D4B0]',
   anc:                   'bg-[#FCEBEB] text-[#791F1F]',
   child_growth:          'bg-[#FFF3E0] text-[#E65100]',
   vaccination:           'bg-[#E3F2FD] text-[#1565C0]',
@@ -216,8 +217,9 @@ export default React.memo(function Home() {
         setPriorityError('');
         const data = await apiFetch(`/api/risk/priority/${docId}`);
         if (!isUnmounted) {
-          // Show top 5
-          setPriorityList(data.slice(0, 5));
+          // Show top 5 with female names
+          const mapped = Array.isArray(data) ? data.slice(0, 5).map(transformPriorityItem) : [];
+          setPriorityList(mapped);
           setPriorityLoading(false);
         }
       } catch (err) {
@@ -324,9 +326,9 @@ export default React.memo(function Home() {
       const path = getTemplatePath(t);
       const color = MODULE_COLOR_MAP[t.moduleKey] || 'bg-[#F3E5F5] text-[#6A1B9A]';
       const icon = (t.icon || 'clipboard').toLowerCase();
-      const title = language === 'mr' && t.nameMr ? t.nameMr
-                  : language === 'hi' && t.nameHi ? t.nameHi
-                  : t.nameEn || t.moduleKey || 'Survey';
+      const title = language === 'kn' ? (t.nameKn || tx(t.nameEn, t.moduleKey) || t.nameEn)
+                  : (language === 'hi' || language === 'mr') && t.nameHi ? t.nameHi
+                  : t.nameHi || t.nameEn || t.moduleKey || 'Survey';
       if (t.moduleKey) map[t.moduleKey] = { title, path, icon, color };
     });
     return map;
@@ -384,7 +386,7 @@ export default React.memo(function Home() {
                 targetName: nameToShow
               });
             }}
-            className="px-3 py-1.5 bg-[#EAF3DE] text-[#085041] rounded-lg text-xs font-bold border border-[#1D9E75] flex items-center gap-1 active:scale-95"
+            className="px-3 py-1.5 bg-[#F0EDCC] text-[#02343F] rounded-lg text-xs font-bold border border-[#02343F] flex items-center gap-1 active:scale-95 shadow-xs"
           >
             📅 Schedule
           </button>
@@ -398,64 +400,65 @@ export default React.memo(function Home() {
     <>
       <div className="space-y-5">
         {/* Greeting + Stats Card */}
-        <div className="bg-white rounded-2xl p-5 shadow-sm border border-[#D3D1C7]">
-          <h2 className="text-xl font-bold text-[#1A1A18] mb-1">
-            {'\u0928\u092E\u0938\u094D\u0915\u093E\u0930'}, {user?.displayName || 'ASHA'}!
+        <div className="bg-white rounded-2xl p-5 shadow-sm border border-[#D8D4B0]">
+          <h2 className="text-xl font-bold text-[#02343F] mb-1">
+            {language === 'kn' ? 'ನಮಸ್ಕಾರ' : (language === 'hi' ? 'नमस्ते' : 'Hello')}, {user?.displayName || 'ASHA'}!
           </h2>
-          <p className="text-[#5F5E5A] text-sm">{tx('Today is a good day to make a difference.')}</p>
+          <p className="text-[#02343F]/70 text-sm font-medium">{tx('Today is a good day to make a difference.')}</p>
           
           <div className="grid grid-cols-3 gap-3 mt-5">
-            <div className="bg-[#EAF3DE] p-3 rounded-xl text-center">
-              <span className="block text-2xl font-bold text-[#085041]">{loading ? '-' : stats.families}</span>
-              <span className="text-[10px] font-medium text-[#1D9E75] uppercase">{tx('Families')}</span>
+            <div className="bg-[#FAF8EA] border border-[#D8D4B0] p-3 rounded-xl text-center shadow-xs">
+              <span className="block text-2xl font-bold text-[#02343F]">{loading ? '-' : stats.families}</span>
+              <span className="text-[10px] font-bold text-[#02343F] uppercase tracking-wide">{tx('Families')}</span>
             </div>
-            <div className="bg-[#FCEBEB] p-3 rounded-xl text-center">
+            <div className="bg-[#FCEBEB] border border-[#E24B4A]/30 p-3 rounded-xl text-center shadow-xs">
               <span className="block text-2xl font-bold text-[#791F1F]">{loading ? '-' : stats.criticalCases}</span>
-              <span className="text-[10px] font-medium text-[#E24B4A] uppercase">{tx('Critical Cases')}</span>
+              <span className="text-[10px] font-bold text-[#E24B4A] uppercase tracking-wide">{tx('Critical Cases')}</span>
             </div>
-            <div className="bg-[#F3E5F5] p-3 rounded-xl text-center">
-              <span className="block text-2xl font-bold text-[#6A1B9A]">{pendingSyncs}</span>
-              <span className="text-[10px] font-medium text-[#AB47BC] uppercase">{tx('Pending Syncs')}</span>
+            <div className="bg-[#FAF8EA] border border-[#02343F]/20 p-3 rounded-xl text-center shadow-xs">
+              <span className="block text-2xl font-bold text-[#02343F]">{pendingSyncs}</span>
+              <span className="text-[10px] font-bold text-[#02343F]/80 uppercase tracking-wide">{tx('Pending Syncs')}</span>
             </div>
           </div>
         </div>
 
         {/* Priority List */}
-        <div className="bg-white rounded-2xl p-5 shadow-sm border border-[#D3D1C7]">
+        <div className="bg-white rounded-2xl p-5 shadow-sm border border-[#D8D4B0]">
           <div className="flex items-center justify-between mb-4">
-            <h2 className="text-lg font-bold text-[#1A1A18] flex items-center gap-2">
+            <h2 className="text-lg font-bold text-[#02343F] flex items-center gap-2">
               <span className="material-symbols-outlined text-[#E24B4A]">priority_high</span>
               {tx('Priority List')}
             </h2>
-            <Link to="/asha/priority-list" className="text-sm font-medium text-[#1D9E75] hover:underline">
+            <Link to="/asha/priority-list" className="text-sm font-bold text-[#02343F] hover:underline flex items-center gap-0.5">
               {tx('View All')}
+              <span className="material-symbols-outlined text-sm">chevron_right</span>
             </Link>
           </div>
           
           {priorityLoading ? (
             <div className="flex justify-center py-6">
-              <span className="material-symbols-outlined animate-spin text-3xl text-[#1D9E75]">refresh</span>
+              <span className="material-symbols-outlined animate-spin text-3xl text-[#02343F]">refresh</span>
             </div>
           ) : priorityError ? (
             <div className="p-4 bg-[#FCEBEB] text-[#791F1F] rounded-xl font-medium border border-[#E24B4A] text-sm text-center">
               {priorityError}
             </div>
           ) : priorityList.length === 0 ? (
-            <div className="p-4 bg-gray-50 text-gray-500 rounded-xl text-center text-sm">
+            <div className="p-4 bg-[#FAF8EA] text-[#02343F]/70 border border-[#D8D4B0] rounded-xl text-center text-sm">
               {tx('No priority cases right now.')}
             </div>
           ) : (
             <div className="space-y-3">
               {priorityList.map((item, idx) => {
-                const bg = item.risk_level === 'CRITICAL' ? 'bg-[#E24B4A]' : item.risk_level === 'HIGH' ? 'bg-[#BA7517]' : 'bg-[#1D9E75]';
+                const bg = item.risk_level === 'CRITICAL' ? 'bg-[#E24B4A]' : item.risk_level === 'HIGH' ? 'bg-[#BA7517]' : 'bg-[#02343F]';
                 return (
-                  <div key={item.id || idx} className="flex items-center justify-between p-3 border border-[#D3D1C7] rounded-xl">
+                  <div key={item.id || idx} className="flex items-center justify-between p-3.5 border border-[#D8D4B0] bg-[#FAF8EA]/40 rounded-xl hover:shadow-xs transition-shadow">
                     <div>
-                      <h3 className="font-bold text-[#1A1A18] text-sm">{item.name}</h3>
-                      <p className="text-xs text-[#5F5E5A] mt-0.5">{item.primary_driver}</p>
-                      <p className="text-[10px] text-gray-400 mt-1">Last visit: {item.last_visit_date || 'N/A'}</p>
+                      <h3 className="font-bold text-[#02343F] text-sm">{toFemaleName(item.name, idx)}</h3>
+                      <p className="text-xs text-[#02343F]/80 mt-0.5 font-medium">{item.primary_driver}</p>
+                      <p className="text-[10px] text-[#02343F]/50 mt-1">Last visit: {item.last_visit_date || 'N/A'}</p>
                     </div>
-                    <span className={`${bg} text-white text-[10px] font-bold px-2 py-1 rounded-md`}>
+                    <span className={`${bg} text-white text-[10px] font-bold px-2.5 py-1 rounded-md shadow-xs`}>
                       {item.risk_level}
                     </span>
                   </div>
@@ -466,13 +469,13 @@ export default React.memo(function Home() {
         </div>
 
         {/* Register Scan Banner */}
-        <Link to="/asha/register-scan" className="block bg-linear-to-r from-[#085041] to-[#1D9E75] text-white p-4 rounded-2xl shadow-md">
+        <Link to="/asha/register-scan" className="block bg-gradient-to-r from-[#02343F] to-[#0A5C6F] text-[#F0EDCC] p-4 rounded-2xl shadow-md border border-[#02343F]">
           <div className="flex items-center justify-between">
             <div>
-              <h3 className="font-bold text-lg">{t('import_register')}</h3>
-              <p className="text-xs opacity-90 mt-1">{tx('Scan handwritten logs using Vision AI')}</p>
+              <h3 className="font-bold text-lg text-white">{t('import_register')}</h3>
+              <p className="text-xs text-[#F0EDCC] opacity-90 mt-1">{tx('Scan handwritten logs using Vision AI')}</p>
             </div>
-            <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center shrink-0">
+            <div className="w-10 h-10 bg-[#F0EDCC]/20 rounded-full flex items-center justify-center shrink-0 border border-[#F0EDCC]/40 text-[#F0EDCC]">
               <span className="material-symbols-outlined">document_scanner</span>
             </div>
           </div>
@@ -485,14 +488,14 @@ export default React.memo(function Home() {
             const color = MODULE_COLOR_MAP[template.moduleKey] || 'bg-[#F3E5F5] text-[#6A1B9A]';
             const iconKey = (template.icon || 'clipboard').toLowerCase();
             const iconEl = SURVEY_ICON_MAP[iconKey] || SURVEY_ICON_MAP['clipboard'];
-            const displayTitle = language === 'mr' && template.nameMr ? template.nameMr
-                               : language === 'hi' && template.nameHi ? template.nameHi
-                               : template.nameEn || template.moduleKey || 'Survey';
+            const displayTitle = language === 'kn' ? (template.nameKn || tx(template.nameEn, template.moduleKey) || template.nameEn)
+                               : (language === 'hi' || language === 'mr') && template.nameHi ? template.nameHi
+                               : template.nameHi || template.nameEn || template.moduleKey || 'Survey';
             return (
               <Link
                 key={template.id || template.moduleKey}
                 to={path}
-                className="relative bg-white p-3 rounded-2xl shadow-sm border border-[#D3D1C7] flex flex-col items-center justify-center text-center hover:shadow-md transition-shadow active:scale-[0.98]"
+                className="relative bg-white p-3 rounded-2xl shadow-sm border border-[#D8D4B0] flex flex-col items-center justify-center text-center hover:border-[#02343F] hover:shadow-md transition-all active:scale-[0.98]"
               >
                 <div className={`w-11 h-11 rounded-full mb-2 flex items-center justify-center ${color}`}>
                   {iconEl}
@@ -502,10 +505,10 @@ export default React.memo(function Home() {
                 </span>
                 {template.hasLinkage && (
                   <div
-                    className="absolute bottom-2 right-2 w-5 h-5 bg-[#EAF3DE] border border-[#1D9E75] rounded-full flex items-center justify-center"
+                    className="absolute bottom-2 right-2 w-5 h-5 bg-[#FAF8EA] border border-[#02343F] rounded-full flex items-center justify-center"
                     title="Links to another survey"
                   >
-                    <span className="material-symbols-outlined text-[12px] text-[#085041]">link</span>
+                    <span className="material-symbols-outlined text-[12px] text-[#02343F]">link</span>
                   </div>
                 )}
               </Link>
@@ -514,13 +517,13 @@ export default React.memo(function Home() {
         </div>
 
         {/* Upcoming Appointments Section */}
-        <div className="bg-white rounded-2xl p-4 shadow-sm border border-[#D3D1C7]">
+        <div className="bg-white rounded-2xl p-4 shadow-sm border border-[#D8D4B0]">
           <div className="flex items-center justify-between mb-3">
-            <h2 className="text-lg font-bold text-[#1A1A18] flex items-center gap-2">
-              <span className="material-symbols-outlined text-[#1D9E75]">calendar_month</span>
+            <h2 className="text-lg font-bold text-[#02343F] flex items-center gap-2">
+              <span className="material-symbols-outlined text-[#02343F]">calendar_month</span>
               {tx('Upcoming Appointments')}
             </h2>
-            <Link to="/asha/appointments" className="text-sm font-semibold text-[#1D9E75] hover:underline">
+            <Link to="/asha/appointments" className="text-sm font-semibold text-[#02343F] hover:underline">
               {tx('View All')}
             </Link>
           </div>
@@ -539,12 +542,12 @@ export default React.memo(function Home() {
                 const dateStr = dateObj.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
                 
                 return (
-                  <div key={visit.id} className="flex items-center justify-between p-3.5 bg-gray-50 border border-[#D3D1C7] rounded-xl hover:border-[#1D9E75]/40 transition-colors">
+                  <div key={visit.id} className="flex items-center justify-between p-3.5 bg-[#FAF8EA] border border-[#D8D4B0] rounded-xl hover:border-[#02343F]/50 transition-colors">
                     <div className="flex-1 pr-3 min-w-0">
-                      <p className="text-xs font-bold text-[#1D9E75] mb-1">
+                      <p className="text-xs font-bold text-[#02343F] mb-1">
                         📅 {dateStr} at {visit.scheduledTime || '10:00 AM'}
                       </p>
-                      <h3 className="font-bold text-[#1A1A18] text-sm flex items-center gap-2 truncate">
+                      <h3 className="font-bold text-[#02343F] text-sm flex items-center gap-2 truncate">
                         <span className="truncate">{visit.targetName}</span>
                         {visit.type === 'ngo' && (
                           <span className="bg-[#0288D1] text-white text-[9px] px-1.5 py-0.5 rounded-full uppercase tracking-wider font-bold shrink-0">NGO</span>
@@ -565,7 +568,7 @@ export default React.memo(function Home() {
                     </div>
                     <button 
                       onClick={() => handleCompleteVisit(visit)}
-                      className="px-3.5 py-1.5 bg-[#1D9E75] text-white rounded-lg text-xs font-bold shadow-sm active:scale-95 hover:bg-[#16815e] transition-colors whitespace-nowrap shrink-0"
+                      className="px-3.5 py-1.5 bg-[#02343F] text-[#F0EDCC] rounded-lg text-xs font-bold shadow-sm active:scale-95 hover:bg-[#034E5F] transition-colors whitespace-nowrap shrink-0"
                     >
                       Done ✓
                     </button>
@@ -595,25 +598,25 @@ export default React.memo(function Home() {
           ) : (
              <div className="space-y-3">
                <div className="flex gap-3">
-                 <button onClick={() => setActiveFilter(activeFilter === 'families_today' ? null : 'families_today')} className={`flex-1 bg-white p-3 rounded-xl border ${activeFilter === 'families_today' ? 'border-[#1D9E75] border-b-4 bg-[#EAF3DE]/30' : 'border-[#D3D1C7]'} text-center active:scale-95 transition-all block`}>
+                 <button onClick={() => setActiveFilter(activeFilter === 'families_today' ? null : 'families_today')} className={`flex-1 bg-white p-3 rounded-xl border ${activeFilter === 'families_today' ? 'border-[#02343F] border-b-4 bg-[#FAF8EA]/30' : 'border-[#D3D1C7]'} text-center active:scale-95 transition-all block`}>
                    <span className="block text-xl font-bold text-[#1A1A18]">{activityStats.familiesToday}</span>
                    <span className="text-[10px] text-gray-500 uppercase font-medium">{tx('Families Today')}</span>
                  </button>
-                 <button onClick={() => setActiveFilter(activeFilter === 'surveys_today' ? null : 'surveys_today')} className={`flex-1 bg-white p-3 rounded-xl border ${activeFilter === 'surveys_today' ? 'border-[#1D9E75] border-b-4 bg-[#EAF3DE]/30' : 'border-[#D3D1C7]'} text-center active:scale-95 transition-all block`}>
+                 <button onClick={() => setActiveFilter(activeFilter === 'surveys_today' ? null : 'surveys_today')} className={`flex-1 bg-white p-3 rounded-xl border ${activeFilter === 'surveys_today' ? 'border-[#02343F] border-b-4 bg-[#FAF8EA]/30' : 'border-[#D3D1C7]'} text-center active:scale-95 transition-all block`}>
                    <span className="block text-xl font-bold text-[#1A1A18]">{activityStats.surveysToday}</span>
                    <span className="text-[10px] text-gray-500 uppercase font-medium">{tx('Surveys Today')}</span>
                  </button>
-                 <button onClick={() => setActiveFilter(activeFilter === 'children_today' ? null : 'children_today')} className={`flex-1 bg-white p-3 rounded-xl border ${activeFilter === 'children_today' ? 'border-[#1D9E75] border-b-4 bg-[#EAF3DE]/30' : 'border-[#D3D1C7]'} text-center active:scale-95 transition-all block`}>
+                 <button onClick={() => setActiveFilter(activeFilter === 'children_today' ? null : 'children_today')} className={`flex-1 bg-white p-3 rounded-xl border ${activeFilter === 'children_today' ? 'border-[#02343F] border-b-4 bg-[#FAF8EA]/30' : 'border-[#D3D1C7]'} text-center active:scale-95 transition-all block`}>
                    <span className="block text-xl font-bold text-[#1A1A18]">{activityStats.childrenToday}</span>
                    <span className="text-[10px] text-gray-500 uppercase font-medium">{tx('Children Today')}</span>
                  </button>
                </div>
                <div className="flex gap-3">
-                 <button onClick={() => setActiveFilter(activeFilter === 'families_month' ? null : 'families_month')} className={`flex-1 bg-white p-3 rounded-xl border ${activeFilter === 'families_month' ? 'border-[#1D9E75] border-b-4 bg-[#EAF3DE]/30' : 'border-[#D3D1C7]'} text-center active:scale-95 transition-all block`}>
+                 <button onClick={() => setActiveFilter(activeFilter === 'families_month' ? null : 'families_month')} className={`flex-1 bg-white p-3 rounded-xl border ${activeFilter === 'families_month' ? 'border-[#02343F] border-b-4 bg-[#FAF8EA]/30' : 'border-[#D3D1C7]'} text-center active:scale-95 transition-all block`}>
                    <span className="block text-xl font-bold text-[#1A1A18]">{activityStats.familiesMonth}</span>
                    <span className="text-[10px] text-gray-500 uppercase font-medium">{tx('Families This Month')}</span>
                  </button>
-                 <button onClick={() => setActiveFilter(activeFilter === 'surveys_month' ? null : 'surveys_month')} className={`flex-1 bg-white p-3 rounded-xl border ${activeFilter === 'surveys_month' ? 'border-[#1D9E75] border-b-4 bg-[#EAF3DE]/30' : 'border-[#D3D1C7]'} text-center active:scale-95 transition-all block`}>
+                 <button onClick={() => setActiveFilter(activeFilter === 'surveys_month' ? null : 'surveys_month')} className={`flex-1 bg-white p-3 rounded-xl border ${activeFilter === 'surveys_month' ? 'border-[#02343F] border-b-4 bg-[#FAF8EA]/30' : 'border-[#D3D1C7]'} text-center active:scale-95 transition-all block`}>
                    <span className="block text-xl font-bold text-[#1A1A18]">{activityStats.surveysMonth}</span>
                    <span className="text-[10px] text-gray-500 uppercase font-medium">{tx('Surveys This Month')}</span>
                  </button>

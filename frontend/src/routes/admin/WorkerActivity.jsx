@@ -148,7 +148,7 @@ export default function WorkerActivity() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
         <div className="bg-white p-6 rounded-2xl shadow-sm border border-[#D3D1C7] flex flex-col justify-between">
           <div className="flex items-center gap-3 mb-2">
-            <span className="material-symbols-outlined text-[#1D9E75] bg-[#EAF3DE] p-2 rounded-lg">today</span>
+            <span className="material-symbols-outlined text-[#02343F] bg-[#FAF8EA] p-2 rounded-lg">today</span>
             <h3 className="text-[#5F5E5A] font-medium">Today</h3>
           </div>
           <p className="text-3xl font-bold">{todayCount}</p>
@@ -156,7 +156,7 @@ export default function WorkerActivity() {
         
         <div className="bg-white p-6 rounded-2xl shadow-sm border border-[#D3D1C7] flex flex-col justify-between">
           <div className="flex items-center gap-3 mb-2">
-            <span className="material-symbols-outlined text-[#1D9E75] bg-[#EAF3DE] p-2 rounded-lg">calendar_month</span>
+            <span className="material-symbols-outlined text-[#02343F] bg-[#FAF8EA] p-2 rounded-lg">calendar_month</span>
             <h3 className="text-[#5F5E5A] font-medium">This Month</h3>
           </div>
           <p className="text-3xl font-bold">{monthCount}</p>
@@ -164,7 +164,7 @@ export default function WorkerActivity() {
         
         <div className="bg-white p-6 rounded-2xl shadow-sm border border-[#D3D1C7] flex flex-col justify-between">
           <div className="flex items-center gap-3 mb-2">
-            <span className="material-symbols-outlined text-[#1D9E75] bg-[#EAF3DE] p-2 rounded-lg">summarize</span>
+            <span className="material-symbols-outlined text-[#02343F] bg-[#FAF8EA] p-2 rounded-lg">summarize</span>
             <h3 className="text-[#5F5E5A] font-medium">Total Surveys</h3>
           </div>
           <p className="text-3xl font-bold">{totalCount}</p>
@@ -172,11 +172,11 @@ export default function WorkerActivity() {
         
         <div className="bg-white p-6 rounded-2xl shadow-sm border border-[#D3D1C7] flex flex-col justify-between">
           <div className="flex items-center gap-3 mb-2">
-            <span className="material-symbols-outlined text-[#1D9E75] bg-[#EAF3DE] p-2 rounded-lg">speed</span>
+            <span className="material-symbols-outlined text-[#02343F] bg-[#FAF8EA] p-2 rounded-lg">speed</span>
             <h3 className="text-[#5F5E5A] font-medium">Performance</h3>
           </div>
           <div className="flex items-end gap-2">
-            <p className="text-3xl font-bold text-[#085041]">{performanceScore}</p>
+            <p className="text-3xl font-bold text-[#02343F]">{performanceScore}</p>
             <span className="text-sm text-[#5F5E5A] mb-1">/ 100</span>
           </div>
         </div>
@@ -197,7 +197,7 @@ export default function WorkerActivity() {
                   cursor={{fill: '#F3F4F6'}}
                   contentStyle={{borderRadius: '12px', border: '1px solid #D3D1C7', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)'}}
                 />
-                <Bar dataKey="surveys" fill="#1D9E75" radius={[6, 6, 0, 0]} barSize={40} />
+                <Bar dataKey="surveys" fill="#02343F" radius={[6, 6, 0, 0]} barSize={40} />
               </BarChart>
             </ResponsiveContainer>
           </div>
@@ -211,12 +211,12 @@ export default function WorkerActivity() {
               <p className="text-[#5F5E5A] text-center mt-10">No recent activity.</p>
             ) : (
               submissions.slice(0, 15).map(sub => (
-                <div key={sub.id} className="border-l-2 border-[#1D9E75] pl-4 py-1">
+                <div key={sub.id} className="border-l-2 border-[#02343F] pl-4 py-1">
                   <p className="font-bold text-[#1A1A18] capitalize text-sm">{(sub.moduleType || '').replace('_', ' ')}</p>
                   <p className="text-xs text-[#5F5E5A]">
                     {sub.submittedAt ? format(sub.submittedAt, 'PPpp') : '—'}
                   </p>
-                  {sub.notes && <p className="text-xs text-[#085041] mt-1 italic">"{sub.notes}"</p>}
+                  {sub.notes && <p className="text-xs text-[#02343F] mt-1 italic">"{sub.notes}"</p>}
                 </div>
               ))
             )}

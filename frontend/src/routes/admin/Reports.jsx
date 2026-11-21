@@ -58,7 +58,7 @@ export default function Reports() {
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `ashaai_report_${new Date().toISOString().slice(0,7)}.csv`;
+    a.download = `ashavaani_report_${new Date().toISOString().slice(0,7)}.csv`;
     a.click();
     URL.revokeObjectURL(url);
   };
@@ -123,7 +123,7 @@ export default function Reports() {
           <h1 className="text-2xl md:text-3xl font-bold">Reports</h1>
           <p className="text-[#5F5E5A] text-sm">{monthLabel} - Monthly Summary</p>
         </div>
-        <button onClick={handleExportCSV} className="bg-[#085041] text-white px-4 py-2 rounded-xl font-medium flex items-center gap-2 self-start hover:bg-[#1D9E75] transition-colors">
+        <button onClick={handleExportCSV} className="bg-[#02343F] text-white px-4 py-2 rounded-xl font-medium flex items-center gap-2 self-start hover:bg-[#02343F] transition-colors">
           <span className="material-symbols-outlined text-lg">download</span> Export CSV
         </button>
       </div>
@@ -136,7 +136,7 @@ export default function Reports() {
         <div className="overflow-x-auto">
           <table className="w-full bg-white rounded-2xl shadow-sm border border-[#D3D1C7] overflow-hidden">
             <thead>
-              <tr className="bg-[#085041] text-white text-sm">
+              <tr className="bg-[#02343F] text-white text-sm">
                 <th className="text-left px-4 py-3">Metric</th>
                 <th className="text-center px-4 py-3">This Month</th>
                 <th className="text-center px-4 py-3 hidden sm:table-cell">Last Month</th>
@@ -147,14 +147,14 @@ export default function Reports() {
               {metrics.map(m => (
                 <tr 
                   key={m.name} 
-                  className="border-t border-[#D3D1C7] hover:bg-[#EAF3DE] cursor-pointer transition-colors"
+                  className="border-t border-[#D3D1C7] hover:bg-[#FAF8EA] cursor-pointer transition-colors"
                   onClick={() => setSelectedMetric(m.name)}
                 >
-                  <td className="px-4 py-3 font-medium text-sm text-[#085041] underline decoration-1 underline-offset-2">{m.name}</td>
+                  <td className="px-4 py-3 font-medium text-sm text-[#02343F] underline decoration-1 underline-offset-2">{m.name}</td>
                   <td className="px-4 py-3 text-center font-bold">{m.current}</td>
                   <td className="px-4 py-3 text-center text-[#5F5E5A] hidden sm:table-cell">{m.previous}</td>
                   <td className="px-4 py-3 text-center">
-                    <span className={`text-sm font-bold ${m.up ? 'text-[#1D9E75]' : 'text-[#E24B4A]'}`}>
+                    <span className={`text-sm font-bold ${m.up ? 'text-[#02343F]' : 'text-[#E24B4A]'}`}>
                       {m.str}
                     </span>
                   </td>
@@ -170,7 +170,7 @@ export default function Reports() {
         <h3 className="text-lg font-bold text-[#1A1A18] mb-2">AI Training Data (On-Device)</h3>
         <p className="text-sm text-[#5F5E5A] mb-4">Export consented malnutrition photos and corrected labels for model retraining. Data is stored locally on this device.</p>
         <div className="flex gap-4">
-          <button onClick={handleExportTrainingData} className="bg-[#085041] text-white px-4 py-2 rounded-xl font-medium flex items-center gap-2 hover:bg-[#1D9E75] transition-colors">
+          <button onClick={handleExportTrainingData} className="bg-[#02343F] text-white px-4 py-2 rounded-xl font-medium flex items-center gap-2 hover:bg-[#02343F] transition-colors">
             <span className="material-symbols-outlined text-[18px]">download</span> Export Training JSON
           </button>
           <button onClick={handleClearTrainingData} className="bg-white border border-[#E24B4A] text-[#E24B4A] px-4 py-2 rounded-xl font-medium flex items-center gap-2 hover:bg-[#FCEBEB] transition-colors">

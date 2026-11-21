@@ -25,7 +25,7 @@ const DuplicateWarningModal = ({ existingRecord, onUpdate, onSkip, onClose }) =>
         <div className="flex flex-col gap-3">
           <button 
             type="button"
-            className="w-full py-3 bg-[#1D9E75] text-white rounded-xl font-medium shadow-md hover:bg-[#16815e] active:scale-95 transition-all text-center" 
+            className="w-full py-3 bg-[#02343F] text-white rounded-xl font-medium shadow-md hover:bg-[#01252D] active:scale-95 transition-all text-center" 
             onClick={onUpdate}
           >
             Update Existing Record

@@ -106,7 +106,7 @@ export default function AppointmentSheet({
         <div className="flex justify-between items-start">
           <div>
             <h2 className="text-xl font-bold text-[#1A1A18] flex items-center gap-2">
-              <Calendar className="w-6 h-6 text-[#1D9E75]" />
+              <Calendar className="w-6 h-6 text-[#02343F]" />
               Schedule Appointment
             </h2>
             <p className="text-sm text-[#5F5E5A] mt-1">For: <span className="font-semibold text-[#1A1A18]">{targetName}</span></p>
@@ -125,7 +125,7 @@ export default function AppointmentSheet({
                 onClick={() => setScheduledDate(qd.date)}
                 className={`px-4 py-2 rounded-xl text-sm font-medium transition-colors border ${
                   scheduledDate === qd.date 
-                    ? 'bg-[#1D9E75] text-white border-[#1D9E75]' 
+                    ? 'bg-[#02343F] text-white border-[#02343F]' 
                     : 'bg-white text-[#5F5E5A] border-[#D3D1C7] hover:bg-gray-50'
                 }`}
               >
@@ -147,7 +147,7 @@ export default function AppointmentSheet({
               />
               <button className={`px-4 py-2 rounded-xl text-sm font-medium transition-colors border flex items-center gap-1 ${
                 (!quickDates.find(q => q.date === scheduledDate) && scheduledDate !== '') 
-                  ? 'bg-[#1D9E75] text-white border-[#1D9E75]' 
+                  ? 'bg-[#02343F] text-white border-[#02343F]' 
                   : 'bg-white text-[#5F5E5A] border-[#D3D1C7] hover:bg-gray-50'
               }`}>
                 {(!quickDates.find(q => q.date === scheduledDate) && scheduledDate !== '') ? scheduledDate : 'Pick date →'}
@@ -167,7 +167,7 @@ export default function AppointmentSheet({
                 onClick={() => setScheduledTime(qt.time)}
                 className={`px-4 py-2 rounded-xl text-sm font-medium transition-colors border ${
                   scheduledTime === qt.time 
-                    ? 'bg-[#1D9E75] text-white border-[#1D9E75]' 
+                    ? 'bg-[#02343F] text-white border-[#02343F]' 
                     : 'bg-white text-[#5F5E5A] border-[#D3D1C7] hover:bg-gray-50'
                 }`}
               >
@@ -186,14 +186,14 @@ export default function AppointmentSheet({
             value={purpose}
             onChange={(e) => setPurpose(e.target.value)}
             placeholder="e.g. Monthly child growth checkup"
-            className="w-full p-3 border border-[#D3D1C7] rounded-xl focus:border-[#1D9E75] outline-none"
+            className="w-full p-3 border border-[#D3D1C7] rounded-xl focus:border-[#02343F] outline-none"
           />
         </div>
 
         <button 
           onClick={handleSubmit}
           disabled={isSubmitting}
-          className="w-full py-4 bg-[#1D9E75] hover:bg-[#16815e] active:scale-[0.98] transition-all text-white rounded-xl font-bold flex items-center justify-center gap-2 shadow-md"
+          className="w-full py-4 bg-[#02343F] hover:bg-[#01252D] active:scale-[0.98] transition-all text-white rounded-xl font-bold flex items-center justify-center gap-2 shadow-md"
         >
           {isSubmitting ? 'Scheduling...' : (
             <>

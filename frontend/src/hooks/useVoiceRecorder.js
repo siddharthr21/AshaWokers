@@ -129,7 +129,7 @@ export const useVoiceRecorder = (moduleType = 'family_survey', onFieldsFilled, f
         }
         setState('done');
       } else {
-        setErrorMsg(data.error || 'No data detected. Try speaking more clearly in Marathi or Hindi.');
+        setErrorMsg(data.error || 'No data detected. Try speaking more clearly in Hindi, Kannada or English.');
         setState('error');
       }
     } catch (err) {

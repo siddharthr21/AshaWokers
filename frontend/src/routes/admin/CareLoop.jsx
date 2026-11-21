@@ -7,43 +7,49 @@ const REMINDER_TEMPLATES = {
   appointment: {
     title: {
       en: 'Upcoming Health Appointment',
-      mr: 'आगामी आरोग्य तपासणी',
-      hi: 'आगामी स्वास्थ्य जांच'
+      hi: 'आगामी स्वास्थ्य जांच',
+      kn: 'ಮುಂಬರುವ ಆರೋಗ್ಯ ತಪಾಸಣೆ',
+      mr: 'आगामी आरोग्य तपासणी'
     },
     text: {
       en: (date) => `Namaste. This is a gentle reminder from the community health team regarding your child's scheduled health check-up on ${date}. Please visit your nearest health center or contact your ASHA worker. Healthy children build healthy families.`,
-      mr: (date) => `नमस्ते. आपल्या बालकाच्या ${date} रोजीच्या नियोजित आरोग्य तपासणीबाबत हे आरोग्य केंद्राकडून स्मरणपत्र आहे. कृपया जवळच्या आरोग्य केंद्रास भेट द्या किंवा आपल्या आशा कार्यकर्त्यांशी संपर्क साधा.`,
-      hi: (date) => `नमस्ते। यह आपके बच्चे के ${date} को निर्धारित स्वास्थ्य जांच के संदर्भ में स्वास्थ्य केंद्र से स्मरण संदेश है। कृपया निकटतम स्वास्थ्य केंद्र जाएं या अपनी आशा कार्यकर्ता से संपर्क करें।`
+      hi: (date) => `नमस्ते। यह आपके बच्चे के ${date} को निर्धारित स्वास्थ्य जांच के संदर्भ में स्वास्थ्य केंद्र से स्मरण संदेश है। कृपया निकटतम स्वास्थ्य केंद्र जाएं या अपनी आशा कार्यकर्ता से संपर्क करें।`,
+      kn: (date) => `ನಮಸ್ಕಾರ. ನಿಮ್ಮ ಮಗುವಿನ ${date} ರಂದು ನಿಗದಿಪಡಿಸಲಾದ ಆರೋಗ್ಯ ತಪಾಸಣೆಯ ಕುರಿತು ಇದು ಆರೋಗ್ಯ ಕೇಂದ್ರದ ನೆನಪೋಲೆ ಸಂದೇಶವಾಗಿದೆ. ದಯವಿಟ್ಟು ಹತ್ತಿರದ ಆರೋಗ್ಯ ಕೇಂದ್ರಕ್ಕೆ ಭೇಟಿ ನೀಡಿ ಅಥವಾ ನಿಮ್ಮ ಆಶಾ ಕಾರ್ಯಕರ್ತೆಯನ್ನು ಸಂಪರ್ಕಿಸಿ.`,
+      mr: (date) => `नमस्ते. आपल्या बालकाच्या ${date} रोजीच्या नियोजित आरोग्य तपासणीबाबत हे आरोग्य केंद्राकडून स्मरणपत्र आहे. कृपया जवळच्या आरोग्य केंद्रास भेट द्या किंवा आपल्या आशा कार्यकर्त्यांशी संपर्क साधा.`
     }
   },
   overdue: {
     title: {
       en: 'Missed Follow-Up Care',
-      mr: 'चुकलेली तपासणी पाठपुरावा',
-      hi: 'छूटी हुई स्वास्थ्य जांच'
+      hi: 'छूटी हुई स्वास्थ्य जांच',
+      kn: 'ತಪ್ಪಿದ ಆರೋಗ್ಯ ತಪಾಸಣೆ',
+      mr: 'चुकलेली तपासणी पाठपुरावा'
     },
-    text: (date) => ({
-      en: `Namaste. We noticed your child missed a health follow-up scheduled for ${date}. Regular check-ups are essential for healthy growth and recovery. Please visit your health center or contact your ASHA worker at the earliest.`,
-      mr: `नमस्ते. आपल्या बालकाची ${date} रोजीची आरोग्य तपासणी पूर्ण झालेली नाही. नियमित तपासणी बालकाच्या निरोगी वाढीसाठी अत्यंत महत्त्वाची आहे. कृपया लवकरात लवकर आरोग्य केंद्रास भेट द्या किंवा आशा दीदींशी संपर्क साधा.`,
-      hi: `नमस्ते। आपके बच्चे की ${date} की स्वास्थ्य जांच छूट गई है। नियमित जांच बच्चे के पोषण और विकास के लिए आवश्यक है। कृपया शीघ्र ही अपने स्वास्थ्य केंद्र जाएं या आशा दीदी से संपर्क करें।`
-    })
+    text: {
+      en: (date) => `Namaste. We noticed your child missed a health follow-up scheduled for ${date}. Regular check-ups are essential for healthy growth and recovery. Please visit your health center or contact your ASHA worker at the earliest.`,
+      hi: (date) => `नमस्ते। आपके बच्चे की ${date} की स्वास्थ्य जांच छूट गई है। नियमित जांच बच्चे के पोषण और विकास के लिए आवश्यक है। कृपया शीघ्र ही अपने स्वास्थ्य केंद्र जाएं या आशा दीदी से संपर्क करें।`,
+      kn: (date) => `ನಮಸ್ಕಾರ. ನಿಮ್ಮ ಮಗುವಿನ ${date} ರಂದು ನಿಗದಿಯಾಗಿದ್ದ ಆರೋಗ್ಯ ತಪಾಸಣೆ ತಪ್ಪಿರುವುದನ್ನು ನಾವು ಗಮನಿಸಿದ್ದೇವೆ. ಮಗುವಿನ ಆರೋಗ್ಯಕರ ಬೆಳವಣಿಗೆಗೆ ನಿಯಮಿತ ತಪಾಸಣೆ ಅಗತ್ಯ. ದಯವಿಟ್ಟು ಶೀಘ್ರದಲ್ಲೇ ಆರೋಗ್ಯ ಕೇಂದ್ರಕ್ಕೆ ಭೇಟಿ ನೀಡಿ ಅಥವಾ ನಿಮ್ಮ ಆಶಾ ಕಾರ್ಯಕರ್ತೆಯನ್ನು ಸಂಪರ್ಕಿಸಿ.`,
+      mr: (date) => `नमस्ते. आपल्या बालकाची ${date} रोजीची आरोग्य तपासणी पूर्ण झालेली नाही. नियमित तपासणी बालकाच्या निरोगी वाढीसाठी अत्यंत महत्त्वाची आहे. कृपया लवकरात लवकर आरोग्य केंद्रास भेट द्या किंवा आशा दीदींशी संपर्क साधा.`
+    }
   },
   nutrition: {
     title: {
       en: 'NRC Nutrition Follow-Up',
-      mr: 'पोषण केंद्र पाठपुरावा',
-      hi: 'पोषण केंद्र फॉलो-अप'
+      hi: 'पोषण केंद्र फॉलो-अप',
+      kn: 'NRC ಪೌಷ್ಠಿಕಾಂಶ ತಪಾಸಣೆ',
+      mr: 'पोषण केंद्र पाठपुरावा'
     },
     text: {
       en: () => `Namaste. Your child's nutritional care follow-up is due. Regular nutrition monitoring helps your child grow strong and active. Please consult your ASHA worker today for guidance and support.`,
-      mr: () => `नमस्ते. आपल्या बालकाची पोषण तपासणी बाकी आहे. नियमित तपासणीमुळे बाळ सुदृढ आणि निरोगी राहते. कृपया आजच आपल्या आशा कार्यकर्त्यांशी चर्चा करा.`,
-      hi: () => `नमस्ते। आपके बच्चे की पोषण जांच नियत है। नियमित पोषण जांच से बच्चा स्वस्थ और मजबूत बनता है। कृपया आज ही अपनी आशा दीदी से संपर्क करें।`
+      hi: () => `नमस्ते। आपके बच्चे की पोषण जांच नियत है। नियमित पोषण जांच से बच्चा स्वस्थ और मजबूत बनता है। कृपया आज ही अपनी आशा दीदी से संपर्क करें।`,
+      kn: () => `ನಮಸ್ಕಾರ. ನಿಮ್ಮ ಮಗುವಿನ ಪೌಷ್ಠಿಕಾಂಶ ಆರೈಕೆ ತಪಾಸಣೆಯ ಸಮಯವಾಗಿದೆ. ನಿಯಮಿತ ತಪಾಸಣೆಯು ಮಗುವಿನ ಸದೃಢ ಬೆಳವಣಿಗೆಗೆ ಸಹಕಾರಿಯಾಗಿದೆ. ದಯವಿಟ್ಟು ಇಂದು ನಿಮ್ಮ ಆಶಾ ಕಾರ್ಯಕರ್ತೆಯನ್ನು ಸಂಪರ್ಕಿಸಿ.`,
+      mr: () => `नमस्ते. आपल्या बालकाची पोषण तपासणी बाकी आहे. नियमित तपासणीमुळे बाळ सुदृढ आणि निरोगी राहते. कृपया आजच आपल्या आशा कार्यकर्त्यांशी चर्चा करा.`
     }
   }
 };
 
 export default function CareLoop() {
-  const { tx } = useTx();
+  const tx = useTx();
   const [cases, setCases] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -122,7 +128,7 @@ export default function CareLoop() {
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
         <div>
           <div className="flex items-center gap-2">
-            <span className="material-symbols-outlined text-[#085041] text-3xl">sync_saved_locally</span>
+            <span className="material-symbols-outlined text-[#02343F] text-3xl">sync_saved_locally</span>
             <h1 className="text-2xl lg:text-3xl font-bold text-slate-900 tracking-tight">
               {tx('Care Loop Coordination', 'care_loop')}
             </h1>
@@ -206,7 +212,7 @@ export default function CareLoop() {
             <button
               key={f.id}
               onClick={() => setActiveFilter(f.id)}
-              className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition ${activeFilter === f.id ? 'bg-[#085041] text-white shadow-sm' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'}`}
+              className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition ${activeFilter === f.id ? 'bg-[#02343F] text-white shadow-sm' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'}`}
             >
               {f.label}
             </button>
@@ -220,7 +226,7 @@ export default function CareLoop() {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Search by child, ASHA, village..."
-            className="w-full pl-9 pr-3 py-1.5 border border-slate-200 rounded-lg text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#085041]/20 focus:border-[#085041]"
+            className="w-full pl-9 pr-3 py-1.5 border border-slate-200 rounded-lg text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#02343F]/20 focus:border-[#02343F]"
           />
         </div>
       </div>
@@ -229,7 +235,7 @@ export default function CareLoop() {
       <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
         {loading ? (
           <div className="py-24 text-center text-slate-500">
-            <span className="material-symbols-outlined animate-spin text-4xl text-[#085041] mb-2">progress_activity</span>
+            <span className="material-symbols-outlined animate-spin text-4xl text-[#02343F] mb-2">progress_activity</span>
             <p className="text-sm font-medium">Loading Care Loop Coordination View...</p>
           </div>
         ) : error ? (
@@ -359,7 +365,7 @@ export default function CareLoop() {
                             e.stopPropagation();
                             setSelectedCase(c);
                           }}
-                          className="px-3 py-1 bg-slate-100 hover:bg-[#085041] hover:text-white text-slate-700 rounded-lg text-xs font-medium transition inline-flex items-center gap-1 shadow-sm"
+                          className="px-3 py-1 bg-slate-100 hover:bg-[#02343F] hover:text-white text-slate-700 rounded-lg text-xs font-medium transition inline-flex items-center gap-1 shadow-sm"
                         >
                           <span>Review</span>
                           <span className="material-symbols-outlined text-xs">chevron_right</span>
@@ -414,7 +420,7 @@ export default function CareLoop() {
                   </h3>
                 </div>
                 <p className="text-xs text-slate-600">
-                  AshaAI evaluates deterministic rule violations rather than statistical predictions to ensure fully transparent clinical coordination.
+                  Asha Vaani evaluates deterministic rule violations rather than statistical predictions to ensure fully transparent clinical coordination.
                 </p>
                 {selectedCase.reasons && selectedCase.reasons.length > 0 ? (
                   <ul className="mt-2 space-y-1.5">
@@ -444,20 +450,20 @@ export default function CareLoop() {
                   </div>
                   {/* Language Toggle */}
                   <div className="flex bg-white rounded-lg p-0.5 border border-slate-200 text-xs font-medium shadow-sm">
-                    {['en', 'mr', 'hi'].map(l => (
+                    {['en', 'hi', 'kn'].map(l => (
                       <button
                         key={l}
                         onClick={() => setReminderLang(l)}
-                        className={`px-2.5 py-1 rounded capitalize transition ${reminderLang === l ? 'bg-[#085041] text-white' : 'text-slate-600 hover:text-slate-900'}`}
+                        className={`px-3 py-1 rounded capitalize transition font-bold ${reminderLang === l ? 'bg-[#02343F] text-[#F0EDCC]' : 'text-slate-600 hover:text-slate-900'}`}
                       >
-                        {l === 'en' ? 'EN' : l === 'mr' ? 'मराठी' : 'हिंदी'}
+                        {l === 'en' ? 'EN' : l === 'hi' ? 'हिंदी' : 'ಕನ್ನಡ'}
                       </button>
                     ))}
                   </div>
                 </div>
 
                 <div className="p-3 bg-amber-50 border border-amber-200 rounded-lg text-xs text-amber-900">
-                  <strong>Human-in-the-loop:</strong> AshaAI drafts reminder messages only (excluding sensitive names). A human supervisor or worker must review the draft and click Send.
+                  <strong>Human-in-the-loop:</strong> Asha Vaani drafts reminder messages only (excluding sensitive names). A human supervisor or worker must review the draft and click Send.
                 </div>
 
                 {/* Templates */}

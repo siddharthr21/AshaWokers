@@ -102,7 +102,7 @@ const useAmbientAI = (module = 'family_survey') => {
     const recognition = new SpeechRecognition();
     recognition.continuous = true;
     recognition.interimResults = false;
-    recognition.lang = 'mr-IN'; // Marathi default
+    recognition.lang = 'hi-IN'; // Hindi default
 
     recognition.onresult = (event) => {
       const lastResult = event.results[event.results.length - 1];

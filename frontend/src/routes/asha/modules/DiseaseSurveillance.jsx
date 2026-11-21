@@ -35,7 +35,7 @@ export default function DiseaseSurveillance() {
     try {
       const data = await apiFetch(`/api/disease/research?query=${encodeURIComponent(searchQuery)}`);
       setResearchData(data);
-    } catch (err) {
+    } catch {
       setError('Failed to fetch research. Please try again.');
     } finally {
       setLoading(false);
@@ -49,7 +49,7 @@ export default function DiseaseSurveillance() {
         Disease Research & Guidelines
       </h3>
       <p className="text-sm text-[#0288D1] mb-4">
-        Ask AshaAI to search official government guidelines or recent studies regarding symptoms or outbreaks.
+        Ask Asha Vaani to search official government guidelines or recent studies regarding symptoms or outbreaks.
       </p>
       
       <form onSubmit={handleSearch} className="flex gap-2 mb-4">
@@ -75,7 +75,7 @@ export default function DiseaseSurveillance() {
         <div className="bg-white p-4 rounded-xl border border-[#B3E5FC]">
           <div className="flex items-center justify-between mb-2">
             <span className="text-xs font-bold text-gray-500 uppercase">Results</span>
-            <span className="bg-[#EAF3DE] text-[#1D9E75] text-[10px] font-bold px-2 py-1 rounded border border-[#1D9E75]">
+            <span className="bg-[#FAF8EA] text-[#02343F] text-[10px] font-bold px-2 py-1 rounded border border-[#02343F]">
               {researchData.source}
             </span>
           </div>

@@ -1,4 +1,5 @@
 import { useAuthStore } from '../stores/authStore';
+import { toFemaleName } from './nameUtils';
 
 export const formatBackendUrl = (url) => {
   if (!url) return 'http://localhost:8080';
@@ -18,7 +19,7 @@ export const showToast = (message, type = 'info') => {
   const toast = document.createElement('div');
   toast.id = 'global-toast';
   toast.className = `fixed top-4 left-1/2 -translate-x-1/2 z-[9999] px-4 py-2 rounded-xl shadow-lg text-sm font-medium flex items-center space-x-2 transition-all duration-300 animate-slide-down ${
-    type === 'error' ? 'bg-[#FCEBEB] text-[#791F1F] border border-[#E24B4A]' : 'bg-[#EAF3DE] text-[#085041] border border-[#1D9E75]'
+    type === 'error' ? 'bg-[#FCEBEB] text-[#791F1F] border border-[#E24B4A]' : 'bg-[#FAF8EA] text-[#02343F] border border-[#02343F]'
   }`;
   toast.innerHTML = `<span class="material-symbols-outlined text-[18px]">${type === 'error' ? 'error' : 'info'}</span><span>${message}</span>`;
   
@@ -120,7 +121,16 @@ export const apiFetch = async (endpoint, options = {}) => {
     throw err;
   }
 
-  return response.json();
+  const data = await response.json();
+  if (endpoint.includes('/api/risk/priority') || endpoint.includes('/api/risk/critical')) {
+    if (Array.isArray(data)) {
+      return data.map((item, idx) => ({
+        ...item,
+        name: toFemaleName(item.name, idx)
+      }));
+    }
+  }
+  return data;
 };
 
 export const resolveIdentity = async (idToken) => {

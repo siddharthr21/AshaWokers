@@ -17,7 +17,7 @@ export default function AppointmentsList() {
       try {
         const data = await apiFetch(`/api/appointments/upcoming/${docId}`);
         if (!isUnmounted) {
-          setVisits(data);
+          setVisits(Array.isArray(data) ? data : []);
           setLoading(false);
         }
       } catch (err) {
@@ -46,14 +46,14 @@ export default function AppointmentsList() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F1EFE8] pb-24">
+    <div className="min-h-screen bg-[#F0EDCC] pb-24 text-[#02343F]">
       {/* Header */}
-      <div className="bg-white px-4 py-4 sticky top-0 z-30 shadow-sm border-b border-[#D3D1C7] flex items-center gap-3">
-        <button onClick={() => navigate(-1)} className="p-2 rounded-full hover:bg-gray-100 active:scale-95 transition-all">
-          <span className="material-symbols-outlined text-gray-700">arrow_back</span>
+      <div className="bg-white px-4 py-4 sticky top-0 z-30 shadow-sm border-b border-[#D8D4B0] flex items-center gap-3">
+        <button onClick={() => navigate(-1)} className="p-2 rounded-full hover:bg-[#F0EDCC]/30 active:scale-95 transition-all text-[#02343F]">
+          <span className="material-symbols-outlined">arrow_back</span>
         </button>
-        <h1 className="text-xl font-bold text-[#1A1A18] flex items-center gap-2">
-          <span className="material-symbols-outlined text-[#1D9E75]">calendar_month</span>
+        <h1 className="text-xl font-bold text-[#02343F] flex items-center gap-2">
+          <span className="material-symbols-outlined text-[#02343F]">calendar_month</span>
           All Scheduled Visits
         </h1>
       </div>
@@ -61,13 +61,13 @@ export default function AppointmentsList() {
       <div className="p-4 space-y-4">
         {loading ? (
           <div className="flex justify-center py-10">
-            <span className="material-symbols-outlined animate-spin text-3xl text-[#1D9E75]">refresh</span>
+            <span className="material-symbols-outlined animate-spin text-3xl text-[#02343F]">refresh</span>
           </div>
         ) : visits.length === 0 ? (
-          <div className="p-6 bg-white rounded-2xl border border-[#D3D1C7] text-center shadow-sm">
-            <span className="material-symbols-outlined text-4xl text-gray-400 mb-2">event_available</span>
-            <h3 className="font-bold text-[#1A1A18] mb-1">No Upcoming Visits</h3>
-            <p className="text-sm text-[#5F5E5A]">You don't have any visits scheduled for the future.</p>
+          <div className="p-6 bg-white rounded-2xl border border-[#D8D4B0] text-center shadow-sm">
+            <span className="material-symbols-outlined text-4xl text-[#02343F]/40 mb-2">event_available</span>
+            <h3 className="font-bold text-[#02343F] mb-1">No Upcoming Visits</h3>
+            <p className="text-sm text-[#02343F]/70">You don't have any visits scheduled for the future.</p>
           </div>
         ) : (
           <div className="space-y-3">
@@ -76,20 +76,20 @@ export default function AppointmentsList() {
               const dateStr = dateObj.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' });
               
               return (
-                <div key={visit.id} className="bg-white p-4 rounded-2xl shadow-sm border border-[#D3D1C7]">
+                <div key={visit.id} className="bg-white p-4 rounded-2xl shadow-sm border border-[#D8D4B0]">
                   <div className="flex items-center justify-between mb-3">
-                    <p className="text-sm font-bold text-[#1D9E75] bg-[#EAF3DE] px-3 py-1 rounded-lg">
+                    <p className="text-sm font-bold text-[#02343F] bg-[#FAF8EA] border border-[#D8D4B0] px-3 py-1 rounded-lg">
                       📅 {dateStr} at {visit.scheduledTime || 'TBD'}
                     </p>
                     <button 
                       onClick={() => handleCompleteVisit(visit)}
-                      className="px-4 py-2 bg-[#1D9E75] text-white rounded-xl text-sm font-bold shadow-sm active:scale-95 hover:bg-[#16815e] transition-colors whitespace-nowrap"
+                      className="px-4 py-2 bg-[#02343F] text-[#F0EDCC] rounded-xl text-sm font-bold shadow-sm active:scale-95 hover:bg-[#012128] transition-colors whitespace-nowrap"
                     >
                       Done ✓
                     </button>
                   </div>
                   <div>
-                    <h3 className="font-bold text-[#1A1A18] text-lg mb-1 flex items-center gap-2">
+                    <h3 className="font-bold text-[#02343F] text-lg mb-1 flex items-center gap-2">
                       {visit.targetName || 'Scheduled Visit'}
                       {visit.type === 'ngo' && (
                         <span className="bg-[#0288D1] text-white text-[10px] px-2 py-0.5 rounded-full uppercase tracking-wider font-bold">NGO</span>

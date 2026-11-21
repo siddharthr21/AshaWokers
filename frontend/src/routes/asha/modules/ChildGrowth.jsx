@@ -1,20 +1,16 @@
-// TODO: Add view mode — same pattern as FamilySurvey.jsx
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import BaseModuleForm from '../../../components/BaseModuleForm';
 import { useAuthStore } from '../../../stores/authStore';
-import AmbientToggle from '../../../components/AmbientToggle';
-import AadhaarAutofill from '../../../components/AadhaarAutofill';
-import { useTranslation } from 'react-i18next';
 import AadhaarLinkagePopup from '../../../components/AadhaarLinkagePopup';
 import MalnutritionScannerWidget from '../../../components/widgets/MalnutritionScannerWidget';
 import { apiFetch } from '../../../utils/api';
 
 const FIELDS = [
-  { id: 'child_name', label: 'Child Name / बालकाचे नाव', required: true, placeholder: 'Full name' },
-  { id: 'mother_name', label: 'Mother Name', required: true },
-  { id: 'age_months', label: 'Age (months)', type: 'number', required: true, placeholder: '0-60' },
-  { id: 'gender', label: 'Gender', type: 'select', required: true, options: [
-    { value: 'Male', label: 'Male / मुलगा' }, { value: 'Female', label: 'Female / मुलगी' }
+  { id: 'child_name', label: 'Child Name / बच्चे का नाम', required: true, placeholder: 'Full name' },
+  { id: 'mother_name', label: 'Mother Name / माँ का नाम', required: true },
+  { id: 'age_months', label: 'Age (months) / उम्र (महीने)', type: 'number', required: true, placeholder: '0-60' },
+  { id: 'gender', label: 'Gender / लिंग', type: 'select', required: true, options: [
+    { value: 'Male', label: 'Male / लड़का' }, { value: 'Female', label: 'Female / लड़की' }
   ]},
   { id: 'weight_kg', label: 'Weight (kg)', type: 'number', required: true, placeholder: 'e.g. 8.5' },
   { id: 'height_cm', label: 'Height (cm)', type: 'number', required: true, placeholder: 'e.g. 72' },
@@ -43,8 +39,8 @@ const FIELDS = [
 // Grade config helper
 const GRADE_CONFIG = {
   NORMAL: {
-    bg: '#EAF3DE', border: '#1D9E75', text: '#085041',
-    icon: 'check_circle', label: 'Normal', badgeBg: '#1D9E75',
+    bg: '#FAF8EA', border: '#02343F', text: '#02343F',
+    icon: 'check_circle', label: 'Normal', badgeBg: '#02343F',
   },
   YELLOW: {
     bg: '#FFF8E1', border: '#FFCA28', text: '#7A5500',
@@ -57,7 +53,7 @@ const GRADE_CONFIG = {
 };
 
 function ConfidenceBar({ value }) {
-  const color = value >= 75 ? '#1D9E75' : value >= 50 ? '#F0A500' : '#E24B4A';
+  const color = value >= 75 ? '#02343F' : value >= 50 ? '#F0A500' : '#E24B4A';
   return (
     <div style={{ marginTop: '10px' }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '11px', color: '#777', marginBottom: '4px' }}>
@@ -72,26 +68,12 @@ function ConfidenceBar({ value }) {
 }
 
 export default function ChildGrowth() {
-  const [photo, setPhoto] = useState(null);
-  const [preview, setPreview] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [gradeResult, setGradeResult] = useState(null);
-  const [gradeConfirmed, setGradeConfirmed] = useState(false);
   const [prefillData, setPrefillData] = useState(null);
-  const [referralSent, setReferralSent] = useState(false);
   const [hasParents, setHasParents] = useState(true);
   const [showLinkagePopup, setShowLinkagePopup] = useState(false);
   const [linkageData, setLinkageData] = useState(null);
   const [linkageConfirmedData, setLinkageConfirmedData] = useState(null);
-  
-  const fileInputRef = useRef();
   const { user } = useAuthStore();
-
-  const handleAmbientSuggestion = (suggestion) => {
-    if (suggestion?.field && suggestion?.value !== undefined) {
-      setFormData(prev => ({ ...prev, [suggestion.field]: suggestion.value }));
-    }
-  };
 
   const handleAadhaarEntered = async (last4) => {
     if (!hasParents) return; // skip if orphan
@@ -135,48 +117,6 @@ export default function ChildGrowth() {
       } catch (err) {
         console.error('Linkage confirmation failed', err);
       }
-    }
-  };
-
-  const handleCapture = (e) => {
-    if (e.target.files && e.target.files[0]) {
-      const file = e.target.files[0];
-      setPhoto(file);
-      setPreview(URL.createObjectURL(file));
-      setGradeResult(null);
-      setReferralSent(false);
-    }
-  };
-
-  const clearPhoto = () => {
-    setPhoto(null);
-    setPreview(null);
-    setGradeResult(null);
-    setGradeConfirmed(false);
-    setReferralSent(false);
-    if (fileInputRef.current) fileInputRef.current.value = '';
-  };
-
-  const handleGrade = async () => {
-    if (!photo) return;
-    setLoading(true);
-    try {
-      const formData = new FormData();
-      formData.append('photo', photo);          // backend accepts photo or image
-
-      const data = await apiFetch('/api/vision/muac-grade', {
-        method: 'POST',
-        body: formData,
-      });
-
-      // Backend returns { grade, confidence, muac_mm, visible_signs, recommendation, ... }
-      setGradeResult(data.grading || data);
-      setGradeConfirmed(false);
-    } catch (err) {
-      console.error('[MalnutritionScan] error:', err);
-      setGradeResult({ error: true, grade: 'ERROR', confidence: 0, explanation: err.message });
-    } finally {
-      setLoading(false);
     }
   };
 
@@ -250,7 +190,7 @@ export default function ChildGrowth() {
 
       {/* ── Regular Form ── */}
       <BaseModuleForm
-        title="Child Growth / बाल वाढ"
+        title="Child Growth / बाल विकास एवं पोषण"
         moduleIcon="child_care"
         collectionName="children"
         moduleName="child_growth"
@@ -281,4 +221,5 @@ export default function ChildGrowth() {
     </div>
   );
 }
-
+
+

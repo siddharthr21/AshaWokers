@@ -1,4 +1,4 @@
-"""Internal FastAPI service for AshaAI's AI capabilities.
+"""Internal FastAPI service for Asha Vaani's AI capabilities.
 
 Routes are proxied by Spring Boot and internal channels;
 the frontend communicates through Spring Boot REST APIs.
@@ -30,7 +30,7 @@ if _env_local_path.exists():
 from fastapi import FastAPI
 from routers import voice, vision, register, ambient, text_features, agent
 
-app = FastAPI(title="AshaAI AI Service", version="0.1.0")
+app = FastAPI(title="Asha Vaani AI Service", version="0.1.0")
 
 app.include_router(voice.router)
 app.include_router(vision.router)
