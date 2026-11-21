@@ -83,31 +83,40 @@ const AadhaarInput = ({ memberIndex, memberName, onAadhaarScanned }) => {
   };
 
   const parseAadhaarQR = (qrData) => {
+    if (!qrData || typeof qrData !== 'string') return;
     try {
       const parser = new DOMParser();
       const xml = parser.parseFromString(qrData, 'text/xml');
       const root = xml.documentElement;
       
-      const aadhaar = root.getAttribute('uid') || '';
-      const name = root.getAttribute('name') || '';
-      const dob = root.getAttribute('dob') || '';
-      const gender = root.getAttribute('gender') === 'M' ? 'Male' : 
-                     root.getAttribute('gender') === 'F' ? 'Female' : 'Other';
-      
-      const [d, m, y] = dob.split('-');
-      const formattedDob = y && m && d ? `${y}-${m.padStart(2,'0')}-${d.padStart(2,'0')}` : '';
-      
-      const last4 = aadhaar.slice(-4);
-      setMasked(`XXXX-XXXX-XXXX-${last4}`);
-      setMode('confirmed');
-      
-      onAadhaarScanned({ aadhaar_raw: aadhaar, name, dob: formattedDob, gender });
-    } catch {
-      const params = new URLSearchParams(qrData.split('?')[1]);
+      if (root && root.nodeName !== 'parsererror') {
+        const aadhaar = root.getAttribute('uid') || '';
+        const name = root.getAttribute('name') || '';
+        const dob = root.getAttribute('dob') || '';
+        const gender = root.getAttribute('gender') === 'M' ? 'Male' : 
+                       root.getAttribute('gender') === 'F' ? 'Female' : 'Other';
+        
+        const [d, m, y] = (dob || '').split('-');
+        const formattedDob = y && m && d ? `${y}-${m.padStart(2,'0')}-${d.padStart(2,'0')}` : '';
+        
+        const last4 = aadhaar.slice(-4);
+        setMasked(last4 ? `XXXX-XXXX-XXXX-${last4}` : '');
+        setMode('confirmed');
+        
+        onAadhaarScanned({ aadhaar_raw: aadhaar, name, dob: formattedDob, gender });
+        return;
+      }
+    } catch {}
+    try {
+      const qs = qrData.includes('?') ? qrData.split('?')[1] : qrData;
+      const params = new URLSearchParams(qs);
       const uid = params.get('uid') || qrData;
-      setMasked(`XXXX-XXXX-XXXX-${uid.slice(-4)}`);
+      const safeUid = String(uid || '');
+      setMasked(safeUid ? `XXXX-XXXX-XXXX-${safeUid.slice(-4)}` : '');
       setMode('confirmed');
-      onAadhaarScanned({ aadhaar_raw: uid });
+      onAadhaarScanned({ aadhaar_raw: safeUid });
+    } catch (e) {
+      console.warn('QR parse failed', e);
     }
   };
 

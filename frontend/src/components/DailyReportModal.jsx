@@ -10,7 +10,7 @@ const SURVEY_CONFIGS = {
   'households': {
     title: 'Village Health Survey Register',
     headers: ['Sr No', 'House No', 'Family No', 'Head Name & Contact', 'Age', 'Religion', 'Caste', 'BPL/APL', 'Total Mems', 'Boys', 'Girls', 'Women', 'Men', '<5 Yrs', '<30 Yrs'],
-    mapRow: (d, i) => [String(i + 1), String(d.houseNumber || d.house_number || '-'), String(d.id.slice(-6).toUpperCase()), String(d.familyHeadName || '-'), '-', '-', '-', String(d.bplStatus !== undefined ? (d.bplStatus ? 'BPL' : 'APL') : '-'), String(d.totalMembers || '-'), '-', '-', '-', '-', '-', '-']
+    mapRow: (d, i) => [String(i + 1), String(d.houseNumber || d.house_number || '-'), String(d.id || '').slice(-6).toUpperCase() || '-', String(d.familyHeadName || '-'), '-', '-', '-', String(d.bplStatus !== undefined ? (d.bplStatus ? 'BPL' : 'APL') : '-'), String(d.totalMembers || '-'), '-', '-', '-', '-', '-', '-']
   },
   'household_members': {
     title: 'Family Member Survey Register',

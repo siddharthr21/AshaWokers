@@ -158,8 +158,20 @@ export default function AdminLogin() {
                Auth:   Supabase auth.users id = 018cdf21-0b84-4a27-ab0a-2794585c2e0e
                If either the email or password shown here changes, update seed_demo_dataset.sql
                AND re-run scripts/fix-admin-password.js so auth and DB stay in sync. */}
-          <div className="mt-4 bg-[#FAF8EA] border border-[#02343F] rounded-xl p-4">
-            <p className="text-xs font-bold text-[#02343F] mb-2"><span className="material-symbols-outlined text-[16px] align-middle mr-1">key</span> Demo Credentials</p>
+          <div 
+            onClick={() => {
+              setEmail('admin@asha.gov.in');
+              setPassword('Admin@123');
+            }}
+            className="mt-4 bg-[#FAF8EA] border border-[#02343F] rounded-xl p-4 cursor-pointer hover:bg-[#F0EDCC] transition-all"
+            title="Click to auto-fill demo credentials"
+          >
+            <div className="flex items-center justify-between mb-2">
+              <p className="text-xs font-bold text-[#02343F] flex items-center">
+                <span className="material-symbols-outlined text-[16px] align-middle mr-1">key</span> Demo Credentials
+              </p>
+              <span className="text-[10px] text-[#02343F] font-semibold bg-white border border-[#02343F]/20 px-2 py-0.5 rounded-full">Tap to autofill</span>
+            </div>
             {/* Must match: asha_heads.email = 'admin@asha.gov.in' */}
             <p className="text-xs text-[#02343F] font-mono">Email: admin@asha.gov.in</p>
             {/* Must match: password set via scripts/fix-admin-password.js */}

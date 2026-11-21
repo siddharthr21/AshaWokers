@@ -109,8 +109,20 @@ export default function ASHALogin() {
           </h2>
 
           {/* Demo Credentials */}
-          <div className="mt-6 bg-[#F0EDCC]/60 border border-[#02343F]/30 rounded-xl p-4 shadow-sm">
-            <p className="text-xs font-bold text-[#02343F] mb-2"><span className="material-symbols-outlined text-[16px] align-middle mr-1">key</span> Demo Credentials</p>
+          <div 
+            onClick={() => {
+              if (step === 1) setPhoneNumber('9876543211');
+              else setOtp('123456');
+            }}
+            className="mb-5 bg-[#F0EDCC]/60 border border-[#02343F]/30 rounded-xl p-4 shadow-sm cursor-pointer hover:bg-[#F0EDCC] transition-all"
+            title="Click to auto-fill demo credentials"
+          >
+            <div className="flex items-center justify-between mb-2">
+              <p className="text-xs font-bold text-[#02343F] flex items-center">
+                <span className="material-symbols-outlined text-[16px] align-middle mr-1">key</span> Demo Credentials
+              </p>
+              <span className="text-[10px] text-[#02343F] font-semibold bg-[#FAF8EA] border border-[#02343F]/20 px-2 py-0.5 rounded-full">Tap to autofill</span>
+            </div>
             <p className="text-xs text-[#02343F] font-mono font-medium">Phone Number: 9876543211</p>
             <p className="text-xs text-[#02343F] font-mono font-medium mt-1">OTP: 123456</p>
           </div>

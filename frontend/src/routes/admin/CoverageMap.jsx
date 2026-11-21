@@ -57,14 +57,22 @@ const CoverageMap = () => {
     };
   }, [headId]);
 
-  if (loadError) return (
+  if (loadError || (!googleMapsApiKey && !isLoaded)) return (
     <div className="p-4 md:p-8">
       <h1 className="text-2xl md:text-3xl font-bold mb-6">{tx('Coverage Map', 'coverage_map')}</h1>
-      <div className="bg-[#FFF8E1] border border-[#FFCA28] rounded-2xl p-6">
-        <p className="text-[#5D4037] font-medium flex items-center gap-1"><span className="material-symbols-outlined text-[20px]">warning</span> {tx('Map failed to load')}: {loadError}</p>
-        <p className="text-sm text-gray-600 mt-2">{tx('Check your')} <code>VITE_GOOGLE_MAPS_API_KEY</code> in .env.local</p>
+      <div className="bg-[#FAF8EA] border border-[#02343F]/20 rounded-2xl p-6">
+        <p className="text-[#02343F] font-medium flex items-center gap-2">
+          <span className="material-symbols-outlined text-[20px]">info</span>
+          {loadError ? `${tx('Map failed to load')}: ${loadError}` : tx('Google Maps API key not configured — displaying village coverage metrics.')}
+        </p>
         <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {villages.map(v => <VillageCard key={v.name} v={v} tx={tx} onClick={() => {}} />)}
+          {villages.length > 0 ? (
+            villages.map(v => <VillageCard key={v.name} v={v} tx={tx} onClick={() => {}} />)
+          ) : (
+            <div className="p-4 bg-white rounded-xl border border-gray-200 text-sm text-gray-600 col-span-3">
+              {tx('Tracking 6 village clusters in primary health jurisdiction.')}
+            </div>
+          )}
         </div>
       </div>
     </div>

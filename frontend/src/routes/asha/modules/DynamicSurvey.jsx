@@ -72,7 +72,7 @@ const ICON_MAP = {
  */
 function mapField(f) {
   return {
-    id: f.id.toString(),
+    id: String(f.id ?? ''),
     label: f.label_en || f.label || f.id,
     type: f.type,
     required: !!f.required,

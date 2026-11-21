@@ -110,6 +110,9 @@ const MODULE_FIELD_MAP = {
 
 // ─── Parse Aadhaar QR string → structured fields ──────────────────────────────
 function parseAadhaarQR(rawData) {
+  if (!rawData || typeof rawData !== 'string') {
+    return { aadhaar_raw: String(rawData || '').replace(/\D/g, '').slice(0, 12), name: '', dob: '', gender: '' };
+  }
   try {
     // Format 1: XML ("Secure QR" or older)
     const parser = new DOMParser();
@@ -154,7 +157,7 @@ function parseAadhaarQR(rawData) {
   } catch { /* fall through */ }
 
   // Format 3: raw number
-  return { aadhaar_raw: rawData.replace(/\D/g, '').slice(0, 12), name: '', dob: '', gender: '' };
+  return { aadhaar_raw: String(rawData || '').replace(/\D/g, '').slice(0, 12), name: '', dob: '', gender: '' };
 }
 
 // ─── Derive age (years) from YYYY-MM-DD DOB ───────────────────────────────────

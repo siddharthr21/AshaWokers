@@ -91,9 +91,9 @@ const DetailSheet = ({ item, onClose }) => {
         const { latitude: myLat, longitude: myLng } = position.coords;
         let destination = '';
         if (item.village) {
-          destination = encodeURIComponent(`${item.village}, Maharashtra, India`);
+          destination = encodeURIComponent(`${item.village}, India`);
         } else {
-          destination = encodeURIComponent(`${toFemaleName(item.name)}'s home, Maharashtra`);
+          destination = encodeURIComponent(`${toFemaleName(item.name)}'s home, India`);
         }
 
         const mapsUrl = `https://www.google.com/maps/dir/?api=1&origin=${myLat},${myLng}&destination=${destination}&travelmode=driving`;

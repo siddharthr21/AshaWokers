@@ -18,7 +18,7 @@ const SURVEY_CONFIGS = {
   'households': {
     title: 'Village Health Survey Register',
     headers: ['Sr No', 'ASHA Name', 'House No', 'Family No', 'Head Name & Contact', 'BPL/APL', 'Total Mems'],
-    mapRow: (d, i, ashaName) => [String(i + 1), ashaName, String(d.houseNumber || d.house_number || '-'), String(d.id.slice(-6).toUpperCase()), String(d.familyHeadName || '-'), String(d.bplStatus !== undefined ? (d.bplStatus ? 'BPL' : 'APL') : '-'), String(d.totalMembers || '-')]
+    mapRow: (d, i, ashaName) => [String(i + 1), ashaName, String(d.houseNumber || d.house_number || '-'), String(d.id || '').slice(-6).toUpperCase() || '-', String(d.familyHeadName || '-'), String(d.bplStatus !== undefined ? (d.bplStatus ? 'BPL' : 'APL') : '-'), String(d.totalMembers || '-')]
   },
   'pregnancies': {
     title: 'ANC Registrations',
