@@ -2,7 +2,7 @@ import { create } from 'zustand';
 
 // Backend URL configuration - injected at build time via VITE_BACKEND_URL or VITE_API_BASE_URL
 export const formatBackendUrl = (url) => {
-  if (!url) return 'http://localhost:8080';
+  if (!url) return 'https://ashaai-back-exeja6c4gadqgefj.centralindia-01.azurewebsites.net';
   let cleanUrl = url.trim().replace(/\/+$/, '');
   if (!/^https?:\/\//i.test(cleanUrl) && !cleanUrl.startsWith('localhost') && !cleanUrl.startsWith('127.0.0.1')) {
     return `https://${cleanUrl}`;
