@@ -5,6 +5,14 @@ import { VitePWA } from 'vite-plugin-pwa';
 
 // https://vite.dev/config/
 export default defineConfig({
+  define: {
+    'import.meta.env.VITE_BACKEND_URL': JSON.stringify(
+      process.env.VITE_BACKEND_URL || 'https://ashaai-back-exeja6c4gadqgefj.centralindia-01.azurewebsites.net'
+    ),
+    'import.meta.env.VITE_API_BASE_URL': JSON.stringify(
+      process.env.VITE_API_BASE_URL || 'https://ashaai-back-exeja6c4gadqgefj.centralindia-01.azurewebsites.net'
+    ),
+  },
   resolve: {
     alias: [
       { find: /^firebase(.*)/, replacement: '/src/utils/mockFirebase.js' },
@@ -40,7 +48,7 @@ export default defineConfig({
       },
       workbox: {
         // Add a cache version — increment this on every deploy
-        cacheId: 'ashavaani-v2',
+        cacheId: 'ashavaani-v3',
         // Clean up old caches automatically
         cleanupOutdatedCaches: true,
         // Skip waiting — new SW activates immediately instead of waiting
